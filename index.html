@@ -418,8 +418,51 @@
     gap: 26px;
   }
   .item-portfolio { display: flex; flex-direction: column; }
-  .item-portfolio .bloco-imagem { aspect-ratio: 1 / 1; margin-bottom: 12px; }
   .item-portfolio h3 { font-family: var(--fonte-corpo); font-weight: 700; font-size: 21px; margin-bottom: 4px; }
+
+  /* Card de vídeo do portfólio: mostra a miniatura do YouTube com um botão de play.
+     O vídeo real (iframe) só é carregado quando a pessoa clica, para o site continuar rápido. */
+  .video-portfolio {
+    position: relative;
+    aspect-ratio: 9 / 16;
+    max-width: 260px;
+    width: 100%;
+    margin: 0 auto 12px;
+    border: 3px solid var(--preto);
+    border-radius: 18px;
+    box-shadow: 6px 6px 0 var(--preto);
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    padding: 0;
+  }
+  .video-portfolio iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .botao-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--rosa);
+    border: 3px solid var(--preto);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #1a0010;
+    transition: transform 0.15s ease;
+  }
+  .video-portfolio:hover .botao-play,
+  .video-portfolio:focus-visible .botao-play { transform: translate(-50%, -50%) scale(1.1); }
   .selo-categoria {
     display: inline-block;
     font-family: var(--fonte-pixel);
@@ -888,22 +931,61 @@
     },
 
     // EDITE AQUI: as categorias do filtro do portfólio (a primeira precisa ser sempre "Todos")
-    categoriasPortfolio: ["Todos", "Beleza", "Moda", "Comida", "Fitness", "Viagem"],
+    categoriasPortfolio: ["Todos", "Destaques", "Apps, Sites e Tech", "Jogos", "Hair Care", "Skin Care", "Casa e Decor", "Gastronomia", "Moda", "Casal", "Experiência"],
 
-    // EDITE AQUI: os trabalhos do seu portfólio
-    // "gradiente" aparece enquanto não existe foto. "imagem" é o caminho na pasta "imagens":
-    // assim que você arrastar o arquivo com esse nome para lá, a foto substitui o gradiente sozinha.
+    // EDITE AQUI: os vídeos do seu portfólio (todos hospedados como "não listado" no YouTube)
+    // "videoId" é o código que vem depois de /shorts/ no link do YouTube, por exemplo:
+    // em youtube.com/shorts/g1Q6hbjenxE o videoId é "g1Q6hbjenxE".
+    // A miniatura e o play aparecem sozinhos a partir do videoId, sem precisar de mais nada.
     portfolio: [
-      { categoria: "Beleza", titulo: "Rotina de skincare", descricao: "Passo a passo de um produto de cuidados com a pele, com foco em resultado real.", gradiente: "linear-gradient(135deg, #ff4fb0, #ffe24d)", imagem: "imagens/beleza.png" },
-      { categoria: "Beleza", titulo: "Resenha de maquiagem", descricao: "Prova de produto em vídeo, destacando textura e acabamento para gerar desejo de compra.", gradiente: "linear-gradient(135deg, #ff4fb0, #b6ff5c)" },
-      { categoria: "Moda", titulo: "Look do dia", descricao: "Conteúdo de moda mostrando como usar as peças no dia a dia, com linguagem próxima e natural.", gradiente: "linear-gradient(135deg, #b794ff, #ff4fb0)", imagem: "imagens/moda.png" },
-      { categoria: "Moda", titulo: "Try on de coleção", descricao: "Vídeo dinâmico apresentando várias peças de uma coleção, ideal para lançamentos.", gradiente: "linear-gradient(135deg, #b794ff, #ffe24d)" },
-      { categoria: "Comida", titulo: "Unboxing de kit gourmet", descricao: "Abertura de embalagem com reação genuína, mostrando cada detalhe do produto.", gradiente: "linear-gradient(135deg, #ffe24d, #b6ff5c)", imagem: "imagens/comida.png" },
-      { categoria: "Comida", titulo: "Receita com o produto", descricao: "Vídeo mostrando o produto sendo usado em uma receita real, com dica de uso.", gradiente: "linear-gradient(135deg, #ffe24d, #ff4fb0)" },
-      { categoria: "Fitness", titulo: "Treino com suplemento", descricao: "Produto integrado ao dia a dia de treino, com fala natural sobre os resultados.", gradiente: "linear-gradient(135deg, #b6ff5c, #7ec8ff)", imagem: "imagens/fitness.jpeg" },
-      { categoria: "Fitness", titulo: "Rotina fitness", descricao: "Vídeo de rotina saudável mostrando o produto de forma orgânica no cotidiano.", gradiente: "linear-gradient(135deg, #b6ff5c, #b794ff)" },
-      { categoria: "Viagem", titulo: "Diário de viagem", descricao: "Conteúdo estilo vlog mostrando a experiência de usar o produto durante uma viagem.", gradiente: "linear-gradient(135deg, #7ec8ff, #b794ff)", imagem: "imagens/viagem.jpg" },
-      { categoria: "Viagem", titulo: "Dica de destino", descricao: "Recomendação de destino ou serviço de viagem, em tom de conversa entre amigas.", gradiente: "linear-gradient(135deg, #7ec8ff, #ffe24d)" },
+      { categoria: "Destaques", titulo: "Fini", descricao: "Vídeo divertido para a Fini, com humor e ritmo pensados para viralizar nos stories.", videoId: "g1Q6hbjenxE" },
+      { categoria: "Destaques", titulo: "Eventos", descricao: "Cobertura de evento em vídeo vertical, mostrando a experiência ao vivo para o público da marca.", videoId: "DRqiGyXPSEY" },
+      { categoria: "Destaques", titulo: "Reel de Destaque", descricao: "Reel de destaque mostrando a versatilidade de estilos e formatos de gravação.", videoId: "hmiP_DLdU-I" },
+
+      { categoria: "Apps, Sites e Tech", titulo: "Itaú", descricao: "Vídeo explicando uma funcionalidade do app do Itaú de um jeito simples e direto.", videoId: "tNq3Qqw8Znc" },
+      { categoria: "Apps, Sites e Tech", titulo: "TikTok", descricao: "Conteúdo nativo para o TikTok, no tom e no ritmo que a plataforma pede.", videoId: "8bD9pc__0zE" },
+      { categoria: "Apps, Sites e Tech", titulo: "Stoel", descricao: "Demonstração do produto Stoel em uso real, destacando praticidade no dia a dia.", videoId: "6aCiCXhMYoI" },
+
+      { categoria: "Jogos", titulo: "Segue o Fluxo", descricao: "Gameplay narrado com energia, pensado para prender a atenção de quem joga.", videoId: "rTfSfm5FIqA" },
+      { categoria: "Jogos", titulo: "Jogo do Ranking", descricao: "Vídeo de desafio em formato de ranking, ótimo para gerar comentários e compartilhamentos.", videoId: "cSBxfDwhzxQ" },
+      { categoria: "Jogos", titulo: "Depoimento Ranking", descricao: "Depoimento sincero sobre a experiência com o jogo, reforçando a credibilidade da marca.", videoId: "0ItF2Mlbx9w" },
+
+      { categoria: "Hair Care", titulo: "Revlon", descricao: "Resenha de produto Revlon, mostrando resultado real no cabelo.", videoId: "LWvQN62Mxo8" },
+      { categoria: "Hair Care", titulo: "Kit Nutrição", descricao: "Rotina de nutrição capilar com o kit, passo a passo fácil de seguir.", videoId: "LzuH8u0xpQc" },
+      { categoria: "Hair Care", titulo: "L'Oréal Paris", descricao: "Prova de produto L'Oréal Paris, com foco em textura e resultado.", videoId: "fU4CtaXZJrQ" },
+      { categoria: "Hair Care", titulo: "Máscara Pro Hairmony", descricao: "Uso da máscara Pro Hairmony com reação genuína ao resultado.", videoId: "-oNFZb-Ze6I" },
+
+      { categoria: "Skin Care", titulo: "Garnier", descricao: "Rotina de skincare com produtos Garnier, mostrando o passo a passo completo.", videoId: "Lf3mZkigMdg" },
+      { categoria: "Skin Care", titulo: "Blue Rose", descricao: "Resenha da linha Blue Rose, com destaque para textura e sensação na pele.", videoId: "Xq2XXYeXEqM" },
+      { categoria: "Skin Care", titulo: "Kit Regenerador", descricao: "Demonstração do kit regenerador em uso, com resultado percebido em vídeo.", videoId: "3Gayh5o17ZI" },
+
+      { categoria: "Casa e Decor", titulo: "Mesa Posta", descricao: "Inspiração de mesa posta para receber visitas com estilo e economia.", videoId: "x6rNm6vLsJg" },
+      { categoria: "Casa e Decor", titulo: "Mini Reforma", descricao: "Vídeo de mini reforma, mostrando o antes e depois de um cantinho da casa.", videoId: "Xwh4JxbVfKo" },
+      { categoria: "Casa e Decor", titulo: "Percarbonato", descricao: "Dica de limpeza com percarbonato, mostrando o produto funcionando na prática.", videoId: "MtiY5VSrLio" },
+      { categoria: "Casa e Decor", titulo: "Vinagreen", descricao: "Uso do Vinagreen em uma tarefa doméstica real, com resultado à vista.", videoId: "10SzDcuAgE0" },
+
+      { categoria: "Gastronomia", titulo: "Doces Importados", descricao: "Unboxing de doces importados, com reação genuína a cada sabor.", videoId: "7rztqKHcdN8" },
+      { categoria: "Gastronomia", titulo: "Especial Halloween", descricao: "Conteúdo temático de Halloween usando o produto de um jeito criativo.", videoId: "Kg0SGd536uE" },
+      { categoria: "Gastronomia", titulo: "Divino Fogão", descricao: "Experiência no Divino Fogão, mostrando pratos e ambiente para atrair clientes.", videoId: "7cIQCXFJt5o" },
+      { categoria: "Gastronomia", titulo: "Azeite Andorinha", descricao: "Receita simples usando o Azeite Andorinha como ingrediente principal.", videoId: "Oc9HS_oiQRQ" },
+      { categoria: "Gastronomia", titulo: "Doce de Leite", descricao: "Prova de doce de leite em vídeo, com reação espontânea de sabor.", videoId: "qsOTGcz-K3c" },
+      { categoria: "Gastronomia", titulo: "Hellmann's", descricao: "Receita rápida usando produtos Hellmann's, fácil de reproduzir em casa.", videoId: "FYyoidUrfRY" },
+
+      { categoria: "Moda", titulo: "Mercado Livre", descricao: "Vídeo de compras no Mercado Livre, mostrando produtos e opiniões reais.", videoId: "SUvVD0ZjtRc" },
+      { categoria: "Moda", titulo: "Shein", descricao: "Try on de peças da Shein, com opinião sincera sobre caimento e qualidade.", videoId: "nOd_C9TKkvo" },
+      { categoria: "Moda", titulo: "Casa Ella", descricao: "Look completo com peças da Casa Ella, em vídeo dinâmico de moda.", videoId: "lSBLorl5aaw" },
+      { categoria: "Moda", titulo: "Sans Égal", descricao: "Vídeo de moda para a Sans Égal, com estilo e leveza.", videoId: "WJoDHls5Rzo" },
+      { categoria: "Moda", titulo: "Melissa", descricao: "Vídeo mostrando um lançamento Melissa, com foco em estilo e conforto.", videoId: "gLCtlv5ZnCg" },
+
+      { categoria: "Casal", titulo: "Raffer", descricao: "Vídeo de casal usando produtos Raffer no dia a dia.", videoId: "cfU05WBytJA" },
+      { categoria: "Casal", titulo: "MTA Panelas", descricao: "Demonstração de panelas MTA em uso real na cozinha, em vídeo de casal.", videoId: "9vhYPrRDPX4" },
+      { categoria: "Casal", titulo: "Raffer", descricao: "Segundo vídeo para a Raffer, reforçando a parceria com conteúdo de casal.", videoId: "LRCwq-03BH4" },
+      { categoria: "Casal", titulo: "Alianças para Casar", descricao: "Vídeo emocionante mostrando alianças de casamento, ideal para joalherias.", videoId: "wbKnWvEdqMo" },
+
+      { categoria: "Experiência", titulo: "Spa", descricao: "Vídeo de experiência em spa, mostrando o ambiente e o momento de relaxamento.", videoId: "w4zTTws33xg" },
+      { categoria: "Experiência", titulo: "Ação Hellmann's", descricao: "Cobertura de ação promocional da Hellmann's, capturando a reação do público.", videoId: "84gGRWyypAE" },
+      { categoria: "Experiência", titulo: "Buraco do Padre", descricao: "Vídeo de passeio no Buraco do Padre, ótimo para turismo e lazer.", videoId: "sw61R84YRUA" },
+      { categoria: "Experiência", titulo: "Hamburgueria", descricao: "Experiência gastronômica em hamburgueria, mostrando ambiente e prato em vídeo apetitoso.", videoId: "kPr4An6H_9M" },
     ],
 
     // EDITE AQUI: os serviços que você oferece (o "icone" é um emoji, pode trocar à vontade)
@@ -936,11 +1018,16 @@
 
   // EDITE AQUI: a cor do selinho de cada categoria do portfólio (segue a paleta candy do site)
   const CORES_CATEGORIA = {
-    "Beleza": "#ff4fb0",
-    "Moda": "#b794ff",
-    "Comida": "#ffe24d",
-    "Fitness": "#b6ff5c",
-    "Viagem": "#7ec8ff",
+    "Destaques": "#ff4fb0",
+    "Apps, Sites e Tech": "#b794ff",
+    "Jogos": "#ffe24d",
+    "Hair Care": "#b6ff5c",
+    "Skin Care": "#7ec8ff",
+    "Casa e Decor": "#ff4fb0",
+    "Gastronomia": "#b794ff",
+    "Moda": "#ffe24d",
+    "Casal": "#b6ff5c",
+    "Experiência": "#7ec8ff",
   };
 
   /* =========================================================================
@@ -1084,10 +1171,7 @@
       item.className = "item-portfolio";
       item.dataset.categoria = trabalho.categoria;
 
-      const imagem = document.createElement("div");
-      imagem.className = "bloco-imagem";
-      imagem.setAttribute("role", "img");
-      criarBlocoImagem(imagem, trabalho.gradiente, "Trabalho de " + trabalho.categoria + ": " + trabalho.titulo, trabalho.imagem);
+      const video = criarCardVideo(trabalho);
 
       const selo = document.createElement("span");
       selo.className = "selo-categoria";
@@ -1100,9 +1184,51 @@
       const descricao = document.createElement("p");
       descricao.textContent = trabalho.descricao;
 
-      item.append(imagem, selo, titulo, descricao);
+      item.append(video, selo, titulo, descricao);
       grade.appendChild(item);
     });
+  }
+
+  // Cria o card de vídeo: mostra a miniatura do YouTube com um botão de play por cima.
+  // O <iframe> do vídeo só é criado quando a pessoa clica (ou aperta Enter/Espaço),
+  // assim a página não fica pesada carregando os 39 vídeos ao mesmo tempo.
+  function criarCardVideo(trabalho) {
+    const card = document.createElement("div");
+    card.className = "video-portfolio";
+    card.style.backgroundImage = "url(https://i.ytimg.com/vi/" + trabalho.videoId + "/hqdefault.jpg)";
+    card.setAttribute("role", "button");
+    card.setAttribute("tabindex", "0");
+    card.setAttribute("aria-label", "Reproduzir vídeo: " + trabalho.titulo);
+
+    const play = document.createElement("span");
+    play.className = "botao-play";
+    play.setAttribute("aria-hidden", "true");
+    play.textContent = "▶";
+    card.appendChild(play);
+
+    function carregarVideo() {
+      const iframe = document.createElement("iframe");
+      iframe.src = "https://www.youtube-nocookie.com/embed/" + trabalho.videoId + "?autoplay=1";
+      iframe.title = "Vídeo: " + trabalho.titulo;
+      iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
+      iframe.allowFullscreen = true;
+      card.innerHTML = "";
+      card.removeAttribute("role");
+      card.removeAttribute("tabindex");
+      card.removeAttribute("aria-label");
+      card.style.cursor = "default";
+      card.appendChild(iframe);
+    }
+
+    card.addEventListener("click", carregarVideo);
+    card.addEventListener("keydown", (evento) => {
+      if (evento.key === "Enter" || evento.key === " ") {
+        evento.preventDefault();
+        carregarVideo();
+      }
+    });
+
+    return card;
   }
 
   function filtrarPortfolio(categoriaEscolhida, botaoClicado) {
