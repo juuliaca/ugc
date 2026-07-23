@@ -930,8 +930,8 @@
       ],
     },
 
-    // EDITE AQUI: as categorias do filtro do portfólio (a primeira precisa ser sempre "Todos")
-    categoriasPortfolio: ["Todos", "Destaques", "Apps, Sites e Tech", "Jogos", "Hair Care", "Skin Care", "Casa e Decor", "Gastronomia", "Moda", "Casal", "Experiência"],
+    // EDITE AQUI: as categorias do filtro do portfólio (a primeira é a que aparece selecionada ao carregar a página)
+    categoriasPortfolio: ["Destaques", "Apps, Sites e Tech", "Jogos", "Hair Care", "Skin Care", "Casa e Decor", "Gastronomia", "Moda", "Casal", "Experiência"],
 
     // EDITE AQUI: os vídeos do seu portfólio (todos hospedados como "não listado" no YouTube)
     // "videoId" é o código que vem depois de /shorts/ no link do YouTube, por exemplo:
@@ -1166,10 +1166,13 @@
       filtrosContainer.appendChild(botao);
     });
 
+    const categoriaInicial = CONFIG.categoriasPortfolio[0];
+
     CONFIG.portfolio.forEach((trabalho) => {
       const item = document.createElement("article");
       item.className = "item-portfolio";
       item.dataset.categoria = trabalho.categoria;
+      if (trabalho.categoria !== categoriaInicial) item.classList.add("escondido");
 
       const video = criarCardVideo(trabalho);
 
@@ -1236,7 +1239,7 @@
     botaoClicado.setAttribute("aria-pressed", "true");
 
     document.querySelectorAll(".item-portfolio").forEach((item) => {
-      const mostrar = categoriaEscolhida === "Todos" || item.dataset.categoria === categoriaEscolhida;
+      const mostrar = item.dataset.categoria === categoriaEscolhida;
       item.classList.toggle("escondido", !mostrar);
     });
   }
