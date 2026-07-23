@@ -312,6 +312,7 @@
     border: 3px solid var(--preto);
     border-radius: 999px;
   }
+  .hero-texto { position: relative; min-width: 0; }
   .hero-figura { position: relative; }
   .adesivo-flutuante {
     position: absolute;
@@ -334,6 +335,49 @@
     font-size: 48px;
     color: var(--roxo);
     transform: rotate(-15deg);
+  }
+
+  /* Adesivos retrô anos 2000 (decorativos, não carregam informação, por isso aria-hidden no HTML) */
+  .adesivo-bolha {
+    position: absolute;
+    top: -10px;
+    right: 4px;
+    background: var(--verde-limao);
+    border: 3px solid var(--preto);
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-family: var(--fonte-titulo);
+    font-size: 12px;
+    color: #14210a;
+    transform: rotate(6deg);
+    box-shadow: 4px 4px 0 var(--preto);
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .adesivo-icone {
+    position: absolute;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid var(--preto);
+    box-shadow: 4px 4px 0 var(--preto);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    pointer-events: none;
+  }
+  .adesivo-disco { top: 42%; left: -26px; background: var(--roxo); transform: rotate(-10deg); }
+  .adesivo-vhs { top: 62%; right: -22px; background: var(--amarelo); transform: rotate(10deg); }
+  .adesivo-beijo {
+    width: 46px;
+    height: 46px;
+    font-size: 22px;
+    bottom: -12px;
+    right: 70px;
+    background: var(--rosa);
+    transform: rotate(-14deg);
   }
 
   /* Bloco que simula foto/vídeo com gradiente. Quando existe um arquivo de foto real
@@ -636,6 +680,11 @@
     .sobre .conteudo-janela .bloco-imagem { max-width: 320px; margin: 0 auto; }
     .conteudo-janela { padding: 30px 20px; }
     .estrela-adesivo { font-size: 34px; }
+    .adesivo-icone { width: 42px; height: 42px; font-size: 20px; }
+    .adesivo-disco { left: -14px; }
+    .adesivo-vhs { right: -12px; }
+    .adesivo-beijo { width: 38px; height: 38px; font-size: 18px; right: 46px; }
+    .adesivo-bolha { font-size: 11px; padding: 5px 12px; }
   }
 
   @media (max-width: 480px) {
@@ -695,16 +744,20 @@
           </span>
         </div>
         <div class="conteudo-janela">
-          <div>
+          <div class="hero-texto">
             <span class="hero-profissao" id="hero-profissao"></span>
             <h1 class="hero-titulo" id="hero-nome"></h1>
             <p class="hero-frase" id="hero-frase"></p>
             <a href="#contato" class="botao-retro botao-destaque" id="hero-cta"></a>
+            <span class="adesivo-bolha" aria-hidden="true">vibe retrô</span>
+            <span class="adesivo-icone adesivo-beijo" aria-hidden="true">💋</span>
           </div>
           <div class="hero-figura">
             <div class="bloco-imagem" id="hero-imagem" role="img"></div>
             <span class="adesivo-flutuante">✨ disponível para parcerias</span>
             <span class="estrela-adesivo" aria-hidden="true">★</span>
+            <span class="adesivo-icone adesivo-disco" aria-hidden="true">🪩</span>
+            <span class="adesivo-icone adesivo-vhs" aria-hidden="true">📼</span>
           </div>
         </div>
       </div>
