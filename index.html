@@ -1384,7 +1384,10 @@
           observador.unobserve(entrada.target);
         }
       });
-    }, { threshold: 0.15 });
+      // "threshold: 0" dispara assim que 1 pixel do bloco entra na tela. Não usamos um valor
+      // maior porque seções muito altas (como o portfólio com muitos vídeos) quase nunca teriam
+      // uma porcentagem grande da própria altura visível de uma vez, e ficariam invisíveis para sempre.
+    }, { threshold: 0 });
 
     elementos.forEach((elemento) => observador.observe(elemento));
   }
