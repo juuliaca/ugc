@@ -401,33 +401,46 @@
   }
 
   /* =========================================================
-     FAIXA DE MARCAS (efeito "marquee" nostálgico)
+     FAIXA DE MARCAS (logos em círculo rolando na horizontal)
      ========================================================= */
   .faixa-marcas {
     overflow: hidden;
-    background: var(--preto);
-    padding: 16px 0;
-    border-top: 3px solid var(--preto);
-    border-bottom: 3px solid var(--preto);
+    padding: 50px 0 60px;
+  }
+  .titulo-marcas {
+    text-align: center;
+    font-family: var(--fonte-titulo);
+    font-size: clamp(1.2rem, 2.6vw, 1.6rem);
+    color: var(--roxo-escuro);
+    margin: 0 0 32px 0;
   }
   .marquee-trilho {
     display: flex;
+    align-items: center;
     width: max-content;
-    gap: 50px;
+    gap: 34px;
     animation: rolar-marcas 26s linear infinite;
   }
   .faixa-marcas:hover .marquee-trilho,
   .faixa-marcas:focus-within .marquee-trilho { animation-play-state: paused; }
-  .marquee-trilho span {
-    font-family: var(--fonte-pixel);
-    font-size: 24px;
-    white-space: nowrap;
+  .logo-marca {
+    flex-shrink: 0;
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid var(--preto);
+    box-shadow: 4px 4px 0 var(--preto);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
   }
-  .marquee-trilho span:nth-child(5n+1) { color: var(--rosa); }
-  .marquee-trilho span:nth-child(5n+2) { color: var(--amarelo); }
-  .marquee-trilho span:nth-child(5n+3) { color: var(--verde-limao); }
-  .marquee-trilho span:nth-child(5n+4) { color: var(--roxo); }
-  .marquee-trilho span:nth-child(5n+5) { color: #7ec8ff; }
+  .logo-marca img {
+    width: 68%;
+    height: 68%;
+    object-fit: contain;
+  }
   @keyframes rolar-marcas {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
@@ -810,7 +823,8 @@
   </section>
 
   <!-- ===================== FAIXA DE MARCAS ===================== -->
-  <section id="marcas" aria-label="Marcas com quem já trabalhei" class="faixa-marcas">
+  <section id="marcas" aria-label="Marcas que confiam no meu trabalho" class="faixa-marcas">
+    <h2 class="titulo-marcas">Marcas que confiam no meu trabalho</h2>
     <div class="marquee-trilho" id="trilho-marcas" aria-hidden="true"></div>
   </section>
 
@@ -1006,13 +1020,27 @@
       { rotulo: "Contato", href: "#contato" },
     ],
 
-    // EDITE AQUI: as frases que aparecem na faixa que rola na tela (pontos fortes do seu trabalho)
-    marcas: [
-      "Roteiros Estratégicos",
-      "Criativos de Alta Performance",
-      "Publipost",
-      "UGC de Conversão",
-      "Reviews",
+    // EDITE AQUI: as marcas com quem você já trabalhou (aparecem em círculo na faixa que rola na tela)
+    // "logo" é o caminho do arquivo dentro da pasta "imagens/marcas". Use PNG com fundo transparente
+    // (ou fundo branco) para ficar igual a um "selo" redondo. Se o arquivo ainda não existir,
+    // o círculo aparece em branco até você subir a imagem com esse nome.
+    marcasParceiras: [
+      { nome: "Andorinha", logo: "imagens/marcas/andorinha.png" },
+      { nome: "Appelhome", logo: "imagens/marcas/appelhome.png" },
+      { nome: "Coala", logo: "imagens/marcas/coala.png" },
+      { nome: "Contém 1g", logo: "imagens/marcas/contem1g.png" },
+      { nome: "Divino Fogão", logo: "imagens/marcas/divinofogao.png" },
+      { nome: "Elseve", logo: "imagens/marcas/elseve.png" },
+      { nome: "Fini", logo: "imagens/marcas/fini.png" },
+      { nome: "Garnier", logo: "imagens/marcas/Garnier-Logo.png" },
+      { nome: "Itaú", logo: "imagens/marcas/itau.png" },
+      { nome: "Mercado Livre", logo: "imagens/marcas/mercadolivre.png" },
+      { nome: "MTA", logo: "imagens/marcas/mta.png" },
+      { nome: "Party Games", logo: "imagens/marcas/partygames.png" },
+      { nome: "Pro Hairmony", logo: "imagens/marcas/prohairmony.png" },
+      { nome: "Stoel", logo: "imagens/marcas/stoel.png" },
+      { nome: "Tuff", logo: "imagens/marcas/tuff.png" },
+      { nome: "Vinagreen", logo: "imagens/marcas/vinagreen.png" },
     ],
 
     // EDITE AQUI: o texto da seção "Sobre mim" ("imagem" funciona igual ao do hero, acima)
@@ -1223,12 +1251,27 @@
 
   function montarFaixaMarcas() {
     const trilho = document.getElementById("trilho-marcas");
+    const secaoMarcas = document.getElementById("marcas");
+
+    if (CONFIG.marcasParceiras.length === 0) {
+      secaoMarcas.style.display = "none";
+      return;
+    }
+
     // duplica a lista para criar um loop contínuo sem espaço em branco
-    const listaDuplicada = [...CONFIG.marcas, ...CONFIG.marcas];
+    const listaDuplicada = [...CONFIG.marcasParceiras, ...CONFIG.marcasParceiras];
     listaDuplicada.forEach((marca) => {
-      const span = document.createElement("span");
-      span.textContent = "✦ " + marca;
-      trilho.appendChild(span);
+      const circulo = document.createElement("span");
+      circulo.className = "logo-marca";
+
+      const img = document.createElement("img");
+      img.src = marca.logo;
+      img.alt = marca.nome;
+      img.loading = "lazy";
+      img.onerror = () => img.remove();
+      circulo.appendChild(img);
+
+      trilho.appendChild(circulo);
     });
   }
 
