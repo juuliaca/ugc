@@ -442,6 +442,12 @@
     gap: 40px;
     align-items: center;
   }
+  #sobre-titulo {
+    font-size: clamp(1.7rem, 3.4vw, 2.3rem);
+  }
+  #sobre-titulo .nome-destaque {
+    color: var(--rosa-escuro);
+  }
 
   /* =========================================================
      PORTFÓLIO
@@ -456,22 +462,62 @@
     background: var(--roxo);
     color: #1a0010;
   }
-  .grade-portfolio {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 26px;
+
+  /* Cada nicho é um grupo; só o grupo ativo (escolhido no filtro) fica visível */
+  .grupo-categoria { display: none; }
+  .grupo-categoria.ativo { display: block; }
+
+  /* Carrossel horizontal: trilho com rolagem + setas para nichos com mais de 3 vídeos */
+  .carrossel-portfolio {
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
-  .item-portfolio { display: flex; flex-direction: column; }
+  .trilho-portfolio {
+    display: flex;
+    gap: 22px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 6px 4px 14px;
+    flex: 1;
+    scrollbar-width: none;
+  }
+  .trilho-portfolio::-webkit-scrollbar { display: none; }
+  .seta-portfolio {
+    flex: 0 0 auto;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid var(--preto);
+    box-shadow: 4px 4px 0 var(--preto);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.12s ease;
+  }
+  .seta-portfolio:hover { transform: translateY(-2px); }
+  .seta-portfolio:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--preto); }
+
+  .item-portfolio {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 210px;
+    scroll-snap-align: start;
+  }
   .item-portfolio h3 { font-family: var(--fonte-corpo); font-weight: 700; font-size: 21px; margin-bottom: 4px; }
 
   /* Card de vídeo do portfólio: mostra a miniatura do YouTube com um botão de play.
-     O vídeo real (iframe) só é carregado quando a pessoa clica, para o site continuar rápido. */
+     O vídeo real (iframe) carrega ao passar o mouse (hover) ou ao clicar/tocar,
+     assim a página não fica pesada carregando os vídeos todos ao mesmo tempo. */
   .video-portfolio {
     position: relative;
     aspect-ratio: 9 / 16;
-    max-width: 260px;
     width: 100%;
-    margin: 0 auto 12px;
+    margin-bottom: 12px;
     border: 3px solid var(--preto);
     border-radius: 18px;
     box-shadow: 6px 6px 0 var(--preto);
@@ -518,7 +564,6 @@
     border: 2px solid var(--preto);
     border-radius: 999px;
   }
-  .item-portfolio.escondido { display: none; }
 
   /* =========================================================
      SERVIÇOS
@@ -738,7 +783,7 @@
     <div class="container" style="padding-top:30px;">
       <div class="janela revelar">
         <div class="barra-titulo">
-          <span>INICIO.EXE</span>
+          <span>INICIO</span>
           <span class="luzes" aria-hidden="true">
             <span class="luz vermelha"></span><span class="luz amarela"></span><span class="luz verde"></span>
           </span>
@@ -754,7 +799,7 @@
           </div>
           <div class="hero-figura">
             <div class="bloco-imagem" id="hero-imagem" role="img"></div>
-            <span class="adesivo-flutuante">✨ disponível para parcerias</span>
+            <span class="adesivo-flutuante">✨ resultados reais</span>
             <span class="estrela-adesivo" aria-hidden="true">★</span>
             <span class="adesivo-icone adesivo-disco" aria-hidden="true">🪩</span>
             <span class="adesivo-icone adesivo-vhs" aria-hidden="true">📼</span>
@@ -774,7 +819,7 @@
     <div class="container" style="padding:50px 20px;">
       <div class="janela revelar">
         <div class="barra-titulo">
-          <span>SOBRE.EXE</span>
+          <span>SOBRE</span>
           <span class="luzes" aria-hidden="true">
             <span class="luz vermelha"></span><span class="luz amarela"></span><span class="luz verde"></span>
           </span>
@@ -795,7 +840,7 @@
     <div class="container" style="padding:50px 20px;">
       <div class="janela revelar">
         <div class="barra-titulo">
-          <span>PORTFOLIO.EXE</span>
+          <span>PORTFOLIO</span>
           <span class="luzes" aria-hidden="true">
             <span class="luz vermelha"></span><span class="luz amarela"></span><span class="luz verde"></span>
           </span>
@@ -814,7 +859,7 @@
     <div class="container" style="padding:50px 20px;">
       <div class="janela revelar">
         <div class="barra-titulo">
-          <span>SERVICOS.EXE</span>
+          <span>SERVICOS</span>
           <span class="luzes" aria-hidden="true">
             <span class="luz vermelha"></span><span class="luz amarela"></span><span class="luz verde"></span>
           </span>
@@ -832,7 +877,7 @@
     <div class="container" style="padding:50px 20px;">
       <div class="janela revelar">
         <div class="barra-titulo">
-          <span>RESULTADOS.EXE</span>
+          <span>RESULTADOS</span>
           <span class="luzes" aria-hidden="true">
             <span class="luz vermelha"></span><span class="luz amarela"></span><span class="luz verde"></span>
           </span>
@@ -850,7 +895,7 @@
     <div class="container" style="padding:50px 20px;">
       <div class="janela revelar">
         <div class="barra-titulo">
-          <span>DEPOIMENTOS.EXE</span>
+          <span>DEPOIMENTOS</span>
           <span class="luzes" aria-hidden="true">
             <span class="luz vermelha"></span><span class="luz amarela"></span><span class="luz verde"></span>
           </span>
@@ -868,7 +913,7 @@
     <div class="container" style="padding:50px 20px;">
       <div class="janela revelar">
         <div class="barra-titulo">
-          <span>CONTATO.EXE</span>
+          <span>CONTATO</span>
           <span class="luzes" aria-hidden="true">
             <span class="luz vermelha"></span><span class="luz amarela"></span><span class="luz verde"></span>
           </span>
@@ -935,7 +980,7 @@
       nome: "Julia Carolina",
       logo: "JULIA CAROLINA",
       profissao: "Criadora de Conteúdo UGC",
-      fraseImpacto: "Conteúdo autêntico que faz a sua marca vender mais nas redes sociais.",
+      fraseImpacto: "Conteúdos com naturalidade para marcas que querem se conectar de forma real com seu público.",
       textoBotaoHero: "Fale comigo",
       imagem: "imagens/hero.jpeg",
     },
@@ -961,25 +1006,23 @@
       { rotulo: "Contato", href: "#contato" },
     ],
 
-    // EDITE AQUI: as marcas com quem você já trabalhou (aparecem na faixa que rola na tela)
+    // EDITE AQUI: as frases que aparecem na faixa que rola na tela (pontos fortes do seu trabalho)
     marcas: [
-      "Loja Bella Cosméticos",
-      "Doce Sabor Confeitaria",
-      "FitLife Suplementos",
-      "Viaje Mais Turismo",
-      "ModaStyle Boutique",
-      "Casa Aconchego Decor",
-      "Vida Natural Suplementos",
+      "Roteiros Estratégicos",
+      "Criativos de Alta Performance",
+      "Publipost",
+      "UGC de Conversão",
+      "Reviews",
     ],
 
     // EDITE AQUI: o texto da seção "Sobre mim" ("imagem" funciona igual ao do hero, acima)
+    // "saudacao" vem antes do seu nome (o nome usado é o mesmo de perfil.nome, lá em cima, em outra cor)
     sobre: {
-      titulo: "Sobre mim",
+      saudacao: "Oie, eu sou a",
       imagem: "imagens/sobre.jpeg",
       paragrafos: [
-        "Sou a Julia Carolina, criadora de conteúdo UGC apaixonada por contar histórias reais sobre produtos e marcas.",
-        "Transformo briefings em vídeos e fotos que parecem conteúdo espontâneo de gente de verdade, porque é exatamente isso que faz o público confiar e comprar.",
-        "Já ajudei marcas de beleza, moda, alimentação, fitness e viagem a se conectarem com seus clientes de um jeito genuíno, entregando prazo, comunicação clara e material pensado para gerar resultado, não só curtidas.",
+        "Tenho 28 anos, sou UGC Creator, influenciadora e publicitária de formação. Crio conteúdo desde 2017, transformando produtos em histórias visuais autênticas, pensadas para gerar identificação, retenção e ação, seja no orgânico ou em campanhas.",
+        "Meu diferencial não é só a estética, é a narrativa por trás de cada conteúdo, com uma linguagem leve, natural e próxima.",
       ],
     },
 
@@ -992,8 +1035,8 @@
     // A miniatura e o play aparecem sozinhos a partir do videoId, sem precisar de mais nada.
     portfolio: [
       { categoria: "Destaques", titulo: "Fini", descricao: "Vídeo divertido para a Fini, com humor e ritmo pensados para viralizar nos stories.", videoId: "g1Q6hbjenxE" },
-      { categoria: "Destaques", titulo: "Eventos", descricao: "Cobertura de evento em vídeo vertical, mostrando a experiência ao vivo para o público da marca.", videoId: "DRqiGyXPSEY" },
-      { categoria: "Destaques", titulo: "Reel de Destaque", descricao: "Reel de destaque mostrando a versatilidade de estilos e formatos de gravação.", videoId: "hmiP_DLdU-I" },
+      { categoria: "Destaques", titulo: "Eventos", descricao: "Conteúdo para captar leads para empresa que organiza eventos.", videoId: "DRqiGyXPSEY" },
+      { categoria: "Destaques", titulo: "Review", descricao: "Vídeo de reviews sincero sobre microfone viral da Hollyland.", videoId: "hmiP_DLdU-I" },
 
       { categoria: "Apps, Sites e Tech", titulo: "Itaú", descricao: "Vídeo explicando uma funcionalidade do app do Itaú de um jeito simples e direto.", videoId: "tNq3Qqw8Znc" },
       { categoria: "Apps, Sites e Tech", titulo: "TikTok", descricao: "Conteúdo nativo para o TikTok, no tom e no ritmo que a plataforma pede.", videoId: "8bD9pc__0zE" },
@@ -1003,16 +1046,16 @@
       { categoria: "Jogos", titulo: "Jogo do Ranking", descricao: "Vídeo de desafio em formato de ranking, ótimo para gerar comentários e compartilhamentos.", videoId: "cSBxfDwhzxQ" },
       { categoria: "Jogos", titulo: "Depoimento Ranking", descricao: "Depoimento sincero sobre a experiência com o jogo, reforçando a credibilidade da marca.", videoId: "0ItF2Mlbx9w" },
 
-      { categoria: "Hair Care", titulo: "Revlon", descricao: "Resenha de produto Revlon, mostrando resultado real no cabelo.", videoId: "LWvQN62Mxo8" },
+      { categoria: "Hair Care", titulo: "Revlon", descricao: "Resenha da escova secadora Revlon, mostrando resultado real no cabelo.", videoId: "LWvQN62Mxo8" },
       { categoria: "Hair Care", titulo: "Kit Nutrição", descricao: "Rotina de nutrição capilar com o kit, passo a passo fácil de seguir.", videoId: "LzuH8u0xpQc" },
       { categoria: "Hair Care", titulo: "L'Oréal Paris", descricao: "Prova de produto L'Oréal Paris, com foco em textura e resultado.", videoId: "fU4CtaXZJrQ" },
       { categoria: "Hair Care", titulo: "Máscara Pro Hairmony", descricao: "Uso da máscara Pro Hairmony com reação genuína ao resultado.", videoId: "-oNFZb-Ze6I" },
 
-      { categoria: "Skin Care", titulo: "Garnier", descricao: "Rotina de skincare com produtos Garnier, mostrando o passo a passo completo.", videoId: "Lf3mZkigMdg" },
+      { categoria: "Skin Care", titulo: "Garnier", descricao: "Tela verde com prova social.", videoId: "Lf3mZkigMdg" },
       { categoria: "Skin Care", titulo: "Blue Rose", descricao: "Resenha da linha Blue Rose, com destaque para textura e sensação na pele.", videoId: "Xq2XXYeXEqM" },
       { categoria: "Skin Care", titulo: "Kit Regenerador", descricao: "Demonstração do kit regenerador em uso, com resultado percebido em vídeo.", videoId: "3Gayh5o17ZI" },
 
-      { categoria: "Casa e Decor", titulo: "Mesa Posta", descricao: "Inspiração de mesa posta para receber visitas com estilo e economia.", videoId: "x6rNm6vLsJg" },
+      { categoria: "Casa e Decor", titulo: "Mesa Posta", descricao: "Unboxing e demonstrativo das peças para inspiração de mesa posta.", videoId: "x6rNm6vLsJg" },
       { categoria: "Casa e Decor", titulo: "Mini Reforma", descricao: "Vídeo de mini reforma, mostrando o antes e depois de um cantinho da casa.", videoId: "Xwh4JxbVfKo" },
       { categoria: "Casa e Decor", titulo: "Percarbonato", descricao: "Dica de limpeza com percarbonato, mostrando o produto funcionando na prática.", videoId: "MtiY5VSrLio" },
       { categoria: "Casa e Decor", titulo: "Vinagreen", descricao: "Uso do Vinagreen em uma tarefa doméstica real, com resultado à vista.", videoId: "10SzDcuAgE0" },
@@ -1021,7 +1064,7 @@
       { categoria: "Gastronomia", titulo: "Especial Halloween", descricao: "Conteúdo temático de Halloween usando o produto de um jeito criativo.", videoId: "Kg0SGd536uE" },
       { categoria: "Gastronomia", titulo: "Divino Fogão", descricao: "Experiência no Divino Fogão, mostrando pratos e ambiente para atrair clientes.", videoId: "7cIQCXFJt5o" },
       { categoria: "Gastronomia", titulo: "Azeite Andorinha", descricao: "Receita simples usando o Azeite Andorinha como ingrediente principal.", videoId: "Oc9HS_oiQRQ" },
-      { categoria: "Gastronomia", titulo: "Doce de Leite", descricao: "Prova de doce de leite em vídeo, com reação espontânea de sabor.", videoId: "qsOTGcz-K3c" },
+      { categoria: "Gastronomia", titulo: "Doce de Leite", descricao: "Receita prática e rápida com o Doce de Leite Zero.", videoId: "qsOTGcz-K3c" },
       { categoria: "Gastronomia", titulo: "Hellmann's", descricao: "Receita rápida usando produtos Hellmann's, fácil de reproduzir em casa.", videoId: "FYyoidUrfRY" },
 
       { categoria: "Moda", titulo: "Mercado Livre", descricao: "Vídeo de compras no Mercado Livre, mostrando produtos e opiniões reais.", videoId: "SUvVD0ZjtRc" },
@@ -1036,7 +1079,7 @@
       { categoria: "Casal", titulo: "Alianças para Casar", descricao: "Vídeo emocionante mostrando alianças de casamento, ideal para joalherias.", videoId: "wbKnWvEdqMo" },
 
       { categoria: "Experiência", titulo: "Spa", descricao: "Vídeo de experiência em spa, mostrando o ambiente e o momento de relaxamento.", videoId: "w4zTTws33xg" },
-      { categoria: "Experiência", titulo: "Ação Hellmann's", descricao: "Cobertura de ação promocional da Hellmann's, capturando a reação do público.", videoId: "84gGRWyypAE" },
+      { categoria: "Experiência", titulo: "Ação Hellmann's", descricao: "Cobertura de ação promocional da Hellmann's, trazendo reação genuína da experiência.", videoId: "84gGRWyypAE" },
       { categoria: "Experiência", titulo: "Buraco do Padre", descricao: "Vídeo de passeio no Buraco do Padre, ótimo para turismo e lazer.", videoId: "sw61R84YRUA" },
       { categoria: "Experiência", titulo: "Hamburgueria", descricao: "Experiência gastronômica em hamburgueria, mostrando ambiente e prato em vídeo apetitoso.", videoId: "kPr4An6H_9M" },
     ],
@@ -1054,9 +1097,9 @@
     // EDITE AQUI: seus números e resultados
     // "decimal: true" mostra uma casa decimal na contagem (útil para 2,3 mi ou 8,5%)
     numeros: [
-      { valor: 85, sufixo: " mil", rotulo: "Seguidores engajados" },
+      { valor: 29.7, sufixo: " mil", rotulo: "Seguidores engajados", decimal: true },
       { valor: 2.3, sufixo: " mi", rotulo: "Visualizações por mês", decimal: true },
-      { valor: 40, sufixo: "+", rotulo: "Marcas atendidas" },
+      { valor: 90, sufixo: "+", rotulo: "Marcas atendidas" },
       { valor: 8.5, sufixo: "%", rotulo: "Taxa de engajamento", decimal: true },
     ],
 
@@ -1190,7 +1233,13 @@
   }
 
   function montarSobre() {
-    document.getElementById("sobre-titulo").textContent = CONFIG.sobre.titulo;
+    const tituloSobre = document.getElementById("sobre-titulo");
+    tituloSobre.append(CONFIG.sobre.saudacao + " ");
+    const nomeDestaque = document.createElement("span");
+    nomeDestaque.className = "nome-destaque";
+    nomeDestaque.textContent = CONFIG.perfil.nome;
+    tituloSobre.appendChild(nomeDestaque);
+
     const textoSobre = document.getElementById("sobre-texto");
     CONFIG.sobre.paragrafos.forEach((paragrafo) => {
       const p = document.createElement("p");
@@ -1207,7 +1256,7 @@
 
   function montarPortfolio() {
     const filtrosContainer = document.getElementById("filtros-portfolio");
-    const grade = document.getElementById("grade-portfolio");
+    const containerGrupos = document.getElementById("grade-portfolio");
 
     CONFIG.categoriasPortfolio.forEach((categoria, indice) => {
       const botao = document.createElement("button");
@@ -1219,35 +1268,76 @@
       filtrosContainer.appendChild(botao);
     });
 
-    const categoriaInicial = CONFIG.categoriasPortfolio[0];
+    // Cada nicho vira um grupo com seu próprio carrossel horizontal.
+    // Só o grupo do filtro selecionado fica visível por vez (ver filtrarPortfolio).
+    CONFIG.categoriasPortfolio.forEach((categoria, indice) => {
+      const trabalhosDaCategoria = CONFIG.portfolio.filter((trabalho) => trabalho.categoria === categoria);
 
-    CONFIG.portfolio.forEach((trabalho) => {
-      const item = document.createElement("article");
-      item.className = "item-portfolio";
-      item.dataset.categoria = trabalho.categoria;
-      if (trabalho.categoria !== categoriaInicial) item.classList.add("escondido");
+      const grupo = document.createElement("div");
+      grupo.className = "grupo-categoria";
+      if (indice === 0) grupo.classList.add("ativo");
+      grupo.dataset.categoria = categoria;
 
-      const video = criarCardVideo(trabalho);
+      const trilho = document.createElement("div");
+      trilho.className = "trilho-portfolio";
+      trilho.setAttribute("role", "region");
+      trilho.setAttribute("tabindex", "0");
+      trilho.setAttribute("aria-label", "Vídeos da categoria " + categoria);
 
-      const selo = document.createElement("span");
-      selo.className = "selo-categoria";
-      selo.textContent = trabalho.categoria;
-      selo.style.background = CORES_CATEGORIA[trabalho.categoria] || "#fff";
+      trabalhosDaCategoria.forEach((trabalho) => {
+        const item = document.createElement("article");
+        item.className = "item-portfolio";
 
-      const titulo = document.createElement("h3");
-      titulo.textContent = trabalho.titulo;
+        const video = criarCardVideo(trabalho);
 
-      const descricao = document.createElement("p");
-      descricao.textContent = trabalho.descricao;
+        const selo = document.createElement("span");
+        selo.className = "selo-categoria";
+        selo.textContent = trabalho.categoria;
+        selo.style.background = CORES_CATEGORIA[trabalho.categoria] || "#fff";
 
-      item.append(video, selo, titulo, descricao);
-      grade.appendChild(item);
+        const titulo = document.createElement("h3");
+        titulo.textContent = trabalho.titulo;
+
+        const descricao = document.createElement("p");
+        descricao.textContent = trabalho.descricao;
+
+        item.append(video, selo, titulo, descricao);
+        trilho.appendChild(item);
+      });
+
+      const carrossel = document.createElement("div");
+      carrossel.className = "carrossel-portfolio";
+
+      // As setas só aparecem em nichos com mais de 3 vídeos (os outros já cabem sem precisar rolar)
+      if (trabalhosDaCategoria.length > 3) {
+        const setaEsquerda = document.createElement("button");
+        setaEsquerda.type = "button";
+        setaEsquerda.className = "seta-portfolio";
+        setaEsquerda.setAttribute("aria-label", "Ver vídeos anteriores de " + categoria);
+        setaEsquerda.textContent = "‹";
+        setaEsquerda.addEventListener("click", () => trilho.scrollBy({ left: -trilho.clientWidth * 0.9, behavior: "smooth" }));
+
+        const setaDireita = document.createElement("button");
+        setaDireita.type = "button";
+        setaDireita.className = "seta-portfolio";
+        setaDireita.setAttribute("aria-label", "Ver próximos vídeos de " + categoria);
+        setaDireita.textContent = "›";
+        setaDireita.addEventListener("click", () => trilho.scrollBy({ left: trilho.clientWidth * 0.9, behavior: "smooth" }));
+
+        carrossel.append(setaEsquerda, trilho, setaDireita);
+      } else {
+        carrossel.append(trilho);
+      }
+
+      grupo.appendChild(carrossel);
+      containerGrupos.appendChild(grupo);
     });
   }
 
   // Cria o card de vídeo: mostra a miniatura do YouTube com um botão de play por cima.
-  // O <iframe> do vídeo só é criado quando a pessoa clica (ou aperta Enter/Espaço),
-  // assim a página não fica pesada carregando os 39 vídeos ao mesmo tempo.
+  // No computador, passar o mouse já toca o vídeo em preview (sem som).
+  // No toque, clique ou teclado (Enter/Espaço), toca com som, como uma ação explícita.
+  // Assim a página não fica pesada carregando os vídeos todos ao mesmo tempo.
   function criarCardVideo(trabalho) {
     const card = document.createElement("div");
     card.className = "video-portfolio";
@@ -1262,25 +1352,39 @@
     play.textContent = "▶";
     card.appendChild(play);
 
-    function carregarVideo() {
+    let carregado = false;
+    let emModoPreview = false;
+
+    function carregarVideo(comSom) {
+      if (carregado) {
+        if (!(comSom && emModoPreview)) return;
+      }
+      carregado = true;
+      emModoPreview = !comSom;
+
       const iframe = document.createElement("iframe");
-      iframe.src = "https://www.youtube-nocookie.com/embed/" + trabalho.videoId + "?autoplay=1";
+      iframe.src = "https://www.youtube-nocookie.com/embed/" + trabalho.videoId + "?autoplay=1&mute=" + (comSom ? "0" : "1");
       iframe.title = "Vídeo: " + trabalho.titulo;
       iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
       iframe.allowFullscreen = true;
       card.innerHTML = "";
-      card.removeAttribute("role");
-      card.removeAttribute("tabindex");
-      card.removeAttribute("aria-label");
-      card.style.cursor = "default";
       card.appendChild(iframe);
     }
 
-    card.addEventListener("click", carregarVideo);
+    function restaurarMiniatura() {
+      if (!carregado || !emModoPreview) return;
+      carregado = false;
+      card.innerHTML = "";
+      card.appendChild(play);
+    }
+
+    card.addEventListener("mouseenter", () => carregarVideo(false));
+    card.addEventListener("mouseleave", restaurarMiniatura);
+    card.addEventListener("click", () => carregarVideo(true));
     card.addEventListener("keydown", (evento) => {
       if (evento.key === "Enter" || evento.key === " ") {
         evento.preventDefault();
-        carregarVideo();
+        carregarVideo(true);
       }
     });
 
@@ -1291,9 +1395,8 @@
     document.querySelectorAll(".filtro-btn").forEach((botao) => botao.setAttribute("aria-pressed", "false"));
     botaoClicado.setAttribute("aria-pressed", "true");
 
-    document.querySelectorAll(".item-portfolio").forEach((item) => {
-      const mostrar = item.dataset.categoria === categoriaEscolhida;
-      item.classList.toggle("escondido", !mostrar);
+    document.querySelectorAll(".grupo-categoria").forEach((grupo) => {
+      grupo.classList.toggle("ativo", grupo.dataset.categoria === categoriaEscolhida);
     });
   }
 
