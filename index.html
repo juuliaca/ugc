@@ -336,8 +336,11 @@
     transform: rotate(-15deg);
   }
 
-  /* Bloco que simula foto/vídeo com gradiente (ver comentário no JS sobre como trocar por imagem real) */
+  /* Bloco que simula foto/vídeo com gradiente. Quando existe um arquivo de foto real
+     na pasta "imagens" (ver CONFIG), ele cobre o gradiente automaticamente. */
   .bloco-imagem {
+    position: relative;
+    overflow: hidden;
     width: 100%;
     aspect-ratio: 4 / 5;
     border: 3px solid var(--preto);
@@ -345,6 +348,13 @@
     box-shadow: 6px 6px 0 var(--preto);
   }
   .hero .bloco-imagem { aspect-ratio: 3 / 4; }
+  .bloco-imagem img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   /* =========================================================
      FAIXA DE MARCAS (efeito "marquee" nostálgico)
@@ -823,12 +833,15 @@
   const CONFIG = {
 
     // EDITE AQUI: seu nome, profissão e frase de impacto da capa (hero)
+    // "imagem" é o caminho da sua foto dentro da pasta "imagens". Se o arquivo não existir
+    // ainda, o bloco em gradiente aparece normalmente no lugar dela.
     perfil: {
       nome: "Julia Carolina",
       logo: "JULIA CAROLINA",
       profissao: "Criadora de Conteúdo UGC",
       fraseImpacto: "Conteúdo autêntico que faz a sua marca vender mais nas redes sociais.",
       textoBotaoHero: "Fale comigo",
+      imagem: "imagens/hero.jpg",
     },
 
     // EDITE AQUI: seus dados de contato e redes sociais
@@ -863,9 +876,10 @@
       "Vida Natural Suplementos",
     ],
 
-    // EDITE AQUI: o texto da seção "Sobre mim"
+    // EDITE AQUI: o texto da seção "Sobre mim" ("imagem" funciona igual ao do hero, acima)
     sobre: {
       titulo: "Sobre mim",
+      imagem: "imagens/sobre.jpg",
       paragrafos: [
         "Sou a Julia Carolina, criadora de conteúdo UGC apaixonada por contar histórias reais sobre produtos e marcas.",
         "Transformo briefings em vídeos e fotos que parecem conteúdo espontâneo de gente de verdade, porque é exatamente isso que faz o público confiar e comprar.",
@@ -877,19 +891,19 @@
     categoriasPortfolio: ["Todos", "Beleza", "Moda", "Comida", "Fitness", "Viagem"],
 
     // EDITE AQUI: os trabalhos do seu portfólio
-    // "gradiente" simula a foto/vídeo. Para usar uma imagem real, troque o bloco no JS (função criarBlocoImagem)
-    // por uma tag <img src="sua-foto.jpg" alt="..."> mantendo a mesma classe "bloco-imagem".
+    // "gradiente" aparece enquanto não existe foto. "imagem" é o caminho na pasta "imagens":
+    // assim que você arrastar o arquivo com esse nome para lá, a foto substitui o gradiente sozinha.
     portfolio: [
-      { categoria: "Beleza", titulo: "Rotina de skincare", descricao: "Passo a passo de um produto de cuidados com a pele, com foco em resultado real.", gradiente: "linear-gradient(135deg, #ff4fb0, #ffe24d)" },
-      { categoria: "Beleza", titulo: "Resenha de maquiagem", descricao: "Prova de produto em vídeo, destacando textura e acabamento para gerar desejo de compra.", gradiente: "linear-gradient(135deg, #ff4fb0, #b6ff5c)" },
-      { categoria: "Moda", titulo: "Look do dia", descricao: "Conteúdo de moda mostrando como usar as peças no dia a dia, com linguagem próxima e natural.", gradiente: "linear-gradient(135deg, #b794ff, #ff4fb0)" },
-      { categoria: "Moda", titulo: "Try on de coleção", descricao: "Vídeo dinâmico apresentando várias peças de uma coleção, ideal para lançamentos.", gradiente: "linear-gradient(135deg, #b794ff, #ffe24d)" },
-      { categoria: "Comida", titulo: "Unboxing de kit gourmet", descricao: "Abertura de embalagem com reação genuína, mostrando cada detalhe do produto.", gradiente: "linear-gradient(135deg, #ffe24d, #b6ff5c)" },
-      { categoria: "Comida", titulo: "Receita com o produto", descricao: "Vídeo mostrando o produto sendo usado em uma receita real, com dica de uso.", gradiente: "linear-gradient(135deg, #ffe24d, #ff4fb0)" },
-      { categoria: "Fitness", titulo: "Treino com suplemento", descricao: "Produto integrado ao dia a dia de treino, com fala natural sobre os resultados.", gradiente: "linear-gradient(135deg, #b6ff5c, #7ec8ff)" },
-      { categoria: "Fitness", titulo: "Rotina fitness", descricao: "Vídeo de rotina saudável mostrando o produto de forma orgânica no cotidiano.", gradiente: "linear-gradient(135deg, #b6ff5c, #b794ff)" },
-      { categoria: "Viagem", titulo: "Diário de viagem", descricao: "Conteúdo estilo vlog mostrando a experiência de usar o produto durante uma viagem.", gradiente: "linear-gradient(135deg, #7ec8ff, #b794ff)" },
-      { categoria: "Viagem", titulo: "Dica de destino", descricao: "Recomendação de destino ou serviço de viagem, em tom de conversa entre amigas.", gradiente: "linear-gradient(135deg, #7ec8ff, #ffe24d)" },
+      { categoria: "Beleza", titulo: "Rotina de skincare", descricao: "Passo a passo de um produto de cuidados com a pele, com foco em resultado real.", gradiente: "linear-gradient(135deg, #ff4fb0, #ffe24d)", imagem: "imagens/beleza-1.jpg" },
+      { categoria: "Beleza", titulo: "Resenha de maquiagem", descricao: "Prova de produto em vídeo, destacando textura e acabamento para gerar desejo de compra.", gradiente: "linear-gradient(135deg, #ff4fb0, #b6ff5c)", imagem: "imagens/beleza-2.jpg" },
+      { categoria: "Moda", titulo: "Look do dia", descricao: "Conteúdo de moda mostrando como usar as peças no dia a dia, com linguagem próxima e natural.", gradiente: "linear-gradient(135deg, #b794ff, #ff4fb0)", imagem: "imagens/moda-1.jpg" },
+      { categoria: "Moda", titulo: "Try on de coleção", descricao: "Vídeo dinâmico apresentando várias peças de uma coleção, ideal para lançamentos.", gradiente: "linear-gradient(135deg, #b794ff, #ffe24d)", imagem: "imagens/moda-2.jpg" },
+      { categoria: "Comida", titulo: "Unboxing de kit gourmet", descricao: "Abertura de embalagem com reação genuína, mostrando cada detalhe do produto.", gradiente: "linear-gradient(135deg, #ffe24d, #b6ff5c)", imagem: "imagens/comida-1.jpg" },
+      { categoria: "Comida", titulo: "Receita com o produto", descricao: "Vídeo mostrando o produto sendo usado em uma receita real, com dica de uso.", gradiente: "linear-gradient(135deg, #ffe24d, #ff4fb0)", imagem: "imagens/comida-2.jpg" },
+      { categoria: "Fitness", titulo: "Treino com suplemento", descricao: "Produto integrado ao dia a dia de treino, com fala natural sobre os resultados.", gradiente: "linear-gradient(135deg, #b6ff5c, #7ec8ff)", imagem: "imagens/fitness-1.jpg" },
+      { categoria: "Fitness", titulo: "Rotina fitness", descricao: "Vídeo de rotina saudável mostrando o produto de forma orgânica no cotidiano.", gradiente: "linear-gradient(135deg, #b6ff5c, #b794ff)", imagem: "imagens/fitness-2.jpg" },
+      { categoria: "Viagem", titulo: "Diário de viagem", descricao: "Conteúdo estilo vlog mostrando a experiência de usar o produto durante uma viagem.", gradiente: "linear-gradient(135deg, #7ec8ff, #b794ff)", imagem: "imagens/viagem-1.jpg" },
+      { categoria: "Viagem", titulo: "Dica de destino", descricao: "Recomendação de destino ou serviço de viagem, em tom de conversa entre amigas.", gradiente: "linear-gradient(135deg, #7ec8ff, #ffe24d)", imagem: "imagens/viagem-2.jpg" },
     ],
 
     // EDITE AQUI: os serviços que você oferece (o "icone" é um emoji, pode trocar à vontade)
@@ -950,11 +964,21 @@
   });
 
   // Cria o bloco que simula uma foto/vídeo com gradiente.
-  // PARA USAR UMA FOTO REAL: troque este bloco por, por exemplo,
-  // <img class="bloco-imagem" src="minha-foto.jpg" alt="descrição da foto">
-  function criarBlocoImagem(container, gradiente, descricaoAlternativa) {
+  // Se "caminhoImagem" existir de verdade dentro da pasta "imagens", a foto real
+  // cobre o gradiente automaticamente. Se o arquivo ainda não existir, o gradiente
+  // continua aparecendo normalmente (sem gerar erro nenhum na página).
+  function criarBlocoImagem(container, gradiente, descricaoAlternativa, caminhoImagem) {
     container.style.background = gradiente;
     container.setAttribute("aria-label", descricaoAlternativa);
+
+    if (caminhoImagem) {
+      const img = document.createElement("img");
+      img.src = caminhoImagem;
+      img.alt = ""; // decorativo: quem descreve a foto para leitores de tela é o aria-label acima
+      img.loading = "lazy";
+      img.onerror = () => img.remove();
+      container.appendChild(img);
+    }
   }
 
   function montarCabecalhoERodape() {
@@ -1009,7 +1033,8 @@
     criarBlocoImagem(
       document.getElementById("hero-imagem"),
       "linear-gradient(135deg, #ff4fb0, #b794ff)",
-      "Foto de " + CONFIG.perfil.nome + ", " + CONFIG.perfil.profissao
+      "Foto de " + CONFIG.perfil.nome + ", " + CONFIG.perfil.profissao,
+      CONFIG.perfil.imagem
     );
   }
 
@@ -1035,7 +1060,8 @@
     criarBlocoImagem(
       document.getElementById("sobre-imagem"),
       "linear-gradient(135deg, #ffe24d, #b6ff5c)",
-      "Foto de " + CONFIG.perfil.nome + " sorrindo"
+      "Foto de " + CONFIG.perfil.nome + " sorrindo",
+      CONFIG.sobre.imagem
     );
   }
 
@@ -1061,7 +1087,7 @@
       const imagem = document.createElement("div");
       imagem.className = "bloco-imagem";
       imagem.setAttribute("role", "img");
-      criarBlocoImagem(imagem, trabalho.gradiente, "Trabalho de " + trabalho.categoria + ": " + trabalho.titulo);
+      criarBlocoImagem(imagem, trabalho.gradiente, "Trabalho de " + trabalho.categoria + ": " + trabalho.titulo, trabalho.imagem);
 
       const selo = document.createElement("span");
       selo.className = "selo-categoria";
