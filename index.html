@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Julia Carolina | Criadora de Conteúdo UGC</title>
+<meta name="description" content="Julia Carolina, criadora de conteúdo UGC. Vídeos e fotos autênticos que ajudam marcas a vender mais nas redes sociais.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Fredoka:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+
+<style>
+  /* =========================================================
+     TOKENS DE DESIGN — paleta candy anos 2000
+     ========================================================= */
+  :root {
+    --rosa: #ff4fb0;
+    --rosa-escuro: #a60064;
+    --amarelo: #ffe24d;
+    --amarelo-escuro: #8a6b00;
+    --verde-limao: #b6ff5c;
+    --verde-escuro: #3d7a00;
+    --roxo: #b794ff;
+    --roxo-escuro: #5b2fa6;
+    --azul-ceu: #7ec8ff;
+    --azul-ceu-claro: #d9f0ff;
+    --tinta: #201a2b;
+    --papel: #fffdf8;
+    --preto: #1a1a1a;
+    --header-height: 78px;
+
+    --fonte-titulo: 'Bagel Fat One', cursive;
+    --fonte-corpo: 'Fredoka', sans-serif;
+    --fonte-pixel: 'VT323', monospace;
+  }
+
+  /* =========================================================
+     RESET E BASE
+     ========================================================= */
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: linear-gradient(180deg, var(--azul-ceu) 0%, var(--azul-ceu-claro) 45%, #fdf6ff 100%);
+    background-attachment: fixed;
+    color: var(--tinta);
+    font-family: var(--fonte-corpo);
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img, svg { max-width: 100%; display: block; }
+
+  h1, h2, h3 {
+    font-family: var(--fonte-titulo);
+    font-weight: 400;
+    line-height: 1.3;
+    text-wrap: balance;
+    margin: 0 0 0.6em 0;
+  }
+
+  p { margin: 0 0 1em 0; }
+
+  a { color: var(--rosa-escuro); }
+
+  section { scroll-margin-top: var(--header-height); position: relative; }
+
+  /* Link "pular para o conteúdo", visível só ao focar (acessibilidade de teclado) */
+  .pular-link {
+    position: absolute;
+    left: 8px;
+    top: -60px;
+    background: var(--amarelo);
+    color: #000;
+    padding: 10px 16px;
+    border: 3px solid #000;
+    border-radius: 10px;
+    z-index: 999;
+    font-family: var(--fonte-corpo);
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+    transition: top 0.2s ease;
+  }
+  .pular-link:focus { top: 8px; }
+
+  :focus-visible {
+    outline: 3px solid var(--roxo-escuro);
+    outline-offset: 3px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* =========================================================
+     CAMADA DECORATIVA: nuvens e brilhinhos no fundo (puramente visual)
+     ========================================================= */
+  .fundo-decorativo {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .nuvem {
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    filter: blur(1px);
+    opacity: 0.75;
+  }
+  .brilho {
+    position: absolute;
+    font-size: 22px;
+    animation: flutuar 6s ease-in-out infinite;
+  }
+  @keyframes flutuar {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-14px) rotate(12deg); }
+  }
+
+  /* =========================================================
+     BOTÕES E CARTÕES ESTILO ADESIVO (borda preta grossa + sombra dura)
+     ========================================================= */
+  .cartao-solido {
+    background: var(--papel);
+    border: 3px solid var(--preto);
+    border-radius: 18px;
+    box-shadow: 6px 6px 0 var(--preto);
+  }
+
+  .botao-retro {
+    display: inline-block;
+    font-family: var(--fonte-corpo);
+    font-weight: 700;
+    font-size: 18px;
+    background: #fff;
+    color: var(--preto);
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 3px solid var(--preto);
+    border-radius: 14px;
+    box-shadow: 4px 4px 0 var(--preto);
+    text-decoration: none;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+  }
+  .botao-retro:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--preto); }
+  .botao-retro:active {
+    transform: translate(3px, 3px);
+    box-shadow: 1px 1px 0 var(--preto);
+  }
+
+  .botao-destaque {
+    background: var(--rosa);
+    color: #1a0010;
+  }
+
+  /* =========================================================
+     "JANELAS" DA ÁREA DE TRABALHO — usadas em cada seção
+     ========================================================= */
+  .janela {
+    background: #fff;
+    padding: 5px;
+    border: 3px solid var(--preto);
+    border-radius: 20px;
+    box-shadow: 8px 8px 0 rgba(32,26,43,0.35);
+  }
+  .barra-titulo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    color: #1a0010;
+    font-family: var(--fonte-pixel);
+    font-size: 22px;
+    letter-spacing: 0.05em;
+    padding: 8px 16px;
+    border-bottom: 3px solid var(--preto);
+    border-radius: 15px 15px 0 0;
+  }
+  .barra-titulo .luzes { display: flex; gap: 7px; }
+  .barra-titulo .luz {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid var(--preto);
+    background: radial-gradient(circle at 30% 30%, #fff, currentColor 70%);
+  }
+  .luz.vermelha { color: #ff5c5c; }
+  .luz.amarela { color: var(--amarelo); }
+  .luz.verde { color: var(--verde-limao); }
+
+  .conteudo-janela {
+    background: var(--papel);
+    padding: 44px 34px;
+    border-radius: 0 0 15px 15px;
+  }
+
+  /* Cores da barra de título alternando pela paleta candy */
+  #inicio .barra-titulo, #servicos .barra-titulo { background: var(--rosa); }
+  #sobre .barra-titulo, #depoimentos .barra-titulo { background: var(--verde-limao); }
+  #portfolio .barra-titulo, #contato .barra-titulo { background: var(--roxo); }
+  #resultados .barra-titulo { background: var(--amarelo); }
+
+  /* =========================================================
+     CABEÇALHO / MENU FIXO
+     ========================================================= */
+  .cabecalho {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background: var(--rosa);
+    border-bottom: 3px solid var(--preto);
+    height: var(--header-height);
+  }
+  .barra-nav {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-family: var(--fonte-titulo);
+    color: #fff;
+    -webkit-text-stroke: 1.5px var(--preto);
+    font-size: 20px;
+    text-decoration: none;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .menu-desktop {
+    display: flex;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .menu-desktop a { font-size: 16px; padding: 8px 14px; }
+
+  .botao-hamburguer {
+    display: none;
+    width: 46px;
+    height: 42px;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    line-height: 1;
+    padding: 0;
+  }
+
+  .menu-mobile {
+    display: none;
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    z-index: 99;
+    background: var(--roxo);
+    border-bottom: 3px solid var(--preto);
+    padding: 16px;
+  }
+  .menu-mobile.aberto { display: block; }
+  .menu-mobile ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .menu-mobile a { display: block; text-align: center; font-size: 18px; }
+
+  main { padding-top: var(--header-height); }
+
+  /* =========================================================
+     SEÇÃO HERO
+     ========================================================= */
+  .hero .conteudo-janela {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .hero-titulo {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: var(--rosa-escuro);
+  }
+  .hero-frase {
+    font-size: 24px;
+    font-weight: 600;
+  }
+  .hero-profissao {
+    display: inline-block;
+    background: var(--amarelo);
+    color: #1a1300;
+    font-family: var(--fonte-pixel);
+    font-size: 20px;
+    padding: 4px 14px;
+    margin-bottom: 16px;
+    border: 3px solid var(--preto);
+    border-radius: 999px;
+  }
+  .hero-figura { position: relative; }
+  .adesivo-flutuante {
+    position: absolute;
+    top: -16px;
+    right: -14px;
+    background: var(--verde-limao);
+    border: 3px solid var(--preto);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-family: var(--fonte-corpo);
+    font-weight: 700;
+    font-size: 15px;
+    transform: rotate(8deg);
+    box-shadow: 4px 4px 0 var(--preto);
+  }
+  .estrela-adesivo {
+    position: absolute;
+    bottom: -18px;
+    left: -20px;
+    font-size: 48px;
+    color: var(--roxo);
+    transform: rotate(-15deg);
+  }
+
+  /* Bloco que simula foto/vídeo com gradiente (ver comentário no JS sobre como trocar por imagem real) */
+  .bloco-imagem {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border: 3px solid var(--preto);
+    border-radius: 18px;
+    box-shadow: 6px 6px 0 var(--preto);
+  }
+  .hero .bloco-imagem { aspect-ratio: 3 / 4; }
+
+  /* =========================================================
+     FAIXA DE MARCAS (efeito "marquee" nostálgico)
+     ========================================================= */
+  .faixa-marcas {
+    overflow: hidden;
+    background: var(--preto);
+    padding: 16px 0;
+    border-top: 3px solid var(--preto);
+    border-bottom: 3px solid var(--preto);
+  }
+  .marquee-trilho {
+    display: flex;
+    width: max-content;
+    gap: 50px;
+    animation: rolar-marcas 26s linear infinite;
+  }
+  .faixa-marcas:hover .marquee-trilho,
+  .faixa-marcas:focus-within .marquee-trilho { animation-play-state: paused; }
+  .marquee-trilho span {
+    font-family: var(--fonte-pixel);
+    font-size: 24px;
+    white-space: nowrap;
+  }
+  .marquee-trilho span:nth-child(5n+1) { color: var(--rosa); }
+  .marquee-trilho span:nth-child(5n+2) { color: var(--amarelo); }
+  .marquee-trilho span:nth-child(5n+3) { color: var(--verde-limao); }
+  .marquee-trilho span:nth-child(5n+4) { color: var(--roxo); }
+  .marquee-trilho span:nth-child(5n+5) { color: #7ec8ff; }
+  @keyframes rolar-marcas {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* =========================================================
+     SEÇÃO SOBRE
+     ========================================================= */
+  .sobre .conteudo-janela {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  /* =========================================================
+     PORTFÓLIO
+     ========================================================= */
+  .filtros-portfolio {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+  .filtro-btn[aria-pressed="true"] {
+    background: var(--roxo);
+    color: #1a0010;
+  }
+  .grade-portfolio {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 26px;
+  }
+  .item-portfolio { display: flex; flex-direction: column; }
+  .item-portfolio .bloco-imagem { aspect-ratio: 1 / 1; margin-bottom: 12px; }
+  .item-portfolio h3 { font-family: var(--fonte-corpo); font-weight: 700; font-size: 21px; margin-bottom: 4px; }
+  .selo-categoria {
+    display: inline-block;
+    font-family: var(--fonte-pixel);
+    font-size: 16px;
+    color: #1a0010;
+    padding: 2px 12px;
+    margin-bottom: 8px;
+    align-self: flex-start;
+    border: 2px solid var(--preto);
+    border-radius: 999px;
+  }
+  .item-portfolio.escondido { display: none; }
+
+  /* =========================================================
+     SERVIÇOS
+     ========================================================= */
+  .grade-servicos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 22px;
+  }
+  .card-servico { padding: 24px; text-align: center; }
+  .card-servico .icone {
+    font-size: 34px;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--azul-ceu-claro);
+    border: 3px solid var(--preto);
+    border-radius: 50%;
+  }
+  .card-servico h3 { font-family: var(--fonte-corpo); font-weight: 700; font-size: 22px; color: var(--rosa-escuro); }
+
+  /* =========================================================
+     RESULTADOS / NÚMEROS (visor estilo calculadora retrô)
+     ========================================================= */
+  .grade-numeros {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    text-align: center;
+  }
+  .item-numero { padding: 6px; }
+  .valor-numero {
+    display: block;
+    font-family: var(--fonte-pixel);
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    color: var(--verde-limao);
+    background: #14120f;
+    border: 3px solid var(--preto);
+    border-radius: 12px;
+    padding: 10px 6px;
+    margin-bottom: 10px;
+    letter-spacing: 0.03em;
+  }
+  .rotulo-numero { font-size: 17px; font-weight: 600; }
+
+  /* =========================================================
+     DEPOIMENTOS
+     ========================================================= */
+  .grade-depoimentos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 22px;
+  }
+  .card-depoimento { padding: 24px; position: relative; margin: 0; }
+  .card-depoimento .aspas { font-family: var(--fonte-titulo); font-size: 30px; color: var(--roxo-escuro); }
+  .card-depoimento .autor { margin-top: 14px; font-weight: 700; font-size: 19px; display: block; }
+  .card-depoimento .empresa { color: var(--rosa-escuro); font-size: 17px; }
+
+  /* =========================================================
+     CONTATO
+     ========================================================= */
+  .grade-contato {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .campo { margin-bottom: 18px; }
+  .campo label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  .campo input,
+  .campo textarea {
+    width: 100%;
+    font-family: var(--fonte-corpo);
+    font-size: 16px;
+    padding: 12px;
+    background: #fff;
+    border: 3px solid var(--preto);
+    border-radius: 12px;
+  }
+  .campo textarea { resize: vertical; min-height: 120px; }
+
+  .botoes-diretos { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
+  .mensagem-confirmacao {
+    margin-top: 14px;
+    padding: 12px 16px;
+    background: var(--verde-limao);
+    border: 3px solid var(--preto);
+    border-radius: 12px;
+    color: #123500;
+    display: none;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  .mensagem-confirmacao.mostrar { display: block; }
+
+  /* =========================================================
+     RODAPÉ
+     ========================================================= */
+  .rodape {
+    background: var(--preto);
+    color: #fff;
+    padding: 34px 0;
+    text-align: center;
+    border-top: 3px solid var(--preto);
+  }
+  .rodape .logo { margin: 0 0 16px 0; font-size: 22px; -webkit-text-stroke: 1.5px #fff; color: var(--rosa); }
+  .links-sociais-rodape {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px 0;
+    flex-wrap: wrap;
+  }
+  .links-sociais-rodape a { color: var(--amarelo); font-weight: 600; font-size: 16px; }
+  .copyright { font-size: 15px; color: #cfcfcf; }
+
+  /* =========================================================
+     ANIMAÇÃO DE ENTRADA (fade + subida leve via IntersectionObserver)
+     ========================================================= */
+  .revelar {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .revelar.visivel {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .revelar { opacity: 1; transform: none; transition: none; }
+    .marquee-trilho { animation: none; }
+    .brilho { animation: none; }
+  }
+
+  /* =========================================================
+     RESPONSIVO
+     ========================================================= */
+  @media (max-width: 860px) {
+    .grade-numeros { grid-template-columns: repeat(2, 1fr); }
+    .grade-contato { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 760px) {
+    .menu-desktop { display: none; }
+    .botao-hamburguer { display: flex; }
+    .hero .conteudo-janela,
+    .sobre .conteudo-janela { grid-template-columns: 1fr; }
+    .sobre .conteudo-janela .bloco-imagem { max-width: 320px; margin: 0 auto; }
+    .conteudo-janela { padding: 30px 20px; }
+    .estrela-adesivo { font-size: 34px; }
+  }
+
+  @media (max-width: 480px) {
+    body { font-size: 17px; }
+    .grade-numeros { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .hero-frase { font-size: 20px; }
+    .brilho { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<a class="pular-link" href="#conteudo-principal">Pular para o conteúdo</a>
+
+<!-- Camada decorativa: nuvens e brilhinhos flutuando no fundo (sem interferir na leitura nem no teclado) -->
+<div class="fundo-decorativo" aria-hidden="true">
+  <div class="nuvem" style="width:180px; height:70px; top:6%; left:8%;"></div>
+  <div class="nuvem" style="width:130px; height:55px; top:16%; left:70%;"></div>
+  <div class="nuvem" style="width:220px; height:85px; top:38%; left:-4%;"></div>
+  <div class="nuvem" style="width:150px; height:60px; top:60%; left:82%;"></div>
+  <div class="nuvem" style="width:200px; height:75px; top:80%; left:20%;"></div>
+  <span class="brilho" style="top:10%; left:20%; animation-delay:0s;">✨</span>
+  <span class="brilho" style="top:22%; left:85%; animation-delay:1s;">★</span>
+  <span class="brilho" style="top:45%; left:6%; animation-delay:2s;">✦</span>
+  <span class="brilho" style="top:55%; left:60%; animation-delay:0.5s;">🌟</span>
+  <span class="brilho" style="top:70%; left:35%; animation-delay:1.5s;">✨</span>
+  <span class="brilho" style="top:88%; left:75%; animation-delay:2.5s;">★</span>
+</div>
+
+<!-- ===================== CABEÇALHO / MENU ===================== -->
+<header class="cabecalho">
+  <nav class="barra-nav container" aria-label="Menu principal">
+    <a href="#inicio" class="logo" id="logo-cabecalho"></a>
+
+    <ul class="menu-desktop" id="menu-desktop"></ul>
+
+    <button type="button" class="botao-hamburguer botao-retro" id="botao-menu" aria-controls="menu-mobile" aria-expanded="false" aria-label="Abrir menu">
+      ☰
+    </button>
+  </nav>
+</header>
+
+<div class="menu-mobile" id="menu-mobile">
+  <ul id="lista-menu-mobile"></ul>
+</div>
+
+<main id="conteudo-principal">
+
+  <!-- ===================== HERO ===================== -->
+  <section id="inicio" class="hero">
+    <div class="container" style="padding-top:30px;">
+      <div class="janela revelar">
+        <div class="barra-titulo">
+          <span>INICIO.EXE</span>
+          <span class="luzes" aria-hidden="true">
+            <span class="luz vermelha"></span><span class="luz amarela"></span><span class="luz verde"></span>
+          </span>
+        </div>
+        <div class="conteudo-janela">
+          <div>
+            <span class="hero-profissao" id="hero-profissao"></span>
+            <h1 class="hero-titulo" id="hero-nome"></h1>
+            <p class="hero-frase" id="hero-frase"></p>
+            <a href="#contato" class="botao-retro botao-destaque" id="hero-cta"></a>
+          </div>
+          <div class="hero-figura">
+            <div class="bloco-imagem" id="hero-imagem" role="img"></div>
+            <span class="adesivo-flutuante">✨ disponível para parcerias</span>
+            <span class="estrela-adesivo" aria-hidden="true">★</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FAIXA DE MARCAS ===================== -->
+  <section id="marcas" aria-label="Marcas com quem já trabalhei" class="faixa-marcas">
+    <div class="marquee-trilho" id="trilho-marcas" aria-hidden="true"></div>
+  </section>
+
+  <!-- ===================== SOBRE ===================== -->
+  <section id="sobre" class="sobre">
+    <div class="container" style="padding:50px 20px;">
+      <div class="janela revelar">
+        <div class="barra-titulo">
+          <span>SOBRE.EXE</span>
+          <span class="luzes" aria-hidden="true">
+            <span class="luz vermelha"></span><span class="luz amarela"></span><span class="luz verde"></span>
+          </span>
+        </div>
+        <div class="conteudo-janela">
+          <div class="bloco-imagem" id="sobre-imagem" role="img"></div>
+          <div>
+            <h2 id="sobre-titulo"></h2>
+            <div id="sobre-texto"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PORTFÓLIO ===================== -->
+  <section id="portfolio">
+    <div class="container" style="padding:50px 20px;">
+      <div class="janela revelar">
+        <div class="barra-titulo">
+          <span>PORTFOLIO.EXE</span>
+          <span class="luzes" aria-hidden="true">
+            <span class="luz vermelha"></span><span class="luz amarela"></span><span class="luz verde"></span>
+          </span>
+        </div>
+        <div class="conteudo-janela">
+          <h2>Trabalhos por nicho</h2>
+          <div class="filtros-portfolio" id="filtros-portfolio" role="group" aria-label="Filtrar portfólio por categoria"></div>
+          <div class="grade-portfolio" id="grade-portfolio"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SERVIÇOS ===================== -->
+  <section id="servicos">
+    <div class="container" style="padding:50px 20px;">
+      <div class="janela revelar">
+        <div class="barra-titulo">
+          <span>SERVICOS.EXE</span>
+          <span class="luzes" aria-hidden="true">
+            <span class="luz vermelha"></span><span class="luz amarela"></span><span class="luz verde"></span>
+          </span>
+        </div>
+        <div class="conteudo-janela">
+          <h2>O que eu entrego para a sua marca</h2>
+          <div class="grade-servicos" id="grade-servicos"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== RESULTADOS / NÚMEROS ===================== -->
+  <section id="resultados">
+    <div class="container" style="padding:50px 20px;">
+      <div class="janela revelar">
+        <div class="barra-titulo">
+          <span>RESULTADOS.EXE</span>
+          <span class="luzes" aria-hidden="true">
+            <span class="luz vermelha"></span><span class="luz amarela"></span><span class="luz verde"></span>
+          </span>
+        </div>
+        <div class="conteudo-janela">
+          <h2>Resultados que falam por mim</h2>
+          <div class="grade-numeros" id="grade-numeros"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== DEPOIMENTOS ===================== -->
+  <section id="depoimentos">
+    <div class="container" style="padding:50px 20px;">
+      <div class="janela revelar">
+        <div class="barra-titulo">
+          <span>DEPOIMENTOS.EXE</span>
+          <span class="luzes" aria-hidden="true">
+            <span class="luz vermelha"></span><span class="luz amarela"></span><span class="luz verde"></span>
+          </span>
+        </div>
+        <div class="conteudo-janela">
+          <h2>Quem já trabalhou comigo</h2>
+          <div class="grade-depoimentos" id="grade-depoimentos"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTATO ===================== -->
+  <section id="contato">
+    <div class="container" style="padding:50px 20px;">
+      <div class="janela revelar">
+        <div class="barra-titulo">
+          <span>CONTATO.EXE</span>
+          <span class="luzes" aria-hidden="true">
+            <span class="luz vermelha"></span><span class="luz amarela"></span><span class="luz verde"></span>
+          </span>
+        </div>
+        <div class="conteudo-janela">
+          <div class="grade-contato">
+            <div>
+              <h2>Vamos fechar uma parceria?</h2>
+              <p>Preencha o formulário ou me chame direto pelos canais abaixo. Respondo rápido!</p>
+              <form id="formulario-contato" novalidate>
+                <div class="campo">
+                  <label for="campo-nome">Nome</label>
+                  <input type="text" id="campo-nome" name="nome" required autocomplete="name">
+                </div>
+                <div class="campo">
+                  <label for="campo-email">E-mail</label>
+                  <input type="email" id="campo-email" name="email" required autocomplete="email">
+                </div>
+                <div class="campo">
+                  <label for="campo-mensagem">Mensagem</label>
+                  <textarea id="campo-mensagem" name="mensagem" required></textarea>
+                </div>
+                <button type="submit" class="botao-retro botao-destaque">Enviar mensagem</button>
+                <div class="mensagem-confirmacao" id="mensagem-confirmacao" role="status" aria-live="polite"></div>
+              </form>
+            </div>
+            <div>
+              <h2>Contato direto</h2>
+              <div class="botoes-diretos">
+                <a class="botao-retro" id="link-whatsapp" href="#">📲 WhatsApp</a>
+                <a class="botao-retro" id="link-email" href="#">✉️ E-mail</a>
+                <a class="botao-retro" id="link-instagram" href="#">📷 Instagram</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== RODAPÉ ===================== -->
+<footer class="rodape">
+  <div class="container">
+    <p class="logo" id="logo-rodape"></p>
+    <ul class="links-sociais-rodape" id="lista-sociais-rodape"></ul>
+    <p class="copyright">© <span id="ano-atual"></span> <span id="nome-copyright"></span>. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script>
+  /* =========================================================================
+     CONFIGURAÇÃO DO SITE
+     Este é o único bloco que você precisa editar para trocar os textos.
+     Tudo o que aparece na página é montado a partir do objeto CONFIG abaixo.
+     ========================================================================= */
+  const CONFIG = {
+
+    // EDITE AQUI: seu nome, profissão e frase de impacto da capa (hero)
+    perfil: {
+      nome: "Julia Carolina",
+      logo: "JULIA CAROLINA",
+      profissao: "Criadora de Conteúdo UGC",
+      fraseImpacto: "Conteúdo autêntico que faz a sua marca vender mais nas redes sociais.",
+      textoBotaoHero: "Fale comigo",
+    },
+
+    // EDITE AQUI: seus dados de contato e redes sociais
+    contato: {
+      email: "juuliaca@yahoo.com.br",
+      telefoneExibicao: "+55 46 99941-1938",
+      whatsappNumero: "5546999411938", // apenas números com código do país, sem espaços ou símbolos
+      whatsappMensagemPadrao: "Olá, Julia! Vim pelo seu site e gostaria de conversar sobre uma parceria com minha marca.",
+      instagramUsuario: "@juuliaca",
+      instagramUrl: "https://instagram.com/juuliaca",
+    },
+
+    // EDITE AQUI: os itens do menu (o "href" precisa ser igual ao id da seção correspondente)
+    navegacao: [
+      { rotulo: "Início", href: "#inicio" },
+      { rotulo: "Sobre", href: "#sobre" },
+      { rotulo: "Portfólio", href: "#portfolio" },
+      { rotulo: "Serviços", href: "#servicos" },
+      { rotulo: "Resultados", href: "#resultados" },
+      { rotulo: "Depoimentos", href: "#depoimentos" },
+      { rotulo: "Contato", href: "#contato" },
+    ],
+
+    // EDITE AQUI: as marcas com quem você já trabalhou (aparecem na faixa que rola na tela)
+    marcas: [
+      "Loja Bella Cosméticos",
+      "Doce Sabor Confeitaria",
+      "FitLife Suplementos",
+      "Viaje Mais Turismo",
+      "ModaStyle Boutique",
+      "Casa Aconchego Decor",
+      "Vida Natural Suplementos",
+    ],
+
+    // EDITE AQUI: o texto da seção "Sobre mim"
+    sobre: {
+      titulo: "Sobre mim",
+      paragrafos: [
+        "Sou a Julia Carolina, criadora de conteúdo UGC apaixonada por contar histórias reais sobre produtos e marcas.",
+        "Transformo briefings em vídeos e fotos que parecem conteúdo espontâneo de gente de verdade, porque é exatamente isso que faz o público confiar e comprar.",
+        "Já ajudei marcas de beleza, moda, alimentação, fitness e viagem a se conectarem com seus clientes de um jeito genuíno, entregando prazo, comunicação clara e material pensado para gerar resultado, não só curtidas.",
+      ],
+    },
+
+    // EDITE AQUI: as categorias do filtro do portfólio (a primeira precisa ser sempre "Todos")
+    categoriasPortfolio: ["Todos", "Beleza", "Moda", "Comida", "Fitness", "Viagem"],
+
+    // EDITE AQUI: os trabalhos do seu portfólio
+    // "gradiente" simula a foto/vídeo. Para usar uma imagem real, troque o bloco no JS (função criarBlocoImagem)
+    // por uma tag <img src="sua-foto.jpg" alt="..."> mantendo a mesma classe "bloco-imagem".
+    portfolio: [
+      { categoria: "Beleza", titulo: "Rotina de skincare", descricao: "Passo a passo de um produto de cuidados com a pele, com foco em resultado real.", gradiente: "linear-gradient(135deg, #ff4fb0, #ffe24d)" },
+      { categoria: "Beleza", titulo: "Resenha de maquiagem", descricao: "Prova de produto em vídeo, destacando textura e acabamento para gerar desejo de compra.", gradiente: "linear-gradient(135deg, #ff4fb0, #b6ff5c)" },
+      { categoria: "Moda", titulo: "Look do dia", descricao: "Conteúdo de moda mostrando como usar as peças no dia a dia, com linguagem próxima e natural.", gradiente: "linear-gradient(135deg, #b794ff, #ff4fb0)" },
+      { categoria: "Moda", titulo: "Try on de coleção", descricao: "Vídeo dinâmico apresentando várias peças de uma coleção, ideal para lançamentos.", gradiente: "linear-gradient(135deg, #b794ff, #ffe24d)" },
+      { categoria: "Comida", titulo: "Unboxing de kit gourmet", descricao: "Abertura de embalagem com reação genuína, mostrando cada detalhe do produto.", gradiente: "linear-gradient(135deg, #ffe24d, #b6ff5c)" },
+      { categoria: "Comida", titulo: "Receita com o produto", descricao: "Vídeo mostrando o produto sendo usado em uma receita real, com dica de uso.", gradiente: "linear-gradient(135deg, #ffe24d, #ff4fb0)" },
+      { categoria: "Fitness", titulo: "Treino com suplemento", descricao: "Produto integrado ao dia a dia de treino, com fala natural sobre os resultados.", gradiente: "linear-gradient(135deg, #b6ff5c, #7ec8ff)" },
+      { categoria: "Fitness", titulo: "Rotina fitness", descricao: "Vídeo de rotina saudável mostrando o produto de forma orgânica no cotidiano.", gradiente: "linear-gradient(135deg, #b6ff5c, #b794ff)" },
+      { categoria: "Viagem", titulo: "Diário de viagem", descricao: "Conteúdo estilo vlog mostrando a experiência de usar o produto durante uma viagem.", gradiente: "linear-gradient(135deg, #7ec8ff, #b794ff)" },
+      { categoria: "Viagem", titulo: "Dica de destino", descricao: "Recomendação de destino ou serviço de viagem, em tom de conversa entre amigas.", gradiente: "linear-gradient(135deg, #7ec8ff, #ffe24d)" },
+    ],
+
+    // EDITE AQUI: os serviços que você oferece (o "icone" é um emoji, pode trocar à vontade)
+    servicos: [
+      { icone: "🎬", titulo: "Vídeo UGC", descricao: "Vídeos autênticos, gravados como um conteúdo espontâneo do dia a dia, perfeitos para gerar confiança e vender mais." },
+      { icone: "📱", titulo: "Reels para Redes Sociais", descricao: "Conteúdo dinâmico, editado no ritmo das redes sociais, pensado para prender a atenção e viralizar." },
+      { icone: "📸", titulo: "Fotos de Produto", descricao: "Imagens que valorizam os detalhes do produto e reforçam a identidade visual da sua marca." },
+      { icone: "📦", titulo: "Unboxing", descricao: "Abertura de embalagem com reação genuína, ideal para despertar desejo de compra em quem assiste." },
+      { icone: "💬", titulo: "Depoimento em Vídeo", descricao: "Relato sincero de experiência com o produto ou serviço, aumentando a credibilidade da sua marca." },
+      { icone: "🎯", titulo: "Conteúdo para Anúncios", descricao: "Vídeos pensados para performar em campanhas pagas, com gancho forte e linguagem que converte." },
+    ],
+
+    // EDITE AQUI: seus números e resultados
+    // "decimal: true" mostra uma casa decimal na contagem (útil para 2,3 mi ou 8,5%)
+    numeros: [
+      { valor: 85, sufixo: " mil", rotulo: "Seguidores engajados" },
+      { valor: 2.3, sufixo: " mi", rotulo: "Visualizações por mês", decimal: true },
+      { valor: 40, sufixo: "+", rotulo: "Marcas atendidas" },
+      { valor: 8.5, sufixo: "%", rotulo: "Taxa de engajamento", decimal: true },
+    ],
+
+    // EDITE AQUI: depoimentos de clientes e marcas
+    depoimentos: [
+      { texto: "A Julia entregou um vídeo autêntico que superou nossas expectativas de engajamento. As vendas do produto aumentaram visivelmente na semana do lançamento.", nome: "Camila Duarte", empresa: "Loja Bella Cosméticos" },
+      { texto: "Profissionalismo do início ao fim. Recebemos o material no prazo combinado e o resultado pareceu conteúdo espontâneo dos nossos próprios clientes.", nome: "Rafael Menezes", empresa: "FitLife Suplementos" },
+      { texto: "O conteúdo da Julia trouxe um retorno em comentários e mensagens que nenhuma outra criadora tinha conseguido para a gente.", nome: "Patrícia Alves", empresa: "Doce Sabor Confeitaria" },
+      { texto: "Contratamos para uma campanha pontual e já viramos parceiros fixos. A entrega é rápida, criativa e sempre alinhada com o briefing.", nome: "Eduardo Lins", empresa: "ModaStyle Boutique" },
+    ],
+  };
+
+  // EDITE AQUI: a cor do selinho de cada categoria do portfólio (segue a paleta candy do site)
+  const CORES_CATEGORIA = {
+    "Beleza": "#ff4fb0",
+    "Moda": "#b794ff",
+    "Comida": "#ffe24d",
+    "Fitness": "#b6ff5c",
+    "Viagem": "#7ec8ff",
+  };
+
+  /* =========================================================================
+     A partir daqui é o código que monta a página com os dados do CONFIG.
+     Normalmente não é necessário editar nada abaixo desta linha.
+     ========================================================================= */
+
+  document.addEventListener("DOMContentLoaded", () => {
+    montarCabecalhoERodape();
+    montarHero();
+    montarFaixaMarcas();
+    montarSobre();
+    montarPortfolio();
+    montarServicos();
+    montarNumeros();
+    montarDepoimentos();
+    montarContato();
+    ativarMenuMobile();
+    ativarAnimacoesDeEntrada();
+    ativarContadorDeNumeros();
+  });
+
+  // Cria o bloco que simula uma foto/vídeo com gradiente.
+  // PARA USAR UMA FOTO REAL: troque este bloco por, por exemplo,
+  // <img class="bloco-imagem" src="minha-foto.jpg" alt="descrição da foto">
+  function criarBlocoImagem(container, gradiente, descricaoAlternativa) {
+    container.style.background = gradiente;
+    container.setAttribute("aria-label", descricaoAlternativa);
+  }
+
+  function montarCabecalhoERodape() {
+    document.getElementById("logo-cabecalho").textContent = CONFIG.perfil.logo;
+    document.getElementById("logo-rodape").textContent = CONFIG.perfil.logo;
+    document.getElementById("nome-copyright").textContent = CONFIG.perfil.nome;
+    document.getElementById("ano-atual").textContent = new Date().getFullYear();
+
+    const menuDesktop = document.getElementById("menu-desktop");
+    const menuMobile = document.getElementById("lista-menu-mobile");
+
+    CONFIG.navegacao.forEach((item) => {
+      const li1 = document.createElement("li");
+      const a1 = document.createElement("a");
+      a1.href = item.href;
+      a1.className = "botao-retro";
+      a1.textContent = item.rotulo;
+      li1.appendChild(a1);
+      menuDesktop.appendChild(li1);
+
+      const li2 = document.createElement("li");
+      const a2 = document.createElement("a");
+      a2.href = item.href;
+      a2.className = "botao-retro";
+      a2.textContent = item.rotulo;
+      a2.addEventListener("click", fecharMenuMobile);
+      li2.appendChild(a2);
+      menuMobile.appendChild(li2);
+    });
+
+    const listaSociais = document.getElementById("lista-sociais-rodape");
+    const redes = [
+      { rotulo: "Instagram " + CONFIG.contato.instagramUsuario, href: CONFIG.contato.instagramUrl },
+      { rotulo: "WhatsApp", href: "https://wa.me/" + CONFIG.contato.whatsappNumero },
+      { rotulo: "E-mail", href: "mailto:" + CONFIG.contato.email },
+    ];
+    redes.forEach((rede) => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = rede.href;
+      a.textContent = rede.rotulo;
+      li.appendChild(a);
+      listaSociais.appendChild(li);
+    });
+  }
+
+  function montarHero() {
+    document.getElementById("hero-profissao").textContent = CONFIG.perfil.profissao;
+    document.getElementById("hero-nome").textContent = CONFIG.perfil.nome;
+    document.getElementById("hero-frase").textContent = CONFIG.perfil.fraseImpacto;
+    document.getElementById("hero-cta").textContent = CONFIG.perfil.textoBotaoHero;
+    criarBlocoImagem(
+      document.getElementById("hero-imagem"),
+      "linear-gradient(135deg, #ff4fb0, #b794ff)",
+      "Foto de " + CONFIG.perfil.nome + ", " + CONFIG.perfil.profissao
+    );
+  }
+
+  function montarFaixaMarcas() {
+    const trilho = document.getElementById("trilho-marcas");
+    // duplica a lista para criar um loop contínuo sem espaço em branco
+    const listaDuplicada = [...CONFIG.marcas, ...CONFIG.marcas];
+    listaDuplicada.forEach((marca) => {
+      const span = document.createElement("span");
+      span.textContent = "✦ " + marca;
+      trilho.appendChild(span);
+    });
+  }
+
+  function montarSobre() {
+    document.getElementById("sobre-titulo").textContent = CONFIG.sobre.titulo;
+    const textoSobre = document.getElementById("sobre-texto");
+    CONFIG.sobre.paragrafos.forEach((paragrafo) => {
+      const p = document.createElement("p");
+      p.textContent = paragrafo;
+      textoSobre.appendChild(p);
+    });
+    criarBlocoImagem(
+      document.getElementById("sobre-imagem"),
+      "linear-gradient(135deg, #ffe24d, #b6ff5c)",
+      "Foto de " + CONFIG.perfil.nome + " sorrindo"
+    );
+  }
+
+  function montarPortfolio() {
+    const filtrosContainer = document.getElementById("filtros-portfolio");
+    const grade = document.getElementById("grade-portfolio");
+
+    CONFIG.categoriasPortfolio.forEach((categoria, indice) => {
+      const botao = document.createElement("button");
+      botao.type = "button";
+      botao.className = "botao-retro filtro-btn";
+      botao.textContent = categoria;
+      botao.setAttribute("aria-pressed", indice === 0 ? "true" : "false");
+      botao.addEventListener("click", () => filtrarPortfolio(categoria, botao));
+      filtrosContainer.appendChild(botao);
+    });
+
+    CONFIG.portfolio.forEach((trabalho) => {
+      const item = document.createElement("article");
+      item.className = "item-portfolio";
+      item.dataset.categoria = trabalho.categoria;
+
+      const imagem = document.createElement("div");
+      imagem.className = "bloco-imagem";
+      imagem.setAttribute("role", "img");
+      criarBlocoImagem(imagem, trabalho.gradiente, "Trabalho de " + trabalho.categoria + ": " + trabalho.titulo);
+
+      const selo = document.createElement("span");
+      selo.className = "selo-categoria";
+      selo.textContent = trabalho.categoria;
+      selo.style.background = CORES_CATEGORIA[trabalho.categoria] || "#fff";
+
+      const titulo = document.createElement("h3");
+      titulo.textContent = trabalho.titulo;
+
+      const descricao = document.createElement("p");
+      descricao.textContent = trabalho.descricao;
+
+      item.append(imagem, selo, titulo, descricao);
+      grade.appendChild(item);
+    });
+  }
+
+  function filtrarPortfolio(categoriaEscolhida, botaoClicado) {
+    document.querySelectorAll(".filtro-btn").forEach((botao) => botao.setAttribute("aria-pressed", "false"));
+    botaoClicado.setAttribute("aria-pressed", "true");
+
+    document.querySelectorAll(".item-portfolio").forEach((item) => {
+      const mostrar = categoriaEscolhida === "Todos" || item.dataset.categoria === categoriaEscolhida;
+      item.classList.toggle("escondido", !mostrar);
+    });
+  }
+
+  function montarServicos() {
+    const grade = document.getElementById("grade-servicos");
+    CONFIG.servicos.forEach((servico) => {
+      const card = document.createElement("div");
+      card.className = "card-servico cartao-solido";
+
+      const icone = document.createElement("div");
+      icone.className = "icone";
+      icone.setAttribute("aria-hidden", "true");
+      icone.textContent = servico.icone;
+
+      const titulo = document.createElement("h3");
+      titulo.textContent = servico.titulo;
+
+      const descricao = document.createElement("p");
+      descricao.textContent = servico.descricao;
+
+      card.append(icone, titulo, descricao);
+      grade.appendChild(card);
+    });
+  }
+
+  function montarNumeros() {
+    const grade = document.getElementById("grade-numeros");
+    CONFIG.numeros.forEach((numero) => {
+      const item = document.createElement("div");
+      item.className = "item-numero";
+
+      const valor = document.createElement("span");
+      valor.className = "valor-numero";
+      valor.dataset.valorFinal = numero.valor;
+      valor.dataset.sufixo = numero.sufixo;
+      valor.dataset.decimal = numero.decimal ? "true" : "false";
+      valor.textContent = "0" + numero.sufixo;
+
+      const rotulo = document.createElement("span");
+      rotulo.className = "rotulo-numero";
+      rotulo.textContent = numero.rotulo;
+
+      item.append(valor, rotulo);
+      grade.appendChild(item);
+    });
+  }
+
+  function montarDepoimentos() {
+    const grade = document.getElementById("grade-depoimentos");
+    CONFIG.depoimentos.forEach((depoimento) => {
+      const card = document.createElement("blockquote");
+      card.className = "card-depoimento cartao-solido";
+      card.style.margin = "0";
+
+      const aspas = document.createElement("div");
+      aspas.className = "aspas";
+      aspas.setAttribute("aria-hidden", "true");
+      aspas.textContent = "❝";
+
+      const texto = document.createElement("p");
+      texto.textContent = depoimento.texto;
+
+      const autor = document.createElement("footer");
+      const nomeSpan = document.createElement("span");
+      nomeSpan.className = "autor";
+      nomeSpan.textContent = depoimento.nome;
+      const empresaSpan = document.createElement("span");
+      empresaSpan.className = "empresa";
+      empresaSpan.textContent = depoimento.empresa;
+      autor.append(nomeSpan, empresaSpan);
+
+      card.append(aspas, texto, autor);
+      grade.appendChild(card);
+    });
+  }
+
+  function montarContato() {
+    const linkWhats = document.getElementById("link-whatsapp");
+    linkWhats.href = "https://wa.me/" + CONFIG.contato.whatsappNumero + "?text=" + encodeURIComponent(CONFIG.contato.whatsappMensagemPadrao);
+    linkWhats.target = "_blank";
+    linkWhats.rel = "noopener";
+
+    const linkEmail = document.getElementById("link-email");
+    linkEmail.href = "mailto:" + CONFIG.contato.email;
+
+    const linkInsta = document.getElementById("link-instagram");
+    linkInsta.href = CONFIG.contato.instagramUrl;
+    linkInsta.target = "_blank";
+    linkInsta.rel = "noopener";
+
+    const formulario = document.getElementById("formulario-contato");
+    const mensagemConfirmacao = document.getElementById("mensagem-confirmacao");
+
+    formulario.addEventListener("submit", (evento) => {
+      evento.preventDefault();
+
+      const nome = document.getElementById("campo-nome").value.trim();
+      const email = document.getElementById("campo-email").value.trim();
+      const mensagem = document.getElementById("campo-mensagem").value.trim();
+
+      const assunto = "Contato pelo site - " + nome;
+      const corpo = "Nome: " + nome + "\nE-mail: " + email + "\n\nMensagem:\n" + mensagem;
+      const linkMailto = "mailto:" + CONFIG.contato.email + "?subject=" + encodeURIComponent(assunto) + "&body=" + encodeURIComponent(corpo);
+
+      window.location.href = linkMailto;
+
+      mensagemConfirmacao.textContent = "Obrigada pela mensagem! Seu aplicativo de e-mail deve abrir agora com tudo preenchido. Se não abrir, me chame direto pelo WhatsApp.";
+      mensagemConfirmacao.classList.add("mostrar");
+      formulario.reset();
+    });
+  }
+
+  function ativarMenuMobile() {
+    const botaoMenu = document.getElementById("botao-menu");
+    const menuMobile = document.getElementById("menu-mobile");
+
+    botaoMenu.addEventListener("click", () => {
+      const aberto = menuMobile.classList.toggle("aberto");
+      botaoMenu.setAttribute("aria-expanded", aberto ? "true" : "false");
+      botaoMenu.textContent = aberto ? "✕" : "☰";
+      botaoMenu.setAttribute("aria-label", aberto ? "Fechar menu" : "Abrir menu");
+    });
+
+    document.addEventListener("keydown", (evento) => {
+      if (evento.key === "Escape") fecharMenuMobile();
+    });
+  }
+
+  function fecharMenuMobile() {
+    const menuMobile = document.getElementById("menu-mobile");
+    const botaoMenu = document.getElementById("botao-menu");
+    menuMobile.classList.remove("aberto");
+    botaoMenu.setAttribute("aria-expanded", "false");
+    botaoMenu.textContent = "☰";
+    botaoMenu.setAttribute("aria-label", "Abrir menu");
+  }
+
+  function ativarAnimacoesDeEntrada() {
+    const elementos = document.querySelectorAll(".revelar");
+    const observador = new IntersectionObserver((entradas) => {
+      entradas.forEach((entrada) => {
+        if (entrada.isIntersecting) {
+          entrada.target.classList.add("visivel");
+          observador.unobserve(entrada.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    elementos.forEach((elemento) => observador.observe(elemento));
+  }
+
+  function ativarContadorDeNumeros() {
+    const grade = document.getElementById("grade-numeros");
+    const jaContou = { feito: false };
+
+    const observador = new IntersectionObserver((entradas) => {
+      entradas.forEach((entrada) => {
+        if (entrada.isIntersecting && !jaContou.feito) {
+          jaContou.feito = true;
+          contarNumeros();
+          observador.unobserve(entrada.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    observador.observe(grade);
+  }
+
+  function contarNumeros() {
+    document.querySelectorAll(".valor-numero").forEach((elemento) => {
+      const valorFinal = parseFloat(elemento.dataset.valorFinal);
+      const sufixo = elemento.dataset.sufixo;
+      const ehDecimal = elemento.dataset.decimal === "true";
+      const duracao = 1600;
+      const inicio = performance.now();
+
+      function passo(agora) {
+        const progresso = Math.min((agora - inicio) / duracao, 1);
+        const valorAtual = valorFinal * progresso;
+        elemento.textContent = (ehDecimal ? valorAtual.toFixed(1).replace(".", ",") : Math.round(valorAtual)) + sufixo;
+        if (progresso < 1) requestAnimationFrame(passo);
+      }
+      requestAnimationFrame(passo);
+    });
+  }
+</script>
+
+</body>
+</html>
