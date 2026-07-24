@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Login | Painel</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --coral: #D4572A;
+    --coral-escuro: #B8461F;
+    --creme: #F5F3EF;
+    --branco: #FFFFFF;
+    --grafite: #1A1816;
+    --texto-suave: #6B645C;
+    --borda: #DDD8D0;
+    --sucesso: #2D7A4F;
+    --erro: #C4453C;
+    --fonte-titulo: 'Fraunces', serif;
+    --fonte-corpo: 'Outfit', sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: var(--creme);
+    color: var(--grafite);
+    font-family: var(--fonte-corpo);
+  }
+
+  .cartao-login {
+    background: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(26, 24, 22, 0.08);
+    padding: 44px 40px;
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .logo-login {
+    font-family: var(--fonte-titulo);
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 28px;
+  }
+  .ponto-logo { color: var(--coral); }
+
+  .cartao-login h1 {
+    font-family: var(--fonte-titulo);
+    font-size: 26px;
+    font-weight: 600;
+    margin: 0 0 8px;
+  }
+
+  .subtitulo-login {
+    color: var(--texto-suave);
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 0 0 26px;
+  }
+
+  .faixa-erro,
+  .faixa-sucesso {
+    display: none;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    margin-bottom: 18px;
+    line-height: 1.4;
+  }
+  .faixa-erro.mostrar { display: block; background: rgba(196, 69, 60, 0.1); color: var(--erro); }
+  .faixa-sucesso.mostrar { display: block; background: rgba(45, 122, 79, 0.1); color: var(--sucesso); }
+
+  .campo-login { margin-bottom: 18px; }
+  .campo-login label {
+    display: block;
+    font-weight: 600;
+    font-size: 13.5px;
+    margin-bottom: 6px;
+  }
+  .campo-login input {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1.5px solid var(--borda);
+    border-radius: 12px;
+    font-family: var(--fonte-corpo);
+    font-size: 15px;
+    background: var(--creme);
+    color: var(--grafite);
+  }
+  .campo-login input:focus { outline: none; border-color: var(--coral); }
+
+  .botao-entrar {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: var(--coral);
+    color: var(--branco);
+    font-family: var(--fonte-corpo);
+    font-weight: 600;
+    font-size: 15.5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  .botao-entrar:hover { background: var(--coral-escuro); }
+  .botao-entrar:disabled { opacity: 0.7; cursor: default; }
+
+  .link-esqueci {
+    display: block;
+    margin: 18px auto 0;
+    background: none;
+    border: none;
+    color: var(--texto-suave);
+    font-family: var(--fonte-corpo);
+    font-size: 14px;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .link-esqueci:hover { color: var(--grafite); }
+
+  form[hidden] { display: none; }
+</style>
+</head>
+<body>
+
+  <div class="cartao-login">
+    <p class="logo-login">meu<span class="ponto-logo">.</span>painel</p>
+    <h1>Acesso restrito</h1>
+    <p class="subtitulo-login">Faça login para ver os números do seu portfólio.</p>
+
+    <div class="faixa-erro" id="faixa-erro" role="alert"></div>
+    <div class="faixa-sucesso" id="faixa-sucesso" role="status"></div>
+
+    <form id="form-login">
+      <div class="campo-login">
+        <label for="campo-email">E-mail</label>
+        <input type="email" id="campo-email" required autocomplete="email">
+      </div>
+      <div class="campo-login">
+        <label for="campo-senha">Senha</label>
+        <input type="password" id="campo-senha" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="botao-entrar" id="botao-entrar">Entrar</button>
+    </form>
+    <button type="button" class="link-esqueci" id="link-esqueci">Esqueci minha senha</button>
+
+    <form id="form-recuperar" hidden>
+      <div class="campo-login">
+        <label for="campo-email-recuperar">E-mail</label>
+        <input type="email" id="campo-email-recuperar" required autocomplete="email">
+      </div>
+      <button type="submit" class="botao-entrar" id="botao-recuperar">Enviar link de recuperação</button>
+    </form>
+    <button type="button" class="link-esqueci" id="link-voltar" hidden>Voltar pro login</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/auth.js"></script>
+  <script>
+    (async function iniciar() {
+      // Se já existe uma sessão ativa, pula direto pro painel.
+      const sessaoAtual = await Auth.sb.auth.getSession();
+      if (sessaoAtual.data.session) {
+        window.location.href = "/painel/";
+        return;
+      }
+
+      const formLogin = document.getElementById("form-login");
+      const formRecuperar = document.getElementById("form-recuperar");
+      const linkEsqueci = document.getElementById("link-esqueci");
+      const linkVoltar = document.getElementById("link-voltar");
+      const faixaErro = document.getElementById("faixa-erro");
+      const faixaSucesso = document.getElementById("faixa-sucesso");
+      const botaoEntrar = document.getElementById("botao-entrar");
+      const botaoRecuperar = document.getElementById("botao-recuperar");
+
+      function limparMensagens() {
+        faixaErro.textContent = "";
+        faixaErro.classList.remove("mostrar");
+        faixaSucesso.textContent = "";
+        faixaSucesso.classList.remove("mostrar");
+      }
+
+      function mostrarErro(mensagem) {
+        faixaErro.textContent = mensagem;
+        faixaErro.classList.add("mostrar");
+      }
+
+      // Troca entre o formulário de login e o de recuperação de senha
+      linkEsqueci.addEventListener("click", function () {
+        limparMensagens();
+        formLogin.hidden = true;
+        linkEsqueci.hidden = true;
+        formRecuperar.hidden = false;
+        linkVoltar.hidden = false;
+      });
+
+      linkVoltar.addEventListener("click", function () {
+        limparMensagens();
+        formRecuperar.hidden = true;
+        linkVoltar.hidden = true;
+        formLogin.hidden = false;
+        linkEsqueci.hidden = false;
+      });
+
+      formLogin.addEventListener("submit", async function (evento) {
+        evento.preventDefault();
+        limparMensagens();
+
+        const email = document.getElementById("campo-email").value.trim();
+        const senha = document.getElementById("campo-senha").value;
+
+        botaoEntrar.disabled = true;
+        botaoEntrar.textContent = "Entrando...";
+
+        try {
+          await Auth.login(email, senha);
+          window.location.href = "/painel/";
+        } catch (erro) {
+          mostrarErro(erro.message);
+          botaoEntrar.disabled = false;
+          botaoEntrar.textContent = "Entrar";
+        }
+      });
+
+      formRecuperar.addEventListener("submit", async function (evento) {
+        evento.preventDefault();
+        limparMensagens();
+
+        const email = document.getElementById("campo-email-recuperar").value.trim();
+
+        botaoRecuperar.disabled = true;
+        botaoRecuperar.textContent = "Enviando...";
+
+        try {
+          await Auth.recuperarSenha(email);
+          faixaSucesso.textContent = "Enviamos um link de recuperação pro seu e-mail.";
+          faixaSucesso.classList.add("mostrar");
+        } catch (erro) {
+          mostrarErro(erro.message);
+        } finally {
+          botaoRecuperar.disabled = false;
+          botaoRecuperar.textContent = "Enviar link de recuperação";
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>
