@@ -8,31 +8,30 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Fredoka:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=DM+Sans:wght@400;500;700&family=Fraunces:ital,wght@1,500;1,600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
 
 <style>
   /* =========================================================
-     TOKENS DE DESIGN — paleta candy anos 2000
+     TOKENS DE DESIGN — paleta autoral (off-white, oliva, espresso, terracota, areia)
      ========================================================= */
   :root {
-    --rosa: #ff4fb0;
-    --rosa-escuro: #a60064;
-    --amarelo: #ffe24d;
-    --amarelo-escuro: #8a6b00;
-    --verde-limao: #b6ff5c;
-    --verde-escuro: #3d7a00;
-    --roxo: #b794ff;
-    --roxo-escuro: #5b2fa6;
-    --azul-ceu: #7ec8ff;
-    --azul-ceu-claro: #d9f0ff;
-    --tinta: #201a2b;
-    --papel: #fffdf8;
-    --preto: #1a1a1a;
-    --header-height: 78px;
+    --off-white: #F7F3EA;
+    --oliva: #6F7750;
+    --oliva-escuro: #565d3f;
+    --oliva-tinta: #E7EADC;
+    --marrom: #2B2118;
+    --marrom-suave: #6b5d4e;
+    --terracota: #C86F4A;
+    --terracota-escuro: #a85a3a;
+    --terracota-tinta: #f4e1d3;
+    --areia: #D9CBB8;
+    --branco: #FFFFFF;
+    --header-height: 76px;
 
-    --fonte-titulo: 'Bagel Fat One', cursive;
-    --fonte-corpo: 'Fredoka', sans-serif;
-    --fonte-pixel: 'VT323', monospace;
+    --fonte-titulo: 'Sora', sans-serif;
+    --fonte-corpo: 'DM Sans', sans-serif;
+    --fonte-destaque: 'Fraunces', serif;
+    --fonte-manuscrita: 'Caveat', cursive;
   }
 
   /* =========================================================
@@ -43,30 +42,59 @@
 
   body {
     margin: 0;
-    background: linear-gradient(180deg, var(--azul-ceu) 0%, var(--azul-ceu-claro) 45%, #fdf6ff 100%);
-    background-attachment: fixed;
-    color: var(--tinta);
+    background-color: var(--off-white);
+    background-image:
+      linear-gradient(rgba(43,33,24,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(43,33,24,0.035) 1px, transparent 1px);
+    background-size: 58px 58px;
+    color: var(--marrom);
     font-family: var(--fonte-corpo);
-    font-size: 19px;
-    font-weight: 500;
-    line-height: 1.55;
+    font-size: 18px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+  }
+
+  /* Camada decorativa: ondas orgânicas bem suaves, só para dar textura ao fundo */
+  .textura-fundo {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .textura-fundo .onda {
+    position: absolute;
+    border-radius: 63% 37% 30% 70% / 50% 45% 55% 50%;
+    background: var(--oliva);
+    opacity: 0.05;
+    filter: blur(2px);
+  }
+  .textura-fundo .onda-linha {
+    position: absolute;
+    top: 0;
+    width: 140px;
+    height: 700px;
+    opacity: 0.14;
+    background-repeat: repeat-y;
+    background-size: 140px 700px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='700' viewBox='0 0 140 700'%3E%3Cpath d='M20,0 C55,45 -5,90 30,135 C65,180 5,225 30,270 C55,315 -5,360 30,405 C65,450 5,495 30,540 C55,585 -5,630 30,675 C45,690 45,700 40,700' stroke='%236F7750' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
   }
 
   img, svg { max-width: 100%; display: block; }
 
   h1, h2, h3 {
     font-family: var(--fonte-titulo);
-    font-weight: 400;
-    line-height: 1.3;
+    font-weight: 700;
+    line-height: 1.2;
     text-wrap: balance;
-    margin: 0 0 0.6em 0;
+    color: var(--marrom);
+    margin: 0 0 0.55em 0;
   }
 
   p { margin: 0 0 1em 0; }
 
-  a { color: var(--rosa-escuro); }
+  a { color: var(--oliva); }
 
   section { scroll-margin-top: var(--header-height); position: relative; }
 
@@ -75,141 +103,127 @@
     position: absolute;
     left: 8px;
     top: -60px;
-    background: var(--amarelo);
-    color: #000;
-    padding: 10px 16px;
-    border: 3px solid #000;
-    border-radius: 10px;
+    background: var(--marrom);
+    color: var(--off-white);
+    padding: 10px 18px;
+    border-radius: 8px;
     z-index: 999;
     font-family: var(--fonte-corpo);
     font-weight: 700;
-    font-size: 16px;
+    font-size: 15px;
     text-decoration: none;
     transition: top 0.2s ease;
   }
   .pular-link:focus { top: 8px; }
 
   :focus-visible {
-    outline: 3px solid var(--roxo-escuro);
+    outline: 2.5px solid var(--terracota);
     outline-offset: 3px;
   }
 
   .container {
     width: 100%;
-    max-width: 1100px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 32px;
+  }
+
+  .secao-corpo {
+    padding-block: 88px;
+  }
+
+  .rotulo-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--fonte-corpo);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terracota);
+    margin-bottom: 14px;
+  }
+  .rotulo-eyebrow::before {
+    content: "";
+    width: 22px;
+    height: 2px;
+    background: var(--terracota);
+    display: inline-block;
+  }
+
+  /* Riscos manuscritos (tipo caneta) usados embaixo de palavras de destaque */
+  .risco-oliva,
+  .risco-terracota {
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: 100% 0.4em;
+    padding-bottom: 0.18em;
+  }
+  .risco-oliva {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='12' viewBox='0 0 120 12'%3E%3Cpath d='M2,9 C 24,7.5 46,8.5 68,7 C 90,5.5 100,6.5 118,3' fill='none' stroke='%236F7750' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M3,10.5 C 30,9.5 70,9 117,5.5' fill='none' stroke='%236F7750' stroke-width='1.5' stroke-linecap='round' opacity='0.6'/%3E%3C/svg%3E");
+  }
+  .risco-terracota {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='12' viewBox='0 0 120 12'%3E%3Cpath d='M2,9 C 24,7.5 46,8.5 68,7 C 90,5.5 100,6.5 118,3' fill='none' stroke='%23C86F4A' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M3,10.5 C 30,9.5 70,9 117,5.5' fill='none' stroke='%23C86F4A' stroke-width='1.5' stroke-linecap='round' opacity='0.6'/%3E%3C/svg%3E");
   }
 
   /* =========================================================
-     CAMADA DECORATIVA: nuvens e brilhinhos no fundo (puramente visual)
-     ========================================================= */
-  .fundo-decorativo {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    overflow: hidden;
-    pointer-events: none;
-  }
-  .nuvem {
-    position: absolute;
-    background: #fff;
-    border-radius: 50%;
-    filter: blur(1px);
-    opacity: 0.75;
-  }
-  .brilho {
-    position: absolute;
-    font-size: 22px;
-    animation: flutuar 6s ease-in-out infinite;
-  }
-  @keyframes flutuar {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-14px) rotate(12deg); }
-  }
-
-  /* =========================================================
-     BOTÕES E CARTÕES ESTILO ADESIVO (borda preta grossa + sombra dura)
+     BOTÕES E CARTÕES
      ========================================================= */
   .cartao-solido {
-    background: var(--papel);
-    border: 3px solid var(--preto);
+    background: var(--branco);
+    border: 1px solid var(--areia);
     border-radius: 18px;
-    box-shadow: 6px 6px 0 var(--preto);
+    box-shadow: 0 4px 18px rgba(43, 33, 24, 0.06);
   }
 
   .botao-retro {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     font-family: var(--fonte-corpo);
     font-weight: 700;
-    font-size: 18px;
-    background: #fff;
-    color: var(--preto);
-    padding: 10px 20px;
+    font-size: 15.5px;
+    background: transparent;
+    color: var(--marrom);
+    padding: 12px 26px;
     cursor: pointer;
-    border: 3px solid var(--preto);
-    border-radius: 14px;
-    box-shadow: 4px 4px 0 var(--preto);
+    border: 1.5px solid var(--marrom);
+    border-radius: 999px;
     text-decoration: none;
-    transition: transform 0.12s ease, box-shadow 0.12s ease;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
   }
-  .botao-retro:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--preto); }
-  .botao-retro:active {
-    transform: translate(3px, 3px);
-    box-shadow: 1px 1px 0 var(--preto);
-  }
+  .botao-retro:hover { background: var(--marrom); color: var(--off-white); }
+  .botao-retro:active { transform: scale(0.97); }
 
   .botao-destaque {
-    background: var(--rosa);
-    color: #1a0010;
+    background: var(--terracota);
+    color: var(--off-white);
+    border-color: var(--terracota);
   }
+  .botao-destaque:hover { background: var(--terracota-escuro); border-color: var(--terracota-escuro); color: var(--off-white); }
 
-  /* =========================================================
-     "JANELAS" DA ÁREA DE TRABALHO — usadas em cada seção
-     ========================================================= */
-  .janela {
-    background: #fff;
-    padding: 5px;
-    border: 3px solid var(--preto);
-    border-radius: 20px;
-    box-shadow: 8px 8px 0 rgba(32,26,43,0.35);
+  /* Dentro dos menus, os links viram texto simples (sem pílula) */
+  .menu-desktop .botao-retro,
+  .menu-mobile .botao-retro {
+    border: none;
+    padding: 8px 4px;
+    border-radius: 0;
+    position: relative;
   }
-  .barra-titulo {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    color: #1a0010;
-    font-family: var(--fonte-pixel);
-    font-size: 22px;
-    letter-spacing: 0.05em;
-    padding: 8px 16px;
-    border-bottom: 3px solid var(--preto);
-    border-radius: 15px 15px 0 0;
+  .menu-desktop .botao-retro:hover,
+  .menu-mobile .botao-retro:hover { background: transparent; color: var(--oliva); }
+  .menu-desktop .botao-retro::after {
+    content: "";
+    position: absolute;
+    left: 4px; right: 4px; bottom: 2px;
+    height: 2px;
+    background: var(--terracota);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s ease;
   }
-  .barra-titulo .luzes { display: flex; gap: 7px; }
-  .barra-titulo .luz {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    border: 2px solid var(--preto);
-    background: radial-gradient(circle at 30% 30%, #fff, currentColor 70%);
-  }
-  .luz.vermelha { color: #ff5c5c; }
-  .luz.amarela { color: var(--amarelo); }
-  .luz.verde { color: var(--verde-limao); }
-
-  .conteudo-janela {
-    background: var(--papel);
-    padding: 44px 34px;
-    border-radius: 0 0 15px 15px;
-  }
-
-  /* Cores da barra de título alternando pela paleta candy */
-  #inicio .barra-titulo, #servicos .barra-titulo { background: var(--rosa); }
-  #sobre .barra-titulo, #depoimentos .barra-titulo { background: var(--verde-limao); }
-  #portfolio .barra-titulo, #contato .barra-titulo { background: var(--roxo); }
-  #resultados .barra-titulo { background: var(--amarelo); }
+  .menu-desktop .botao-retro:hover::after { transform: scaleX(1); }
 
   /* =========================================================
      CABEÇALHO / MENU FIXO
@@ -220,8 +234,9 @@
     left: 0;
     width: 100%;
     z-index: 100;
-    background: var(--rosa);
-    border-bottom: 3px solid var(--preto);
+    background: rgba(247, 243, 234, 0.94);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--areia);
     height: var(--header-height);
   }
   .barra-nav {
@@ -232,9 +247,10 @@
   }
   .logo {
     font-family: var(--fonte-titulo);
-    color: #fff;
-    -webkit-text-stroke: 1.5px var(--preto);
-    font-size: 20px;
+    font-weight: 800;
+    color: var(--marrom);
+    font-size: 19px;
+    letter-spacing: 0.02em;
     text-decoration: none;
     line-height: 1.2;
     white-space: nowrap;
@@ -242,23 +258,28 @@
 
   .menu-desktop {
     display: flex;
-    gap: 8px;
+    gap: 26px;
     list-style: none;
     margin: 0;
     padding: 0;
   }
-  .menu-desktop a { font-size: 16px; padding: 8px 14px; }
+  .menu-desktop a { font-size: 15px; }
 
   .botao-hamburguer {
     display: none;
-    width: 46px;
+    width: 44px;
     height: 42px;
     align-items: center;
     justify-content: center;
-    font-size: 22px;
+    font-size: 24px;
     line-height: 1;
     padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--marrom);
+    cursor: pointer;
   }
+  .botao-hamburguer:hover { background: transparent; color: var(--oliva); }
 
   .menu-mobile {
     display: none;
@@ -267,129 +288,188 @@
     left: 0;
     width: 100%;
     z-index: 99;
-    background: var(--roxo);
-    border-bottom: 3px solid var(--preto);
-    padding: 16px;
+    background: var(--off-white);
+    border-bottom: 1px solid var(--areia);
+    padding: 10px 24px 20px;
+    box-shadow: 0 8px 20px rgba(43,33,24,0.08);
   }
   .menu-mobile.aberto { display: block; }
   .menu-mobile ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
   }
-  .menu-mobile a { display: block; text-align: center; font-size: 18px; }
+  .menu-mobile li { border-bottom: 1px solid var(--areia); }
+  .menu-mobile li:last-child { border-bottom: none; }
+  .menu-mobile a { display: block; text-align: left; font-size: 16.5px; padding: 14px 4px; }
 
   main { padding-top: var(--header-height); }
 
   /* =========================================================
      SEÇÃO HERO
      ========================================================= */
-  .hero .conteudo-janela {
+  .hero-grid {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 40px;
-    align-items: center;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 56px;
+    align-items: start;
+    padding-top: 68px;
+    position: relative;
   }
   .hero-titulo {
-    font-size: clamp(2rem, 5vw, 3.2rem);
-    color: var(--rosa-escuro);
+    font-size: clamp(2.3rem, 5.2vw, 3.6rem);
+    color: var(--marrom);
+  }
+  .hero-titulo .titulo-destaque-hero {
+    font-family: var(--fonte-destaque);
+    font-style: italic;
+    font-weight: 600;
+    color: var(--terracota);
   }
   .hero-frase {
-    font-size: 24px;
-    font-weight: 600;
+    font-size: 19px;
+    color: var(--marrom-suave);
+    max-width: 46ch;
   }
   .hero-profissao {
     display: inline-block;
-    background: var(--amarelo);
-    color: #1a1300;
-    font-family: var(--fonte-pixel);
-    font-size: 20px;
-    padding: 4px 14px;
-    margin-bottom: 16px;
-    border: 3px solid var(--preto);
+    font-family: var(--fonte-corpo);
+    font-weight: 700;
+    font-size: 12.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--marrom-suave);
+    margin-bottom: 20px;
+    padding: 7px 16px;
+    border: 1px solid var(--areia);
     border-radius: 999px;
   }
   .hero-texto { position: relative; min-width: 0; }
-  .hero-figura { position: relative; }
-  .adesivo-flutuante {
-    position: absolute;
-    top: -16px;
-    right: -14px;
-    background: var(--verde-limao);
-    border: 3px solid var(--preto);
-    border-radius: 999px;
-    padding: 8px 16px;
-    font-family: var(--fonte-corpo);
-    font-weight: 700;
-    font-size: 15px;
-    transform: rotate(8deg);
-    box-shadow: 4px 4px 0 var(--preto);
-  }
-  .estrela-adesivo {
-    position: absolute;
-    bottom: -18px;
-    left: -20px;
-    font-size: 48px;
-    color: var(--roxo);
-    transform: rotate(-15deg);
-  }
 
-  /* Adesivos retrô anos 2000 (decorativos, não carregam informação, por isso aria-hidden no HTML) */
-  .adesivo-bolha {
-    position: absolute;
-    top: -10px;
-    right: 4px;
-    background: var(--verde-limao);
-    border: 3px solid var(--preto);
-    border-radius: 999px;
-    padding: 6px 16px;
+  .hero-botoes { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 8px; }
+  .botao-secundario {
+    background: transparent;
+    color: var(--marrom);
+    border: 1.5px solid var(--marrom);
+  }
+  .botao-secundario:hover { background: var(--marrom); color: var(--off-white); }
+
+  .hero-estatisticas {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 18px;
+    margin-top: 44px;
+    padding-top: 28px;
+    border-top: 1px solid var(--areia);
+  }
+  .item-estatistica-hero { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .item-estatistica-hero .icone-estatistica {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--oliva-tinta);
+    color: var(--oliva-escuro);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12.5px;
+    flex-shrink: 0;
+  }
+  .item-estatistica-hero .valor-estatistica-hero {
+    display: block;
     font-family: var(--fonte-titulo);
-    font-size: 12px;
-    color: #14210a;
-    transform: rotate(6deg);
-    box-shadow: 4px 4px 0 var(--preto);
-    pointer-events: none;
+    font-weight: 700;
+    font-size: 15.5px;
+    color: var(--marrom);
+    line-height: 1.15;
     white-space: nowrap;
   }
-  .adesivo-icone {
-    position: absolute;
-    width: 54px;
-    height: 54px;
-    border-radius: 50%;
-    background: #fff;
-    border: 3px solid var(--preto);
-    box-shadow: 4px 4px 0 var(--preto);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 26px;
-    pointer-events: none;
-  }
-  .adesivo-disco { top: 42%; left: -26px; background: var(--roxo); transform: rotate(-10deg); }
-  .adesivo-vhs { top: 62%; right: -22px; background: var(--amarelo); transform: rotate(10deg); }
-  .adesivo-beijo {
-    width: 46px;
-    height: 46px;
-    font-size: 22px;
-    bottom: -12px;
-    right: 70px;
-    background: var(--rosa);
-    transform: rotate(-14deg);
+  .item-estatistica-hero .rotulo-estatistica-hero {
+    display: block;
+    white-space: nowrap;
+    font-size: 11.5px;
+    color: var(--marrom-suave);
   }
 
-  /* Bloco que simula foto/vídeo com gradiente. Quando existe um arquivo de foto real
-     na pasta "imagens" (ver CONFIG), ele cobre o gradiente automaticamente. */
+  .hero-figura {
+    position: relative;
+    max-width: 460px;
+    height: 500px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .hero-figura::before {
+    content: "";
+    position: absolute;
+    top: 110px; left: -30px; right: 24px; bottom: 0;
+    background: var(--oliva);
+    border-radius: 44% 56% 42% 58% / 56% 48% 52% 44%;
+    z-index: 0;
+  }
+  .hero-figura .bloco-imagem {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    height: 112%;
+    width: auto;
+    background: none !important;
+  }
+  .hero-figura .bloco-imagem img {
+    position: static;
+    height: 100%;
+    width: auto;
+    max-width: none;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* Ícone de destaque (3 tracinhos) no canto da foto do hero */
+  .marca-destaque-foto {
+    position: absolute;
+    top: 4px;
+    right: 0;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    gap: 5px;
+  }
+  .marca-destaque-foto span {
+    display: block;
+    width: 4px;
+    height: 26px;
+    background: var(--oliva);
+    border-radius: 2px;
+    transform: rotate(18deg);
+  }
+  .marca-destaque-foto span:nth-child(2) { height: 20px; }
+  .marca-destaque-foto span:nth-child(3) { height: 14px; }
+
+  .hero-nota-manuscrita {
+    position: absolute;
+    left: calc(100% + 36px);
+    top: 50%;
+    width: 210px;
+    font-family: var(--fonte-manuscrita);
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 1.3;
+    color: var(--marrom);
+    transform: translateY(-50%) rotate(-2deg);
+    z-index: 2;
+  }
+  @media (max-width: 1300px) {
+    .hero-nota-manuscrita { display: none; }
+  }
+  @media (max-width: 1300px) and (min-width: 761px) {
+    .hero-estatisticas { flex-wrap: wrap; row-gap: 16px; }
+  }
+
+  /* Bloco de foto/vídeo real. Quando existe um arquivo em "imagens" (ver CONFIG), a foto cobre
+     o gradiente automaticamente; se o arquivo não existir, o gradiente aparece no lugar dela. */
   .bloco-imagem {
     position: relative;
     overflow: hidden;
     width: 100%;
     aspect-ratio: 4 / 5;
-    border: 3px solid var(--preto);
-    border-radius: 18px;
-    box-shadow: 6px 6px 0 var(--preto);
+    border-radius: 20px;
   }
   .hero .bloco-imagem { aspect-ratio: 3 / 4; }
   .bloco-imagem img {
@@ -405,40 +485,51 @@
      ========================================================= */
   .faixa-marcas {
     overflow: hidden;
-    padding: 50px 0 60px;
+    padding-block: 64px;
+    border-top: 1px solid var(--areia);
+    border-bottom: 1px solid var(--areia);
   }
   .titulo-marcas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
     text-align: center;
-    font-family: var(--fonte-titulo);
-    font-size: clamp(1.2rem, 2.6vw, 1.6rem);
-    color: var(--roxo-escuro);
-    margin: 0 0 32px 0;
+    font-family: var(--fonte-corpo);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--oliva);
+    margin: 0 0 34px 0;
+  }
+  .titulo-marcas::before,
+  .titulo-marcas::after {
+    content: "";
+    height: 1px;
+    width: 60px;
+    background: var(--areia);
   }
   .marquee-trilho {
     display: flex;
     align-items: center;
     width: max-content;
-    gap: 34px;
-    animation: rolar-marcas 26s linear infinite;
+    gap: 56px;
+    animation: rolar-marcas 34s linear infinite;
   }
   .faixa-marcas:hover .marquee-trilho,
   .faixa-marcas:focus-within .marquee-trilho { animation-play-state: paused; }
   .logo-marca {
     flex-shrink: 0;
-    width: 88px;
-    height: 88px;
-    border-radius: 50%;
-    background: #fff;
-    border: 3px solid var(--preto);
-    box-shadow: 4px 4px 0 var(--preto);
+    height: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
   }
   .logo-marca img {
-    width: 68%;
-    height: 68%;
+    height: 100%;
+    width: auto;
+    max-width: 128px;
     object-fit: contain;
   }
   @keyframes rolar-marcas {
@@ -449,50 +540,175 @@
   /* =========================================================
      SEÇÃO SOBRE
      ========================================================= */
-  .sobre .conteudo-janela {
+  /* Seção Sobre: faixa cheia em verde-oliva, igual à faixa de Resultados,
+     por isso os textos aqui usam a mesma dupla de cores (off-white + areia) para contraste. */
+  .sobre { background: var(--oliva); }
+  /* A seção Sobre não tem respiro embaixo: assim a foto pode descer até a borda
+     de verdade da faixa verde. O respiro de baixo volta como padding só nas outras
+     duas colunas (texto e diferenciais), então elas continuam com o mesmo espaço de sempre. */
+  .sobre .secao-corpo { padding-bottom: 0; }
+  .sobre-grid {
     display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    gap: 40px;
-    align-items: center;
+    grid-template-columns: 0.68fr 1fr 0.72fr;
+    gap: 48px;
+    align-items: stretch;
   }
+  .sobre-conteudo { padding-bottom: 88px; }
+  .sobre-figura {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .sobre-figura .bloco-imagem {
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    margin-top: -28px;
+    background: none !important;
+  }
+  .sobre-figura .bloco-imagem img {
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
+    -webkit-mask-image: linear-gradient(to bottom, black 58%, transparent 94%);
+    mask-image: linear-gradient(to bottom, black 58%, transparent 94%);
+  }
+  .sobre .rotulo-eyebrow { color: var(--off-white); }
+  .sobre .rotulo-eyebrow::before { background: var(--off-white); }
   #sobre-titulo {
-    font-size: clamp(1.7rem, 3.4vw, 2.3rem);
+    font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+    color: var(--off-white);
   }
   #sobre-titulo .nome-destaque {
-    color: var(--rosa-escuro);
+    font-family: var(--fonte-destaque);
+    font-style: italic;
+    font-weight: 600;
+    color: var(--terracota);
+  }
+  #sobre-texto p { color: var(--areia); }
+  #sobre-texto strong { color: var(--off-white); font-weight: 700; }
+  #sobre-cta {
+    margin-top: 8px;
+    background: var(--off-white);
+    color: var(--oliva-escuro);
+    border-color: var(--off-white);
+  }
+  #sobre-cta:hover { background: transparent; color: var(--off-white); }
+
+  .lista-diferenciais {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 88px;
+    padding-left: 28px;
+    border-left: 1px solid rgba(247,243,234,0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .item-diferencial {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .item-diferencial .icone-diferencial {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--branco);
+    border: 1px solid var(--areia);
+    color: var(--oliva);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+  .item-diferencial span:last-child {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--off-white);
+    line-height: 1.3;
   }
 
   /* =========================================================
      PORTFÓLIO
      ========================================================= */
+  #portfolio-titulo { font-size: clamp(2.1rem, 4.5vw, 3.2rem); }
+  .titulo-destaque-portfolio {
+    font-family: var(--fonte-destaque);
+    font-style: italic;
+    font-weight: 600;
+    color: var(--terracota);
+  }
+  .portfolio-subtitulo {
+    font-size: 17px;
+    color: var(--marrom-suave);
+    max-width: 58ch;
+    margin: 0 0 32px 0;
+  }
+
   .filtros-portfolio {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 56px;
   }
-  .filtro-btn[aria-pressed="true"] {
-    background: var(--roxo);
-    color: #1a0010;
+  .filtro-btn {
+    font-size: 14.5px;
+    padding: 9px 20px;
+    border-color: var(--areia);
+    color: var(--marrom-suave);
   }
+  .filtro-btn:hover { background: var(--oliva-tinta); color: var(--marrom); border-color: var(--oliva-tinta); }
 
-  /* Cada nicho é um grupo; só o grupo ativo (escolhido no filtro) fica visível */
-  .grupo-categoria { display: none; }
-  .grupo-categoria.ativo { display: block; }
+  /* Cada nicho é um grupo empilhado com seu próprio título, contagem, legenda e carrossel */
+  .grupo-categoria {
+    scroll-margin-top: calc(var(--header-height) + 16px);
+    margin-bottom: 56px;
+  }
+  .grupo-categoria:last-child { margin-bottom: 0; }
 
-  /* Carrossel horizontal: trilho com rolagem + setas para nichos com mais de 3 vídeos */
-  .carrossel-portfolio {
+  .cabecalho-categoria {
     display: flex;
-    align-items: center;
-    gap: 12px;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
   }
+  .cabecalho-categoria h3 {
+    font-family: var(--fonte-titulo);
+    font-weight: 800;
+    font-size: clamp(1.5rem, 3vw, 1.9rem);
+    color: var(--marrom);
+    margin-bottom: 6px;
+  }
+  .contagem-categoria {
+    font-family: var(--fonte-corpo);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--marrom-suave);
+    margin-left: 6px;
+  }
+  .subtitulo-categoria {
+    font-family: var(--fonte-destaque);
+    font-style: italic;
+    font-size: 16.5px;
+    color: var(--marrom-suave);
+    margin: 0;
+  }
+  .setas-categoria {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
   .trilho-portfolio {
     display: flex;
-    gap: 22px;
+    gap: 24px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    padding: 6px 4px 14px;
+    padding: 4px 4px 16px;
     flex: 1;
     scrollbar-width: none;
   }
@@ -502,41 +718,42 @@
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: #fff;
-    border: 3px solid var(--preto);
-    box-shadow: 4px 4px 0 var(--preto);
+    background: var(--branco);
+    border: 1px solid var(--areia);
+    box-shadow: 0 2px 8px rgba(43,33,24,0.06);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-size: 19px;
+    color: var(--marrom);
     cursor: pointer;
-    transition: transform 0.12s ease;
+    transition: transform 0.15s ease, border-color 0.15s ease;
   }
-  .seta-portfolio:hover { transform: translateY(-2px); }
-  .seta-portfolio:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--preto); }
+  .seta-portfolio:hover { transform: translateY(-2px); border-color: var(--oliva); color: var(--oliva); }
 
   .item-portfolio {
     display: flex;
     flex-direction: column;
-    flex: 0 0 210px;
+    flex: 0 0 300px;
     scroll-snap-align: start;
   }
-  .item-portfolio h3 { font-family: var(--fonte-corpo); font-weight: 700; font-size: 21px; margin-bottom: 4px; }
+  .item-portfolio h3 { font-family: var(--fonte-titulo); font-weight: 700; font-size: 20px; margin-bottom: 3px; }
+  .item-portfolio p { color: var(--marrom-suave); font-size: 15.5px; }
 
   /* Card de vídeo do portfólio: mostra a miniatura do YouTube com um botão de play.
-     O vídeo real (iframe) carrega ao passar o mouse (hover) ou ao clicar/tocar,
-     assim a página não fica pesada carregando os vídeos todos ao mesmo tempo. */
+     No computador, passar o mouse já toca em preview (sem som); no toque, clique ou teclado
+     toca com som. Assim a página não fica pesada carregando os vídeos todos ao mesmo tempo. */
   .video-portfolio {
     position: relative;
     aspect-ratio: 9 / 16;
     width: 100%;
-    margin-bottom: 12px;
-    border: 3px solid var(--preto);
-    border-radius: 18px;
-    box-shadow: 6px 6px 0 var(--preto);
+    margin-bottom: 14px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(43,33,24,0.12);
     overflow: hidden;
     background-size: cover;
     background-position: center;
+    background-color: var(--areia);
     cursor: pointer;
     padding: 0;
   }
@@ -546,136 +763,281 @@
     width: 100%;
     height: 100%;
     border: 0;
+    /* pointer-events:none tira o player da jogada do mouse: nada de overlay do YouTube
+       aparecendo no hover, e o clique continua sendo tratado pelo card por trás.
+       O leve zoom esconde qualquer resquício de marca/tarja nas bordas do player. */
+    pointer-events: none;
+    transform: scale(1.15);
   }
   .botao-play {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 56px;
-    height: 56px;
+    width: 62px;
+    height: 62px;
     border-radius: 50%;
-    background: var(--rosa);
-    border: 3px solid var(--preto);
+    background: var(--terracota);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 20px;
-    color: #1a0010;
+    color: var(--off-white);
+    box-shadow: 0 4px 14px rgba(43,33,24,0.25);
     transition: transform 0.15s ease;
   }
   .video-portfolio:hover .botao-play,
-  .video-portfolio:focus-visible .botao-play { transform: translate(-50%, -50%) scale(1.1); }
+  .video-portfolio:focus-visible .botao-play { transform: translate(-50%, -50%) scale(1.08); }
   .selo-categoria {
-    display: inline-block;
-    font-family: var(--fonte-pixel);
-    font-size: 16px;
-    color: #1a0010;
-    padding: 2px 12px;
-    margin-bottom: 8px;
-    align-self: flex-start;
-    border: 2px solid var(--preto);
-    border-radius: 999px;
+    display: block;
+    font-family: var(--fonte-corpo);
+    font-weight: 700;
+    font-size: 11.5px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--oliva) !important;
+    background: transparent !important;
+    padding: 0;
+    margin: 0 0 6px 0;
+    border: none;
   }
 
   /* =========================================================
      SERVIÇOS
      ========================================================= */
-  .grade-servicos {
+  .servicos-cabecalho {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 22px;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 48px;
+    align-items: end;
+    margin-bottom: 44px;
   }
-  .card-servico { padding: 24px; text-align: center; }
-  .card-servico .icone {
-    font-size: 34px;
-    width: 64px;
-    height: 64px;
-    margin: 0 auto 12px;
+  .rotulo-seta::after { content: "→"; margin-left: 2px; }
+  #servicos-titulo {
+    font-size: clamp(2.3rem, 5vw, 3.6rem);
+    margin-bottom: 0;
+  }
+  .titulo-destaque-servicos {
+    font-family: var(--fonte-destaque);
+    font-style: italic;
+    font-weight: 600;
+    color: var(--terracota);
+  }
+  .servicos-descricao {
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    color: var(--marrom);
+    max-width: 38ch;
+    margin: 0;
+  }
+
+  .carrossel-servicos {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .trilho-servicos {
+    display: flex;
+    gap: 22px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 4px 4px 16px;
+    flex: 1;
+    scrollbar-width: none;
+  }
+  .trilho-servicos::-webkit-scrollbar { display: none; }
+
+  .item-servico {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 270px;
+    scroll-snap-align: start;
+    padding: 30px 26px;
+    text-align: left;
+  }
+  .item-servico .icone {
+    font-size: 24px;
+    width: 56px;
+    height: 56px;
+    margin-bottom: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--azul-ceu-claro);
-    border: 3px solid var(--preto);
-    border-radius: 50%;
+    background: var(--terracota-tinta);
+    border-radius: 14px;
   }
-  .card-servico h3 { font-family: var(--fonte-corpo); font-weight: 700; font-size: 22px; color: var(--rosa-escuro); }
+  .item-servico h3 { font-family: var(--fonte-titulo); font-weight: 700; font-size: 19px; color: var(--marrom); margin-bottom: 6px; }
+  .item-servico p { color: var(--marrom-suave); font-size: 15px; margin: 0 0 20px 0; }
+  .cta-servico {
+    margin-top: auto;
+    font-family: var(--fonte-corpo);
+    font-weight: 700;
+    font-size: 13.5px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--terracota);
+    text-decoration: none;
+  }
+  .cta-servico:hover { text-decoration: underline; }
 
   /* =========================================================
-     RESULTADOS / NÚMEROS (visor estilo calculadora retrô)
+     RESULTADOS / NÚMEROS (faixa de destaque em oliva)
      ========================================================= */
+  #resultados { background: var(--oliva); }
+  #resultados h2 { color: var(--off-white); }
   .grade-numeros {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    text-align: center;
+    gap: 32px;
+    text-align: left;
   }
-  .item-numero { padding: 6px; }
+  .item-numero { padding: 0; border-left: 2px solid rgba(247,243,234,0.3); padding-left: 20px; }
   .valor-numero {
     display: block;
-    font-family: var(--fonte-pixel);
-    font-size: clamp(1.8rem, 4vw, 2.6rem);
-    color: var(--verde-limao);
-    background: #14120f;
-    border: 3px solid var(--preto);
-    border-radius: 12px;
-    padding: 10px 6px;
-    margin-bottom: 10px;
-    letter-spacing: 0.03em;
+    font-family: var(--fonte-titulo);
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 2.9rem);
+    color: var(--off-white);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
   }
-  .rotulo-numero { font-size: 17px; font-weight: 600; }
+  .rotulo-numero { font-size: 15px; font-weight: 500; color: var(--areia); }
 
   /* =========================================================
      DEPOIMENTOS
      ========================================================= */
-  .grade-depoimentos {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 22px;
+  .carrossel-depoimentos {
+    display: flex;
+    align-items: center;
+    gap: 14px;
   }
-  .card-depoimento { padding: 24px; position: relative; margin: 0; }
-  .card-depoimento .aspas { font-family: var(--fonte-titulo); font-size: 30px; color: var(--roxo-escuro); }
-  .card-depoimento .autor { margin-top: 14px; font-weight: 700; font-size: 19px; display: block; }
-  .card-depoimento .empresa { color: var(--rosa-escuro); font-size: 17px; }
+  .trilho-depoimentos {
+    display: flex;
+    gap: 22px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 4px 4px 16px;
+    flex: 1;
+    scrollbar-width: none;
+  }
+  .trilho-depoimentos::-webkit-scrollbar { display: none; }
+
+  .card-depoimento {
+    flex: 0 0 320px;
+    scroll-snap-align: start;
+    padding: 30px 26px;
+    position: relative;
+    margin: 0;
+  }
+  .card-depoimento .aspas { font-family: var(--fonte-destaque); font-style: italic; font-size: 34px; color: var(--terracota); line-height: 1; margin-bottom: 6px; }
+  .card-depoimento p { color: var(--marrom); }
+  .card-depoimento .autor { margin-top: 14px; font-weight: 700; font-size: 16px; display: block; color: var(--marrom); }
+  .card-depoimento .empresa { color: var(--oliva); font-size: 14.5px; display: block; }
 
   /* =========================================================
      CONTATO
      ========================================================= */
+  .contato { background: var(--oliva); }
+  .contato .rotulo-eyebrow { color: var(--off-white); }
+  .contato .rotulo-eyebrow::before { background: var(--off-white); }
+  #contato-titulo { color: var(--off-white); font-size: clamp(2.1rem, 4.3vw, 3.1rem); }
+  .titulo-destaque-contato {
+    font-family: var(--fonte-destaque);
+    font-style: italic;
+    font-weight: 600;
+    color: var(--terracota);
+  }
+  #contato-subtitulo { color: var(--areia); font-size: 17px; max-width: 42ch; }
+
   .grade-contato {
     display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 56px;
+    align-items: start;
+  }
+
+  .lista-contato-direto {
+    list-style: none;
+    margin: 32px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .item-contato-direto {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--off-white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15.5px;
+  }
+  .item-contato-direto:hover { color: var(--terracota); }
+  .icone-contato-direto {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid rgba(247, 243, 234, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16.5px;
+    color: var(--off-white);
+    flex-shrink: 0;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+  }
+  .item-contato-direto:hover .icone-contato-direto {
+    border-color: var(--terracota);
+    background: rgba(200, 111, 74, 0.18);
+  }
+
+  .linha-campos {
+    display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    gap: 20px;
   }
   .campo { margin-bottom: 18px; }
   .campo label {
     display: block;
-    margin-bottom: 6px;
-    font-weight: 600;
-    font-size: 16px;
+    margin-bottom: 8px;
+    font-weight: 700;
+    font-size: 12.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--areia);
   }
   .campo input,
   .campo textarea {
     width: 100%;
     font-family: var(--fonte-corpo);
-    font-size: 16px;
-    padding: 12px;
-    background: #fff;
-    border: 3px solid var(--preto);
-    border-radius: 12px;
+    font-size: 15.5px;
+    padding: 13px 14px;
+    background: rgba(247, 243, 234, 0.08);
+    border: 1.5px solid rgba(247, 243, 234, 0.28);
+    border-radius: 10px;
+    color: var(--off-white);
   }
+  .campo input::placeholder,
+  .campo textarea::placeholder { color: rgba(247, 243, 234, 0.45); }
+  .campo input:focus,
+  .campo textarea:focus { outline: none; border-color: var(--terracota); }
   .campo textarea { resize: vertical; min-height: 120px; }
 
-  .botoes-diretos { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
   .mensagem-confirmacao {
     margin-top: 14px;
-    padding: 12px 16px;
-    background: var(--verde-limao);
-    border: 3px solid var(--preto);
-    border-radius: 12px;
-    color: #123500;
+    padding: 13px 16px;
+    background: rgba(247, 243, 234, 0.12);
+    border-radius: 10px;
+    color: var(--off-white);
     display: none;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 15px;
   }
   .mensagem-confirmacao.mostrar { display: block; }
 
@@ -683,31 +1045,31 @@
      RODAPÉ
      ========================================================= */
   .rodape {
-    background: var(--preto);
-    color: #fff;
-    padding: 34px 0;
+    background: var(--marrom);
+    color: var(--off-white);
+    padding: 48px 0;
     text-align: center;
-    border-top: 3px solid var(--preto);
   }
-  .rodape .logo { margin: 0 0 16px 0; font-size: 22px; -webkit-text-stroke: 1.5px #fff; color: var(--rosa); }
+  .rodape .logo { margin: 0 0 18px 0; font-size: 20px; color: var(--off-white); }
   .links-sociais-rodape {
     display: flex;
     justify-content: center;
-    gap: 18px;
+    gap: 22px;
     list-style: none;
     padding: 0;
-    margin: 0 0 16px 0;
+    margin: 0 0 18px 0;
     flex-wrap: wrap;
   }
-  .links-sociais-rodape a { color: var(--amarelo); font-weight: 600; font-size: 16px; }
-  .copyright { font-size: 15px; color: #cfcfcf; }
+  .links-sociais-rodape a { color: var(--areia); font-weight: 500; font-size: 15px; }
+  .links-sociais-rodape a:hover { color: var(--terracota); }
+  .copyright { font-size: 13.5px; color: #a89d8f; }
 
   /* =========================================================
      ANIMAÇÃO DE ENTRADA (fade + subida leve via IntersectionObserver)
      ========================================================= */
   .revelar {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(22px);
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
   .revelar.visivel {
@@ -719,7 +1081,6 @@
     html { scroll-behavior: auto; }
     .revelar { opacity: 1; transform: none; transition: none; }
     .marquee-trilho { animation: none; }
-    .brilho { animation: none; }
   }
 
   /* =========================================================
@@ -727,50 +1088,51 @@
      ========================================================= */
   @media (max-width: 860px) {
     .grade-numeros { grid-template-columns: repeat(2, 1fr); }
+    .item-numero:nth-child(3), .item-numero:nth-child(4) { border-left: none; padding-left: 0; }
     .grade-contato { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 760px) {
     .menu-desktop { display: none; }
     .botao-hamburguer { display: flex; }
-    .hero .conteudo-janela,
-    .sobre .conteudo-janela { grid-template-columns: 1fr; }
-    .sobre .conteudo-janela .bloco-imagem { max-width: 320px; margin: 0 auto; }
-    .conteudo-janela { padding: 30px 20px; }
-    .estrela-adesivo { font-size: 34px; }
-    .adesivo-icone { width: 42px; height: 42px; font-size: 20px; }
-    .adesivo-disco { left: -14px; }
-    .adesivo-vhs { right: -12px; }
-    .adesivo-beijo { width: 38px; height: 38px; font-size: 18px; right: 46px; }
-    .adesivo-bolha { font-size: 11px; padding: 5px 12px; }
+    .hero-grid,
+    .sobre-grid { grid-template-columns: 1fr; }
+    .hero-grid { gap: 40px; padding-top: 36px; }
+    .hero-figura { order: -1; width: 100%; max-width: 320px; height: 380px; margin: 0 auto; }
+    .hero-figura::before { top: 80px; left: -14px; right: 16px; bottom: 0; }
+    .hero-estatisticas { flex-wrap: wrap; gap: 16px 24px; margin-top: 32px; padding-top: 22px; }
+    .sobre-grid { grid-template-columns: 1fr; }
+    .sobre-figura .bloco-imagem { height: auto; width: 100%; max-width: 240px; margin: 0 auto 24px; }
+    .sobre-figura .bloco-imagem img { height: auto; width: 100%; }
+    .sobre-conteudo { padding-bottom: 0; }
+    .lista-diferenciais { border-left: none; padding-left: 0; padding-top: 24px; padding-bottom: 60px; border-top: 1px solid rgba(247,243,234,0.3); margin-top: 8px; }
+    .secao-corpo { padding-block: 60px; }
+    .servicos-cabecalho { grid-template-columns: 1fr; align-items: start; gap: 20px; margin-bottom: 28px; }
+    .servicos-descricao { max-width: none; }
+    .cabecalho-categoria { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .linha-campos { grid-template-columns: 1fr; gap: 0; }
   }
 
   @media (max-width: 480px) {
-    body { font-size: 17px; }
-    .grade-numeros { grid-template-columns: 1fr 1fr; gap: 12px; }
-    .hero-frase { font-size: 20px; }
-    .brilho { display: none; }
+    body { font-size: 16.5px; }
+    .grade-numeros { grid-template-columns: 1fr 1fr; gap: 24px; }
+    .item-numero:nth-child(2n) { border-left: none; padding-left: 0; }
+    .hero-frase { font-size: 17px; }
   }
 </style>
 </head>
 <body>
 
-<a class="pular-link" href="#conteudo-principal">Pular para o conteúdo</a>
-
-<!-- Camada decorativa: nuvens e brilhinhos flutuando no fundo (sem interferir na leitura nem no teclado) -->
-<div class="fundo-decorativo" aria-hidden="true">
-  <div class="nuvem" style="width:180px; height:70px; top:6%; left:8%;"></div>
-  <div class="nuvem" style="width:130px; height:55px; top:16%; left:70%;"></div>
-  <div class="nuvem" style="width:220px; height:85px; top:38%; left:-4%;"></div>
-  <div class="nuvem" style="width:150px; height:60px; top:60%; left:82%;"></div>
-  <div class="nuvem" style="width:200px; height:75px; top:80%; left:20%;"></div>
-  <span class="brilho" style="top:10%; left:20%; animation-delay:0s;">✨</span>
-  <span class="brilho" style="top:22%; left:85%; animation-delay:1s;">★</span>
-  <span class="brilho" style="top:45%; left:6%; animation-delay:2s;">✦</span>
-  <span class="brilho" style="top:55%; left:60%; animation-delay:0.5s;">🌟</span>
-  <span class="brilho" style="top:70%; left:35%; animation-delay:1.5s;">✨</span>
-  <span class="brilho" style="top:88%; left:75%; animation-delay:2.5s;">★</span>
+<!-- Textura de fundo: ondas orgânicas bem sutis, puramente decorativas -->
+<div class="textura-fundo" aria-hidden="true">
+  <div class="onda" style="width:520px; height:420px; top:-120px; left:-160px;"></div>
+  <div class="onda" style="width:460px; height:380px; top:35%; right:-200px; border-radius:37% 63% 70% 30% / 45% 50% 50% 55%;"></div>
+  <div class="onda" style="width:400px; height:360px; bottom:-140px; left:12%; border-radius:50% 50% 30% 70% / 60% 40% 60% 40%;"></div>
+  <div class="onda-linha" style="left:0;"></div>
+  <div class="onda-linha" style="right:0; top:400px;"></div>
 </div>
+
+<a class="pular-link" href="#conteudo-principal">Pular para o conteúdo</a>
 
 <!-- ===================== CABEÇALHO / MENU ===================== -->
 <header class="cabecalho">
@@ -779,7 +1141,7 @@
 
     <ul class="menu-desktop" id="menu-desktop"></ul>
 
-    <button type="button" class="botao-hamburguer botao-retro" id="botao-menu" aria-controls="menu-mobile" aria-expanded="false" aria-label="Abrir menu">
+    <button type="button" class="botao-hamburguer" id="botao-menu" aria-controls="menu-mobile" aria-expanded="false" aria-label="Abrir menu">
       ☰
     </button>
   </nav>
@@ -793,30 +1155,22 @@
 
   <!-- ===================== HERO ===================== -->
   <section id="inicio" class="hero">
-    <div class="container" style="padding-top:30px;">
-      <div class="janela revelar">
-        <div class="barra-titulo">
-          <span>INICIO</span>
-          <span class="luzes" aria-hidden="true">
-            <span class="luz vermelha"></span><span class="luz amarela"></span><span class="luz verde"></span>
-          </span>
-        </div>
-        <div class="conteudo-janela">
-          <div class="hero-texto">
-            <span class="hero-profissao" id="hero-profissao"></span>
-            <h1 class="hero-titulo" id="hero-nome"></h1>
-            <p class="hero-frase" id="hero-frase"></p>
+    <div class="container">
+      <div class="hero-grid revelar">
+        <div class="hero-texto">
+          <span class="hero-profissao" id="hero-profissao"></span>
+          <h1 class="hero-titulo" id="hero-nome"></h1>
+          <p class="hero-frase" id="hero-frase"></p>
+          <div class="hero-botoes">
             <a href="#contato" class="botao-retro botao-destaque" id="hero-cta"></a>
-            <span class="adesivo-bolha" aria-hidden="true">vibe retrô</span>
-            <span class="adesivo-icone adesivo-beijo" aria-hidden="true">💋</span>
+            <a href="#portfolio" class="botao-retro botao-secundario" id="hero-cta-secundario"></a>
           </div>
-          <div class="hero-figura">
-            <div class="bloco-imagem" id="hero-imagem" role="img"></div>
-            <span class="adesivo-flutuante">✨ resultados reais</span>
-            <span class="estrela-adesivo" aria-hidden="true">★</span>
-            <span class="adesivo-icone adesivo-disco" aria-hidden="true">🪩</span>
-            <span class="adesivo-icone adesivo-vhs" aria-hidden="true">📼</span>
-          </div>
+          <div class="hero-estatisticas" id="hero-estatisticas"></div>
+        </div>
+        <div class="hero-figura">
+          <div class="bloco-imagem" id="hero-imagem" role="img"></div>
+          <span class="marca-destaque-foto" aria-hidden="true"><span></span><span></span><span></span></span>
+          <p class="hero-nota-manuscrita" id="hero-nota-manuscrita" aria-hidden="true"></p>
         </div>
       </div>
     </div>
@@ -830,140 +1184,108 @@
 
   <!-- ===================== SOBRE ===================== -->
   <section id="sobre" class="sobre">
-    <div class="container" style="padding:50px 20px;">
-      <div class="janela revelar">
-        <div class="barra-titulo">
-          <span>SOBRE</span>
-          <span class="luzes" aria-hidden="true">
-            <span class="luz vermelha"></span><span class="luz amarela"></span><span class="luz verde"></span>
-          </span>
-        </div>
-        <div class="conteudo-janela">
+    <div class="container secao-corpo revelar">
+      <div class="sobre-grid">
+        <div class="sobre-figura">
           <div class="bloco-imagem" id="sobre-imagem" role="img"></div>
-          <div>
-            <h2 id="sobre-titulo"></h2>
-            <div id="sobre-texto"></div>
-          </div>
         </div>
+        <div class="sobre-conteudo">
+          <span class="rotulo-eyebrow">Sobre mim</span>
+          <h2 id="sobre-titulo"></h2>
+          <div id="sobre-texto"></div>
+          <a href="#portfolio" class="botao-retro botao-secundario" id="sobre-cta"></a>
+        </div>
+        <ul class="lista-diferenciais" id="lista-diferenciais"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SERVIÇOS ===================== -->
+  <section id="servicos" class="servicos">
+    <div class="container secao-corpo revelar">
+      <div class="servicos-cabecalho">
+        <div class="servicos-titulo-bloco">
+          <span class="rotulo-eyebrow rotulo-seta">Serviços</span>
+          <h2 id="servicos-titulo"></h2>
+        </div>
+        <p class="servicos-descricao" id="servicos-descricao"></p>
+      </div>
+      <div class="carrossel-servicos">
+        <button type="button" class="seta-portfolio seta-servicos-esquerda" aria-label="Ver serviços anteriores">‹</button>
+        <div class="trilho-servicos" id="trilho-servicos" role="region" tabindex="0" aria-label="Serviços oferecidos"></div>
+        <button type="button" class="seta-portfolio seta-servicos-direita" aria-label="Ver mais serviços">›</button>
       </div>
     </div>
   </section>
 
   <!-- ===================== PORTFÓLIO ===================== -->
   <section id="portfolio">
-    <div class="container" style="padding:50px 20px;">
-      <div class="janela revelar">
-        <div class="barra-titulo">
-          <span>PORTFOLIO</span>
-          <span class="luzes" aria-hidden="true">
-            <span class="luz vermelha"></span><span class="luz amarela"></span><span class="luz verde"></span>
-          </span>
-        </div>
-        <div class="conteudo-janela">
-          <h2>Trabalhos por nicho</h2>
-          <div class="filtros-portfolio" id="filtros-portfolio" role="group" aria-label="Filtrar portfólio por categoria"></div>
-          <div class="grade-portfolio" id="grade-portfolio"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== SERVIÇOS ===================== -->
-  <section id="servicos">
-    <div class="container" style="padding:50px 20px;">
-      <div class="janela revelar">
-        <div class="barra-titulo">
-          <span>SERVICOS</span>
-          <span class="luzes" aria-hidden="true">
-            <span class="luz vermelha"></span><span class="luz amarela"></span><span class="luz verde"></span>
-          </span>
-        </div>
-        <div class="conteudo-janela">
-          <h2>O que eu entrego para a sua marca</h2>
-          <div class="grade-servicos" id="grade-servicos"></div>
-        </div>
-      </div>
+    <div class="container secao-corpo revelar">
+      <span class="rotulo-eyebrow">Portfólio</span>
+      <h2 id="portfolio-titulo"></h2>
+      <p class="portfolio-subtitulo" id="portfolio-subtitulo"></p>
+      <div class="filtros-portfolio" id="filtros-portfolio" role="group" aria-label="Ir direto para um nicho"></div>
+      <div class="grade-portfolio" id="grade-portfolio"></div>
     </div>
   </section>
 
   <!-- ===================== RESULTADOS / NÚMEROS ===================== -->
   <section id="resultados">
-    <div class="container" style="padding:50px 20px;">
-      <div class="janela revelar">
-        <div class="barra-titulo">
-          <span>RESULTADOS</span>
-          <span class="luzes" aria-hidden="true">
-            <span class="luz vermelha"></span><span class="luz amarela"></span><span class="luz verde"></span>
-          </span>
-        </div>
-        <div class="conteudo-janela">
-          <h2>Resultados que falam por mim</h2>
-          <div class="grade-numeros" id="grade-numeros"></div>
-        </div>
-      </div>
+    <div class="container secao-corpo revelar">
+      <h2>Resultados que falam por mim</h2>
+      <div class="grade-numeros" id="grade-numeros"></div>
     </div>
   </section>
 
   <!-- ===================== DEPOIMENTOS ===================== -->
   <section id="depoimentos">
-    <div class="container" style="padding:50px 20px;">
-      <div class="janela revelar">
-        <div class="barra-titulo">
-          <span>DEPOIMENTOS</span>
-          <span class="luzes" aria-hidden="true">
-            <span class="luz vermelha"></span><span class="luz amarela"></span><span class="luz verde"></span>
-          </span>
-        </div>
-        <div class="conteudo-janela">
-          <h2>Quem já trabalhou comigo</h2>
-          <div class="grade-depoimentos" id="grade-depoimentos"></div>
-        </div>
+    <div class="container secao-corpo revelar">
+      <span class="rotulo-eyebrow">Depoimentos</span>
+      <h2>Quem já trabalhou comigo</h2>
+      <div class="carrossel-depoimentos">
+        <button type="button" class="seta-portfolio seta-depoimentos-esquerda" aria-label="Ver depoimentos anteriores">‹</button>
+        <div class="trilho-depoimentos" id="trilho-depoimentos" role="region" tabindex="0" aria-label="Depoimentos de clientes"></div>
+        <button type="button" class="seta-portfolio seta-depoimentos-direita" aria-label="Ver mais depoimentos">›</button>
       </div>
     </div>
   </section>
 
   <!-- ===================== CONTATO ===================== -->
-  <section id="contato">
-    <div class="container" style="padding:50px 20px;">
-      <div class="janela revelar">
-        <div class="barra-titulo">
-          <span>CONTATO</span>
-          <span class="luzes" aria-hidden="true">
-            <span class="luz vermelha"></span><span class="luz amarela"></span><span class="luz verde"></span>
-          </span>
+  <section id="contato" class="contato">
+    <div class="container secao-corpo revelar">
+      <div class="grade-contato">
+        <div>
+          <span class="rotulo-eyebrow">Contato</span>
+          <h2 id="contato-titulo"></h2>
+          <p id="contato-subtitulo"></p>
+          <ul class="lista-contato-direto" id="lista-contato-direto"></ul>
         </div>
-        <div class="conteudo-janela">
-          <div class="grade-contato">
-            <div>
-              <h2>Vamos fechar uma parceria?</h2>
-              <p>Preencha o formulário ou me chame direto pelos canais abaixo. Respondo rápido!</p>
-              <form id="formulario-contato" novalidate>
-                <div class="campo">
-                  <label for="campo-nome">Nome</label>
-                  <input type="text" id="campo-nome" name="nome" required autocomplete="name">
-                </div>
-                <div class="campo">
-                  <label for="campo-email">E-mail</label>
-                  <input type="email" id="campo-email" name="email" required autocomplete="email">
-                </div>
-                <div class="campo">
-                  <label for="campo-mensagem">Mensagem</label>
-                  <textarea id="campo-mensagem" name="mensagem" required></textarea>
-                </div>
-                <button type="submit" class="botao-retro botao-destaque">Enviar mensagem</button>
-                <div class="mensagem-confirmacao" id="mensagem-confirmacao" role="status" aria-live="polite"></div>
-              </form>
+        <form id="formulario-contato" novalidate>
+          <div class="linha-campos">
+            <div class="campo">
+              <label for="campo-nome">Nome</label>
+              <input type="text" id="campo-nome" name="nome" placeholder="Seu nome" required autocomplete="name">
             </div>
-            <div>
-              <h2>Contato direto</h2>
-              <div class="botoes-diretos">
-                <a class="botao-retro" id="link-whatsapp" href="#">📲 WhatsApp</a>
-                <a class="botao-retro" id="link-email" href="#">✉️ E-mail</a>
-                <a class="botao-retro" id="link-instagram" href="#">📷 Instagram</a>
-              </div>
+            <div class="campo">
+              <label for="campo-email">E-mail</label>
+              <input type="email" id="campo-email" name="email" placeholder="voce@marca.com" required autocomplete="email">
             </div>
           </div>
-        </div>
+          <div class="campo">
+            <label for="campo-marca">Marca / Empresa</label>
+            <input type="text" id="campo-marca" name="marca" placeholder="Nome da marca">
+          </div>
+          <div class="campo">
+            <label for="campo-orcamento">Orçamento estimado</label>
+            <input type="text" id="campo-orcamento" name="orcamento" placeholder="Ex: R$ 1.000 a R$ 5.000">
+          </div>
+          <div class="campo">
+            <label for="campo-mensagem">Conte sobre o projeto</label>
+            <textarea id="campo-mensagem" name="mensagem" placeholder="Categoria, formato, prazo, objetivo da campanha..." required></textarea>
+          </div>
+          <button type="submit" class="botao-retro botao-destaque">Enviar mensagem <span aria-hidden="true">↗</span></button>
+          <div class="mensagem-confirmacao" id="mensagem-confirmacao" role="status" aria-live="polite"></div>
+        </form>
       </div>
     </div>
   </section>
@@ -993,11 +1315,27 @@
     perfil: {
       nome: "Julia Carolina",
       logo: "JULIA CAROLINA",
-      profissao: "Criadora de Conteúdo UGC",
-      fraseImpacto: "Conteúdos com naturalidade para marcas que querem se conectar de forma real com seu público.",
-      textoBotaoHero: "Fale comigo",
-      imagem: "imagens/hero.jpeg",
+      profissao: "Criadora de Conteúdo UGC & Influenciadora",
+      // o título do hero é dividido em duas partes: "tituloPrefixo" some no texto normal
+      // e "tituloDestaque" aparece na cor de destaque em itálico
+      tituloPrefixo: "Conteúdo que parece",
+      tituloDestaque: "conversa.",
+      fraseImpacto: "Transformo produtos e serviços em conteúdos naturais que geram confiança e resultados reais para marcas que querem se conectar de verdade com o público.",
+      textoBotaoHero: "Vamos trabalhar juntos",
+      textoBotaoSecundario: "Ver portfólio",
+      // a nota escrita à mão também é dividida em duas partes, a segunda ganha o riscado por baixo
+      notaEscritaPrefixo: "conteúdo que conecta e gera resultados",
+      notaEscritaDestaque: "de verdade.",
+      imagem: "imagens/hero-recorte.png",
     },
+
+    // EDITE AQUI: os números rápidos que aparecem embaixo dos botões do hero
+    estatisticasHero: [
+      { icone: "▶", valor: "+300", rotulo: "vídeos gravados" },
+      { icone: "◆", valor: "+100", rotulo: "marcas parceiras" },
+      { icone: "◎", valor: "+50 milhões", rotulo: "visualizações acumuladas" },
+      { icone: "♡", valor: "8 anos", rotulo: "de experiência" },
+    ],
 
     // EDITE AQUI: seus dados de contato e redes sociais
     contato: {
@@ -1009,12 +1347,20 @@
       instagramUrl: "https://instagram.com/juuliaca",
     },
 
+    // EDITE AQUI: o título e o subtítulo da seção Contato (o título é dividido em duas partes:
+    // "tituloPrefixo" + a palavra "tituloDestaque" em laranja/itálico, seguida de "?")
+    contatoTextos: {
+      tituloPrefixo: "Vamos criar algo",
+      tituloDestaque: "juntos",
+      subtitulo: "Conta um pouco sobre sua marca e o que você quer alcançar. Respondo em até 48h.",
+    },
+
     // EDITE AQUI: os itens do menu (o "href" precisa ser igual ao id da seção correspondente)
     navegacao: [
       { rotulo: "Início", href: "#inicio" },
       { rotulo: "Sobre", href: "#sobre" },
-      { rotulo: "Portfólio", href: "#portfolio" },
       { rotulo: "Serviços", href: "#servicos" },
+      { rotulo: "Portfólio", href: "#portfolio" },
       { rotulo: "Resultados", href: "#resultados" },
       { rotulo: "Depoimentos", href: "#depoimentos" },
       { rotulo: "Contato", href: "#contato" },
@@ -1047,15 +1393,58 @@
     // "saudacao" vem antes do seu nome (o nome usado é o mesmo de perfil.nome, lá em cima, em outra cor)
     sobre: {
       saudacao: "Oie, eu sou a",
-      imagem: "imagens/sobre.jpeg",
+      nomeCurto: "Julia",
+      imagem: "imagens/sobre-recorte.png",
+      // cada parágrafo pode ter uma lista de "destaques": trechos exatos desse texto que
+      // aparecem em negrito. Se não precisar de negrito, é só deixar "destaques: []".
       paragrafos: [
-        "Tenho 28 anos, sou UGC Creator, influenciadora e publicitária de formação. Crio conteúdo desde 2017, transformando produtos em histórias visuais autênticas, pensadas para gerar identificação, retenção e ação, seja no orgânico ou em campanhas.",
-        "Meu diferencial não é só a estética, é a narrativa por trás de cada conteúdo, com uma linguagem leve, natural e próxima.",
+        {
+          texto: "Tenho 28 anos, publicitária por formação, sou uma influenciadora com 8 anos de experiência e criadora de conteúdo UGC há 1 ano e meio.",
+          destaques: ["28 anos", "publicitária", "8 anos de experiência", "UGC"],
+        },
+        {
+          texto: "Ajudo marcas a se comunicarem de forma leve, natural e estratégica.",
+          destaques: ["leve, natural e estratégica"],
+        },
+        {
+          texto: "Acredito que o melhor conteúdo é aquele que o público confia porque parece real, e é isso que eu entrego em cada projeto.",
+          destaques: ["real", "entrego"],
+        },
       ],
+      textoBotao: "Conheça mais sobre meu trabalho",
     },
 
-    // EDITE AQUI: as categorias do filtro do portfólio (a primeira é a que aparece selecionada ao carregar a página)
-    categoriasPortfolio: ["Destaques", "Apps, Sites e Tech", "Jogos", "Hair Care", "Skin Care", "Casa e Decor", "Gastronomia", "Moda", "Casal", "Experiência"],
+    // EDITE AQUI: seus diferenciais (aparecem ao lado do texto "Sobre mim", com um ícone cada)
+    diferenciais: [
+      { icone: "♡", texto: "Autenticidade que conecta" },
+      { icone: "▲", texto: "Estratégia que gera resultados" },
+      { icone: "◎", texto: "Foco em performance e criatividade" },
+      { icone: "✦", texto: "Parceria leve do início ao resultado" },
+    ],
+
+    // EDITE AQUI: o título e o subtítulo da seção Portfólio (o título é dividido em três partes:
+    // "tituloPrefixo" + a palavra "tituloDestaque" em laranja/itálico + "tituloSufixo")
+    portfolioTextos: {
+      tituloPrefixo: "Que tipo de",
+      tituloDestaque: "conteúdo",
+      tituloSufixo: "você precisa?",
+      subtitulo: "Navegue pelos nichos abaixo. Cada categoria mostra um tipo de trabalho — deslize pro lado para ver mais vídeos.",
+    },
+
+    // EDITE AQUI: as categorias do portfólio, cada uma com uma legenda curta em itálico
+    // (todas ficam visíveis na página; os botões da faixa de cima só levam direto até o nicho escolhido)
+    categoriasPortfolio: [
+      { nome: "Destaques", descricao: "Os vídeos que mais geram resultado." },
+      { nome: "Apps, Sites e Tech", descricao: "Tecnologia explicada de um jeito simples." },
+      { nome: "Jogos", descricao: "Diversão que prende a atenção até o fim." },
+      { nome: "Hair Care", descricao: "Cuidado capilar que vira rotina." },
+      { nome: "Skin Care", descricao: "Pele saudável, resultado visível." },
+      { nome: "Casa e Decor", descricao: "Ambientes com a cara de quem mora neles." },
+      { nome: "Gastronomia", descricao: "Receitas que dão água na boca." },
+      { nome: "Moda", descricao: "Looks que contam uma história." },
+      { nome: "Casal", descricao: "Momentos reais, a dois." },
+      { nome: "Experiência", descricao: "Vivências que ficam na memória." },
+    ],
 
     // EDITE AQUI: os vídeos do seu portfólio (todos hospedados como "não listado" no YouTube)
     // "videoId" é o código que vem depois de /shorts/ no link do YouTube, por exemplo:
@@ -1112,35 +1501,78 @@
       { categoria: "Experiência", titulo: "Hamburgueria", descricao: "Experiência gastronômica em hamburgueria, mostrando ambiente e prato em vídeo apetitoso.", videoId: "kPr4An6H_9M" },
     ],
 
-    // EDITE AQUI: os serviços que você oferece (o "icone" é um emoji, pode trocar à vontade)
-    servicos: [
-      { icone: "🎬", titulo: "Vídeo UGC", descricao: "Vídeos autênticos, gravados como um conteúdo espontâneo do dia a dia, perfeitos para gerar confiança e vender mais." },
-      { icone: "📱", titulo: "Reels para Redes Sociais", descricao: "Conteúdo dinâmico, editado no ritmo das redes sociais, pensado para prender a atenção e viralizar." },
-      { icone: "📸", titulo: "Fotos de Produto", descricao: "Imagens que valorizam os detalhes do produto e reforçam a identidade visual da sua marca." },
-      { icone: "📦", titulo: "Unboxing", descricao: "Abertura de embalagem com reação genuína, ideal para despertar desejo de compra em quem assiste." },
-      { icone: "💬", titulo: "Depoimento em Vídeo", descricao: "Relato sincero de experiência com o produto ou serviço, aumentando a credibilidade da sua marca." },
-      { icone: "🎯", titulo: "Conteúdo para Anúncios", descricao: "Vídeos pensados para performar em campanhas pagas, com gancho forte e linguagem que converte." },
-    ],
+    // EDITE AQUI: a seção de Serviços (título grande + frase lateral + carrossel de serviços)
+    // O título é dividido em "tituloPrefixo" (texto normal) e "tituloDestaque" (a palavra em itálico laranja).
+    // Cada serviço tem um "cta" (texto do link) e uma "mensagemWhatsapp" própria, que abre o WhatsApp
+    // já com essa mensagem preenchida quando a pessoa clica no link daquele serviço.
+    servicos: {
+      tituloPrefixo: "O que podemos criar",
+      tituloDestaque: "juntos",
+      descricao: "Descubra os formatos de conteúdo que uso para aproximar sua marca do público e transformar audiência em cliente de verdade.",
+      itens: [
+        {
+          icone: "🎬",
+          titulo: "UGC de Conversão",
+          descricao: "Vídeos autênticos, gravados como um conteúdo espontâneo do dia a dia.",
+          cta: "Quero UGC que converte",
+          mensagemWhatsapp: "Olá, Julia! Vim pelo seu site e tenho interesse em vídeos de UGC de conversão para minha marca.",
+        },
+        {
+          icone: "🎯",
+          titulo: "Criativos para Tráfego",
+          descricao: "Vídeos pensados para performar em campanhas pagas, com gancho forte e linguagem que converte.",
+          cta: "Quero criar anúncios",
+          mensagemWhatsapp: "Olá, Julia! Vim pelo seu site e tenho interesse em criativos para campanhas de tráfego pago.",
+        },
+        {
+          icone: "📦",
+          titulo: "Unboxing",
+          descricao: "Abertura de embalagem com reação genuína, ideal para despertar desejo de compra em quem assiste.",
+          cta: "Quero um unboxing",
+          mensagemWhatsapp: "Olá, Julia! Vim pelo seu site e tenho interesse em um vídeo de unboxing para minha marca.",
+        },
+        {
+          icone: "📸",
+          titulo: "Fotos Lifestyle",
+          descricao: "Imagens que humanizam o seu produto e aproximam a marca do consumidor.",
+          cta: "Quero fotos lifestyle",
+          mensagemWhatsapp: "Olá, Julia! Vim pelo seu site e tenho interesse em fotos lifestyle para minha marca.",
+        },
+        {
+          icone: "💬",
+          titulo: "Depoimento em Vídeo",
+          descricao: "Relato sincero de experiência com o produto, aumentando a credibilidade da sua marca.",
+          cta: "Quero um depoimento",
+          mensagemWhatsapp: "Olá, Julia! Vim pelo seu site e tenho interesse em um depoimento em vídeo para minha marca.",
+        },
+      ],
+    },
 
     // EDITE AQUI: seus números e resultados
     // "decimal: true" mostra uma casa decimal na contagem (útil para 2,3 mi ou 8,5%)
     numeros: [
       { valor: 29.7, sufixo: " mil", rotulo: "Seguidores engajados", decimal: true },
       { valor: 2.3, sufixo: " mi", rotulo: "Visualizações por mês", decimal: true },
-      { valor: 90, sufixo: "+", rotulo: "Marcas atendidas" },
+      { valor: 100, sufixo: "+", rotulo: "Marcas atendidas" },
       { valor: 8.5, sufixo: "%", rotulo: "Taxa de engajamento", decimal: true },
     ],
 
-    // EDITE AQUI: depoimentos de clientes e marcas
+    // EDITE AQUI: depoimentos reais de clientes e marcas (recebidos por mensagem/avaliação)
     depoimentos: [
-      { texto: "A Julia entregou um vídeo autêntico que superou nossas expectativas de engajamento. As vendas do produto aumentaram visivelmente na semana do lançamento.", nome: "Camila Duarte", empresa: "Loja Bella Cosméticos" },
-      { texto: "Profissionalismo do início ao fim. Recebemos o material no prazo combinado e o resultado pareceu conteúdo espontâneo dos nossos próprios clientes.", nome: "Rafael Menezes", empresa: "FitLife Suplementos" },
-      { texto: "O conteúdo da Julia trouxe um retorno em comentários e mensagens que nenhuma outra criadora tinha conseguido para a gente.", nome: "Patrícia Alves", empresa: "Doce Sabor Confeitaria" },
-      { texto: "Contratamos para uma campanha pontual e já viramos parceiros fixos. A entrega é rápida, criativa e sempre alinhada com o briefing.", nome: "Eduardo Lins", empresa: "ModaStyle Boutique" },
+      { texto: "Excelente performance! Recebeu os produtos, foi pró-ativa, rápida na elaboração do conteúdo e ajuste do roteiro. Produziu imagens, vídeo de qualidade e publicou conforme cronograma. Recomendamos =)", nome: "Karamell", empresa: "Guloseimas Importadas" },
+      { texto: "Que entrega, Julia! Um conteúdo forte, verdadeiro e extremamente bem executado. Sua personalidade trouxe alma para a campanha. Foi um privilégio contar com você. Seu carinho, criatividade, amizade e atenção aos detalhes fazem toda a diferença.", nome: "Amakha Paris", empresa: "Campanha Natal Perfumado" },
+      { texto: "Simplesmente amamos o conteúdo da Julia, muito melhor do que esperávamos.", nome: "Doces Carijós", empresa: "Campanha de Halloween" },
+      { texto: "Julia foi excelente em todo o processo, com pontualidade, comprometimento e qualidade acima da média, além de entregar além do solicitado.", nome: "Revlon", empresa: "Viva Todas as Suas Versões" },
+      { texto: "Trabalho incrível! Roteiro criativo, com qualidade de imagem e som. Muito carismática! Conseguiu entender o estilo da marca e entregou muito além do esperado. Adoramos!", nome: "Sou Gateiro", empresa: "Cliente parceiro" },
+      { texto: "Julia fez um ótimo trabalho! Vídeos criativos e dinâmicos. Foi comunicativa e entregou um conteúdo muito bem alinhado com a proposta da marca!", nome: "Coala", empresa: "Chá Branco" },
+      { texto: "Ju, estou simplesmente sem palavras. Você foi brilhante, os dois vídeos estão incríveis. Minha expectativa foi superada de forma absurda. Meus parabéns pelo trabalho impecável. Espero muito poder trabalhar com você em novas campanhas nossas.", nome: "Ballroom", empresa: "Cliente parceiro" },
+      { texto: "Está esplêndido, sem palavras para o seu vídeo — mais uma vez sendo incrível! Meus parabéns!", nome: "Ballroom", empresa: "Cliente parceiro" },
+      { texto: "Parceria incrível! Conteúdo entregue com qualidade, criatividade e dentro do prazo. Profissional dedicada, que entendeu perfeitamente o briefing e trouxe resultados reais. Super recomendo!", nome: "Fast N Fit", empresa: "Refeições Ultracongeladas · Mape Digital" },
     ],
   };
 
-  // EDITE AQUI: a cor do selinho de cada categoria do portfólio (segue a paleta candy do site)
+  // EDITE AQUI: a cor do selinho de cada categoria do portfólio (não é mais usada visualmente
+  // na versão atual do design, mas fica pronta caso você queira reativar cores por categoria)
   const CORES_CATEGORIA = {
     "Destaques": "#ff4fb0",
     "Apps, Sites e Tech": "#b794ff",
@@ -1173,6 +1605,26 @@
     ativarAnimacoesDeEntrada();
     ativarContadorDeNumeros();
   });
+
+  // Monta um parágrafo colocando em negrito (<strong>) os trechos exatos listados em "destaques",
+  // mantendo o restante do texto normal. Não usa innerHTML, então não tem risco nenhum de injeção.
+  function montarTextoComDestaques(elemento, texto, destaques) {
+    let posicaoAtual = 0;
+    (destaques || []).forEach((destaque) => {
+      const indice = texto.indexOf(destaque, posicaoAtual);
+      if (indice === -1) return; // trecho não encontrado no texto: ignora com segurança
+      if (indice > posicaoAtual) {
+        elemento.appendChild(document.createTextNode(texto.slice(posicaoAtual, indice)));
+      }
+      const forte = document.createElement("strong");
+      forte.textContent = destaque;
+      elemento.appendChild(forte);
+      posicaoAtual = indice + destaque.length;
+    });
+    if (posicaoAtual < texto.length) {
+      elemento.appendChild(document.createTextNode(texto.slice(posicaoAtual)));
+    }
+  }
 
   // Cria o bloco que simula uma foto/vídeo com gradiente.
   // Se "caminhoImagem" existir de verdade dentro da pasta "imagens", a foto real
@@ -1238,12 +1690,51 @@
 
   function montarHero() {
     document.getElementById("hero-profissao").textContent = CONFIG.perfil.profissao;
-    document.getElementById("hero-nome").textContent = CONFIG.perfil.nome;
+
+    const tituloHero = document.getElementById("hero-nome");
+    tituloHero.append(CONFIG.perfil.tituloPrefixo + " ");
+    const tituloDestaque = document.createElement("span");
+    tituloDestaque.className = "titulo-destaque-hero risco-oliva";
+    tituloDestaque.textContent = CONFIG.perfil.tituloDestaque;
+    tituloHero.appendChild(tituloDestaque);
+
     document.getElementById("hero-frase").textContent = CONFIG.perfil.fraseImpacto;
     document.getElementById("hero-cta").textContent = CONFIG.perfil.textoBotaoHero;
+    document.getElementById("hero-cta-secundario").textContent = CONFIG.perfil.textoBotaoSecundario;
+
+    const notaManuscrita = document.getElementById("hero-nota-manuscrita");
+    notaManuscrita.append(CONFIG.perfil.notaEscritaPrefixo + " ");
+    const destaqueNota = document.createElement("span");
+    destaqueNota.className = "risco-terracota";
+    destaqueNota.textContent = CONFIG.perfil.notaEscritaDestaque;
+    notaManuscrita.appendChild(destaqueNota);
+
+    const containerEstatisticas = document.getElementById("hero-estatisticas");
+    CONFIG.estatisticasHero.forEach((estatistica) => {
+      const item = document.createElement("div");
+      item.className = "item-estatistica-hero";
+
+      const icone = document.createElement("span");
+      icone.className = "icone-estatistica";
+      icone.setAttribute("aria-hidden", "true");
+      icone.textContent = estatistica.icone;
+
+      const textos = document.createElement("span");
+      const valor = document.createElement("span");
+      valor.className = "valor-estatistica-hero";
+      valor.textContent = estatistica.valor;
+      const rotulo = document.createElement("span");
+      rotulo.className = "rotulo-estatistica-hero";
+      rotulo.textContent = estatistica.rotulo;
+      textos.append(valor, rotulo);
+
+      item.append(icone, textos);
+      containerEstatisticas.appendChild(item);
+    });
+
     criarBlocoImagem(
       document.getElementById("hero-imagem"),
-      "linear-gradient(135deg, #ff4fb0, #b794ff)",
+      "linear-gradient(135deg, #6F7750, #C86F4A)",
       "Foto de " + CONFIG.perfil.nome + ", " + CONFIG.perfil.profissao,
       CONFIG.perfil.imagem
     );
@@ -1279,64 +1770,152 @@
     const tituloSobre = document.getElementById("sobre-titulo");
     tituloSobre.append(CONFIG.sobre.saudacao + " ");
     const nomeDestaque = document.createElement("span");
-    nomeDestaque.className = "nome-destaque";
-    nomeDestaque.textContent = CONFIG.perfil.nome;
+    nomeDestaque.className = "nome-destaque risco-terracota";
+    nomeDestaque.textContent = CONFIG.sobre.nomeCurto;
     tituloSobre.appendChild(nomeDestaque);
+    tituloSobre.append(".");
 
     const textoSobre = document.getElementById("sobre-texto");
     CONFIG.sobre.paragrafos.forEach((paragrafo) => {
       const p = document.createElement("p");
-      p.textContent = paragrafo;
+      montarTextoComDestaques(p, paragrafo.texto, paragrafo.destaques);
       textoSobre.appendChild(p);
     });
+
+    document.getElementById("sobre-cta").textContent = CONFIG.sobre.textoBotao;
+
+    const listaDiferenciais = document.getElementById("lista-diferenciais");
+    CONFIG.diferenciais.forEach((diferencial) => {
+      const item = document.createElement("li");
+      item.className = "item-diferencial";
+
+      const icone = document.createElement("span");
+      icone.className = "icone-diferencial";
+      icone.setAttribute("aria-hidden", "true");
+      icone.textContent = diferencial.icone;
+
+      const texto = document.createElement("span");
+      texto.textContent = diferencial.texto;
+
+      item.append(icone, texto);
+      listaDiferenciais.appendChild(item);
+    });
+
     criarBlocoImagem(
       document.getElementById("sobre-imagem"),
-      "linear-gradient(135deg, #ffe24d, #b6ff5c)",
+      "linear-gradient(135deg, #C86F4A, #D9CBB8)",
       "Foto de " + CONFIG.perfil.nome + " sorrindo",
       CONFIG.sobre.imagem
     );
   }
 
+  // Liga as setas de um carrossel (trilho com rolagem horizontal) de um jeito "infinito":
+  // ao chegar no fim e clicar em avançar, volta pro início; ao chegar no início e clicar
+  // em voltar, pula pro fim. Assim dá pra ficar clicando sem nunca "travar" numa ponta.
+  function ligarSetasCarrossel(trilho, setaEsquerda, setaDireita) {
+    const TOLERANCIA = 4;
+    setaEsquerda.addEventListener("click", () => {
+      if (trilho.scrollLeft <= TOLERANCIA) {
+        trilho.scrollTo({ left: trilho.scrollWidth, behavior: "smooth" });
+      } else {
+        trilho.scrollBy({ left: -trilho.clientWidth * 0.9, behavior: "smooth" });
+      }
+    });
+    setaDireita.addEventListener("click", () => {
+      if (trilho.scrollLeft + trilho.clientWidth >= trilho.scrollWidth - TOLERANCIA) {
+        trilho.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        trilho.scrollBy({ left: trilho.clientWidth * 0.9, behavior: "smooth" });
+      }
+    });
+  }
+
+  // Transforma "Casa e Decor" em "categoria-casa-e-decor", pra usar como id de âncora
+  function slugCategoria(nome) {
+    const b = String.fromCharCode(92); // backslash, escrito assim pra não virar um acento de verdade no arquivo
+    const SINAIS_DIACRITICOS = new RegExp("[" + b + "u0300-" + b + "u036f]", "g");
+    return nome
+      .normalize("NFD").replace(SINAIS_DIACRITICOS, "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "");
+  }
+
   function montarPortfolio() {
+    const tituloPortfolio = document.getElementById("portfolio-titulo");
+    tituloPortfolio.append(CONFIG.portfolioTextos.tituloPrefixo + " ");
+    const destaquePortfolio = document.createElement("span");
+    destaquePortfolio.className = "titulo-destaque-portfolio";
+    destaquePortfolio.textContent = CONFIG.portfolioTextos.tituloDestaque;
+    tituloPortfolio.appendChild(destaquePortfolio);
+    tituloPortfolio.append(" " + CONFIG.portfolioTextos.tituloSufixo);
+
+    document.getElementById("portfolio-subtitulo").textContent = CONFIG.portfolioTextos.subtitulo;
+
     const filtrosContainer = document.getElementById("filtros-portfolio");
     const containerGrupos = document.getElementById("grade-portfolio");
 
-    CONFIG.categoriasPortfolio.forEach((categoria, indice) => {
+    // Os botões da faixa de cima não filtram mais nada: cada um só rola a página
+    // direto até o nicho correspondente, que já está sempre visível logo abaixo.
+    CONFIG.categoriasPortfolio.forEach((categoria) => {
+      const idGrupo = "categoria-" + slugCategoria(categoria.nome);
       const botao = document.createElement("button");
       botao.type = "button";
       botao.className = "botao-retro filtro-btn";
-      botao.textContent = categoria;
-      botao.setAttribute("aria-pressed", indice === 0 ? "true" : "false");
-      botao.addEventListener("click", () => filtrarPortfolio(categoria, botao));
+      botao.textContent = categoria.nome;
+      botao.addEventListener("click", () => {
+        document.getElementById(idGrupo).scrollIntoView({ behavior: "smooth", block: "start" });
+      });
       filtrosContainer.appendChild(botao);
     });
 
-    // Cada nicho vira um grupo com seu próprio carrossel horizontal.
-    // Só o grupo do filtro selecionado fica visível por vez (ver filtrarPortfolio).
-    CONFIG.categoriasPortfolio.forEach((categoria, indice) => {
-      const trabalhosDaCategoria = CONFIG.portfolio.filter((trabalho) => trabalho.categoria === categoria);
+    // Cada nicho vira um bloco com título + contagem + legenda em itálico + carrossel horizontal.
+    // Todos os blocos ficam visíveis ao mesmo tempo, empilhados.
+    CONFIG.categoriasPortfolio.forEach((categoria) => {
+      const trabalhosDaCategoria = CONFIG.portfolio.filter((trabalho) => trabalho.categoria === categoria.nome);
+      if (trabalhosDaCategoria.length === 0) return;
 
       const grupo = document.createElement("div");
       grupo.className = "grupo-categoria";
-      if (indice === 0) grupo.classList.add("ativo");
-      grupo.dataset.categoria = categoria;
+      grupo.id = "categoria-" + slugCategoria(categoria.nome);
+
+      const cabecalho = document.createElement("div");
+      cabecalho.className = "cabecalho-categoria";
+
+      const textosCategoria = document.createElement("div");
+      const tituloCategoria = document.createElement("h3");
+      tituloCategoria.append(categoria.nome + " ");
+      const contagem = document.createElement("span");
+      contagem.className = "contagem-categoria";
+      contagem.textContent = String(trabalhosDaCategoria.length).padStart(2, "0");
+      tituloCategoria.appendChild(contagem);
+
+      const subtituloCategoria = document.createElement("p");
+      subtituloCategoria.className = "subtitulo-categoria";
+      subtituloCategoria.textContent = categoria.descricao;
+
+      textosCategoria.append(tituloCategoria, subtituloCategoria);
+      cabecalho.appendChild(textosCategoria);
 
       const trilho = document.createElement("div");
       trilho.className = "trilho-portfolio";
       trilho.setAttribute("role", "region");
       trilho.setAttribute("tabindex", "0");
-      trilho.setAttribute("aria-label", "Vídeos da categoria " + categoria);
+      trilho.setAttribute("aria-label", "Vídeos da categoria " + categoria.nome);
+
+      // Guarda os vídeos desse nicho pra poder tocar/parar a prévia de todos juntos
+      const videosDoTrilho = [];
 
       trabalhosDaCategoria.forEach((trabalho) => {
         const item = document.createElement("article");
         item.className = "item-portfolio";
 
         const video = criarCardVideo(trabalho);
+        videosDoTrilho.push(video);
 
         const selo = document.createElement("span");
         selo.className = "selo-categoria";
         selo.textContent = trabalho.categoria;
-        selo.style.background = CORES_CATEGORIA[trabalho.categoria] || "#fff";
 
         const titulo = document.createElement("h3");
         titulo.textContent = trabalho.titulo;
@@ -1348,37 +1927,41 @@
         trilho.appendChild(item);
       });
 
-      const carrossel = document.createElement("div");
-      carrossel.className = "carrossel-portfolio";
+      // Passar o mouse em qualquer ponto da fileira toca a prévia (sem som) de todos os
+      // vídeos do nicho ao mesmo tempo; o som só liga no vídeo que a pessoa clicar.
+      trilho.addEventListener("mouseenter", () => videosDoTrilho.forEach((video) => video.tocarPreview()));
+      trilho.addEventListener("mouseleave", () => videosDoTrilho.forEach((video) => video.pararPreview()));
 
       // As setas só aparecem em nichos com mais de 3 vídeos (os outros já cabem sem precisar rolar)
       if (trabalhosDaCategoria.length > 3) {
+        const setas = document.createElement("div");
+        setas.className = "setas-categoria";
+
         const setaEsquerda = document.createElement("button");
         setaEsquerda.type = "button";
         setaEsquerda.className = "seta-portfolio";
-        setaEsquerda.setAttribute("aria-label", "Ver vídeos anteriores de " + categoria);
+        setaEsquerda.setAttribute("aria-label", "Ver vídeos anteriores de " + categoria.nome);
         setaEsquerda.textContent = "‹";
-        setaEsquerda.addEventListener("click", () => trilho.scrollBy({ left: -trilho.clientWidth * 0.9, behavior: "smooth" }));
-
         const setaDireita = document.createElement("button");
         setaDireita.type = "button";
         setaDireita.className = "seta-portfolio";
-        setaDireita.setAttribute("aria-label", "Ver próximos vídeos de " + categoria);
+        setaDireita.setAttribute("aria-label", "Ver próximos vídeos de " + categoria.nome);
         setaDireita.textContent = "›";
-        setaDireita.addEventListener("click", () => trilho.scrollBy({ left: trilho.clientWidth * 0.9, behavior: "smooth" }));
 
-        carrossel.append(setaEsquerda, trilho, setaDireita);
-      } else {
-        carrossel.append(trilho);
+        ligarSetasCarrossel(trilho, setaEsquerda, setaDireita);
+
+        setas.append(setaEsquerda, setaDireita);
+        cabecalho.appendChild(setas);
       }
 
-      grupo.appendChild(carrossel);
+      grupo.append(cabecalho, trilho);
       containerGrupos.appendChild(grupo);
     });
   }
 
   // Cria o card de vídeo: mostra a miniatura do YouTube com um botão de play por cima.
-  // No computador, passar o mouse já toca o vídeo em preview (sem som).
+  // No computador, passar o mouse já toca o vídeo em preview (sem som), preenchendo o card
+  // por inteiro e sem nenhuma marca do YouTube (sem controles, título, canal ou logo).
   // No toque, clique ou teclado (Enter/Espaço), toca com som, como uma ação explícita.
   // Assim a página não fica pesada carregando os vídeos todos ao mesmo tempo.
   function criarCardVideo(trabalho) {
@@ -1406,10 +1989,11 @@
       emModoPreview = !comSom;
 
       const iframe = document.createElement("iframe");
-      iframe.src = "https://www.youtube-nocookie.com/embed/" + trabalho.videoId + "?autoplay=1&mute=" + (comSom ? "0" : "1");
+      iframe.src = "https://www.youtube-nocookie.com/embed/" + trabalho.videoId
+        + "?autoplay=1&mute=" + (comSom ? "0" : "1")
+        + "&controls=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0&playsinline=1";
       iframe.title = "Vídeo: " + trabalho.titulo;
       iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
-      iframe.allowFullscreen = true;
       card.innerHTML = "";
       card.appendChild(iframe);
     }
@@ -1421,8 +2005,6 @@
       card.appendChild(play);
     }
 
-    card.addEventListener("mouseenter", () => carregarVideo(false));
-    card.addEventListener("mouseleave", restaurarMiniatura);
     card.addEventListener("click", () => carregarVideo(true));
     card.addEventListener("keydown", (evento) => {
       if (evento.key === "Enter" || evento.key === " ") {
@@ -1431,23 +2013,29 @@
       }
     });
 
+    // Expostos pra o carrossel do nicho poder tocar/parar a prévia de TODOS os vídeos
+    // juntos (não só o que está sob o mouse) quando o mouse passa por cima da fileira.
+    card.tocarPreview = () => carregarVideo(false);
+    card.pararPreview = restaurarMiniatura;
+
     return card;
   }
 
-  function filtrarPortfolio(categoriaEscolhida, botaoClicado) {
-    document.querySelectorAll(".filtro-btn").forEach((botao) => botao.setAttribute("aria-pressed", "false"));
-    botaoClicado.setAttribute("aria-pressed", "true");
-
-    document.querySelectorAll(".grupo-categoria").forEach((grupo) => {
-      grupo.classList.toggle("ativo", grupo.dataset.categoria === categoriaEscolhida);
-    });
-  }
-
   function montarServicos() {
-    const grade = document.getElementById("grade-servicos");
-    CONFIG.servicos.forEach((servico) => {
-      const card = document.createElement("div");
-      card.className = "card-servico cartao-solido";
+    const tituloServicos = document.getElementById("servicos-titulo");
+    tituloServicos.append(CONFIG.servicos.tituloPrefixo + " ");
+    const destaque = document.createElement("span");
+    destaque.className = "titulo-destaque-servicos";
+    destaque.textContent = CONFIG.servicos.tituloDestaque;
+    tituloServicos.appendChild(destaque);
+    tituloServicos.append(":");
+
+    document.getElementById("servicos-descricao").textContent = CONFIG.servicos.descricao;
+
+    const trilho = document.getElementById("trilho-servicos");
+    CONFIG.servicos.itens.forEach((servico) => {
+      const card = document.createElement("article");
+      card.className = "item-servico cartao-solido";
 
       const icone = document.createElement("div");
       icone.className = "icone";
@@ -1460,9 +2048,21 @@
       const descricao = document.createElement("p");
       descricao.textContent = servico.descricao;
 
-      card.append(icone, titulo, descricao);
-      grade.appendChild(card);
+      const cta = document.createElement("a");
+      cta.className = "cta-servico";
+      cta.href = "https://wa.me/" + CONFIG.contato.whatsappNumero + "?text=" + encodeURIComponent(servico.mensagemWhatsapp);
+      cta.target = "_blank";
+      cta.rel = "noopener";
+      const iconeCta = document.createElement("span");
+      iconeCta.setAttribute("aria-hidden", "true");
+      iconeCta.textContent = "💬 ";
+      cta.append(iconeCta, servico.cta);
+
+      card.append(icone, titulo, descricao, cta);
+      trilho.appendChild(card);
     });
+
+    ligarSetasCarrossel(trilho, document.querySelector(".seta-servicos-esquerda"), document.querySelector(".seta-servicos-direita"));
   }
 
   function montarNumeros() {
@@ -1488,7 +2088,7 @@
   }
 
   function montarDepoimentos() {
-    const grade = document.getElementById("grade-depoimentos");
+    const trilho = document.getElementById("trilho-depoimentos");
     CONFIG.depoimentos.forEach((depoimento) => {
       const card = document.createElement("blockquote");
       card.className = "card-depoimento cartao-solido";
@@ -1512,23 +2112,50 @@
       autor.append(nomeSpan, empresaSpan);
 
       card.append(aspas, texto, autor);
-      grade.appendChild(card);
+      trilho.appendChild(card);
     });
+
+    ligarSetasCarrossel(trilho, document.querySelector(".seta-depoimentos-esquerda"), document.querySelector(".seta-depoimentos-direita"));
   }
 
   function montarContato() {
-    const linkWhats = document.getElementById("link-whatsapp");
-    linkWhats.href = "https://wa.me/" + CONFIG.contato.whatsappNumero + "?text=" + encodeURIComponent(CONFIG.contato.whatsappMensagemPadrao);
-    linkWhats.target = "_blank";
-    linkWhats.rel = "noopener";
+    const tituloContato = document.getElementById("contato-titulo");
+    tituloContato.append(CONFIG.contatoTextos.tituloPrefixo + " ");
+    const destaqueContato = document.createElement("span");
+    destaqueContato.className = "titulo-destaque-contato";
+    destaqueContato.textContent = CONFIG.contatoTextos.tituloDestaque;
+    tituloContato.appendChild(destaqueContato);
+    tituloContato.append("?");
 
-    const linkEmail = document.getElementById("link-email");
-    linkEmail.href = "mailto:" + CONFIG.contato.email;
+    document.getElementById("contato-subtitulo").textContent = CONFIG.contatoTextos.subtitulo;
 
-    const linkInsta = document.getElementById("link-instagram");
-    linkInsta.href = CONFIG.contato.instagramUrl;
-    linkInsta.target = "_blank";
-    linkInsta.rel = "noopener";
+    // Ícones minimalistas de contato direto: e-mail, Instagram e WhatsApp, com o valor
+    // de verdade escrito ao lado (não só o nome do canal)
+    const listaContato = document.getElementById("lista-contato-direto");
+    const itensContato = [
+      { icone: "✉", texto: CONFIG.contato.email, href: "mailto:" + CONFIG.contato.email, novaAba: false },
+      { icone: "@", texto: CONFIG.contato.instagramUsuario, href: CONFIG.contato.instagramUrl, novaAba: true },
+      { icone: "☎", texto: CONFIG.contato.telefoneExibicao, href: "https://wa.me/" + CONFIG.contato.whatsappNumero + "?text=" + encodeURIComponent(CONFIG.contato.whatsappMensagemPadrao), novaAba: true },
+    ];
+    itensContato.forEach((item) => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.className = "item-contato-direto";
+      a.href = item.href;
+      if (item.novaAba) { a.target = "_blank"; a.rel = "noopener"; }
+
+      const icone = document.createElement("span");
+      icone.className = "icone-contato-direto";
+      icone.setAttribute("aria-hidden", "true");
+      icone.textContent = item.icone;
+
+      const texto = document.createElement("span");
+      texto.textContent = item.texto;
+
+      a.append(icone, texto);
+      li.appendChild(a);
+      listaContato.appendChild(li);
+    });
 
     const formulario = document.getElementById("formulario-contato");
     const mensagemConfirmacao = document.getElementById("mensagem-confirmacao");
@@ -1538,10 +2165,15 @@
 
       const nome = document.getElementById("campo-nome").value.trim();
       const email = document.getElementById("campo-email").value.trim();
+      const marca = document.getElementById("campo-marca").value.trim();
+      const orcamento = document.getElementById("campo-orcamento").value.trim();
       const mensagem = document.getElementById("campo-mensagem").value.trim();
 
       const assunto = "Contato pelo site - " + nome;
-      const corpo = "Nome: " + nome + "\nE-mail: " + email + "\n\nMensagem:\n" + mensagem;
+      let corpo = "Nome: " + nome + "\nE-mail: " + email;
+      if (marca) corpo += "\nMarca/Empresa: " + marca;
+      if (orcamento) corpo += "\nOrçamento estimado: " + orcamento;
+      corpo += "\n\nSobre o projeto:\n" + mensagem;
       const linkMailto = "mailto:" + CONFIG.contato.email + "?subject=" + encodeURIComponent(assunto) + "&body=" + encodeURIComponent(corpo);
 
       window.location.href = linkMailto;
