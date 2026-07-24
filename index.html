@@ -769,6 +769,13 @@
     pointer-events: none;
     transform: scale(1.15);
   }
+  /* Vídeo tocando com som: controles do YouTube visíveis e player tocável de verdade
+     (sem isso, se o autoplay com som for bloqueado pelo navegador — comum em celular —
+     não sobra nenhum jeito de a pessoa iniciar o vídeo manualmente). */
+  .video-portfolio iframe.video-interativo {
+    pointer-events: auto;
+    transform: none;
+  }
   .botao-play {
     position: absolute;
     top: 50%;
@@ -2009,9 +2016,14 @@
       const iframe = document.createElement("iframe");
       iframe.src = "https://www.youtube-nocookie.com/embed/" + trabalho.videoId
         + "?autoplay=1&mute=" + (comSomAgora ? "0" : "1")
-        + "&controls=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0&playsinline=1";
+        + "&controls=" + (comSomAgora ? "1" : "0")
+        + "&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0&playsinline=1";
       iframe.title = "Vídeo: " + trabalho.titulo;
       iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
+      // Com som, o player fica interativo de verdade (com os controles do YouTube visíveis):
+      // muitos celulares bloqueiam o autoplay com som mesmo depois de um toque, e sem um
+      // controle visível pra tocar manualmente o vídeo ficava travado sem nenhuma saída.
+      if (comSomAgora) iframe.className = "video-interativo";
       return iframe;
     }
 
