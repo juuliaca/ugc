@@ -1132,6 +1132,9 @@
     .hero-frase { font-size: 17px; }
   }
 </style>
+
+<!-- Rastreio de visitas, cliques e vídeos assistidos, usado pelo painel administrativo -->
+<script src="js/rastreio.js"></script>
 </head>
 <body>
 
@@ -1714,8 +1717,14 @@
     tituloHero.appendChild(tituloDestaque);
 
     document.getElementById("hero-frase").textContent = CONFIG.perfil.fraseImpacto;
-    document.getElementById("hero-cta").textContent = CONFIG.perfil.textoBotaoHero;
-    document.getElementById("hero-cta-secundario").textContent = CONFIG.perfil.textoBotaoSecundario;
+
+    const heroCta = document.getElementById("hero-cta");
+    heroCta.textContent = CONFIG.perfil.textoBotaoHero;
+    heroCta.addEventListener("click", () => Rastreio.registrarClique("hero_cta_contato"));
+
+    const heroCtaSecundario = document.getElementById("hero-cta-secundario");
+    heroCtaSecundario.textContent = CONFIG.perfil.textoBotaoSecundario;
+    heroCtaSecundario.addEventListener("click", () => Rastreio.registrarClique("hero_cta_portfolio"));
 
     const notaManuscrita = document.getElementById("hero-nota-manuscrita");
     notaManuscrita.append(CONFIG.perfil.notaEscritaPrefixo + " ");
@@ -1797,7 +1806,9 @@
       textoSobre.appendChild(p);
     });
 
-    document.getElementById("sobre-cta").textContent = CONFIG.sobre.textoBotao;
+    const sobreCta = document.getElementById("sobre-cta");
+    sobreCta.textContent = CONFIG.sobre.textoBotao;
+    sobreCta.addEventListener("click", () => Rastreio.registrarClique("sobre_cta_portfolio"));
 
     const listaDiferenciais = document.getElementById("lista-diferenciais");
     CONFIG.diferenciais.forEach((diferencial) => {
@@ -2071,6 +2082,7 @@
       card.innerHTML = "";
       card.appendChild(criarIframe(true));
       cardComSomTocando = card;
+      Rastreio.registrarVideo(trabalho.videoId, { title: trabalho.titulo, category: trabalho.categoria });
     }
 
     card.addEventListener("click", alternarSom);
@@ -2130,6 +2142,7 @@
       iconeCta.setAttribute("aria-hidden", "true");
       iconeCta.textContent = "💬 ";
       cta.append(iconeCta, servico.cta);
+      cta.addEventListener("click", () => Rastreio.registrarClique("contact_whatsapp", { origem: "servico", servico: servico.titulo }));
 
       card.append(icone, titulo, descricao, cta);
       trilho.appendChild(card);
@@ -2206,9 +2219,9 @@
     // de verdade escrito ao lado (não só o nome do canal)
     const listaContato = document.getElementById("lista-contato-direto");
     const itensContato = [
-      { icone: "✉", texto: CONFIG.contato.email, href: "mailto:" + CONFIG.contato.email, novaAba: false },
-      { icone: "@", texto: CONFIG.contato.instagramUsuario, href: CONFIG.contato.instagramUrl, novaAba: true },
-      { icone: "☎", texto: CONFIG.contato.telefoneExibicao, href: "https://wa.me/" + CONFIG.contato.whatsappNumero + "?text=" + encodeURIComponent(CONFIG.contato.whatsappMensagemPadrao), novaAba: true },
+      { icone: "✉", texto: CONFIG.contato.email, href: "mailto:" + CONFIG.contato.email, novaAba: false, evento: "contact_email" },
+      { icone: "@", texto: CONFIG.contato.instagramUsuario, href: CONFIG.contato.instagramUrl, novaAba: true, evento: "contact_instagram" },
+      { icone: "☎", texto: CONFIG.contato.telefoneExibicao, href: "https://wa.me/" + CONFIG.contato.whatsappNumero + "?text=" + encodeURIComponent(CONFIG.contato.whatsappMensagemPadrao), novaAba: true, evento: "contact_whatsapp" },
     ];
     itensContato.forEach((item) => {
       const li = document.createElement("li");
@@ -2216,6 +2229,7 @@
       a.className = "item-contato-direto";
       a.href = item.href;
       if (item.novaAba) { a.target = "_blank"; a.rel = "noopener"; }
+      a.addEventListener("click", () => Rastreio.registrarClique(item.evento, { origem: "contato" }));
 
       const icone = document.createElement("span");
       icone.className = "icone-contato-direto";
@@ -2250,6 +2264,17 @@
       const linkMailto = "mailto:" + CONFIG.contato.email + "?subject=" + encodeURIComponent(assunto) + "&body=" + encodeURIComponent(corpo);
 
       window.location.href = linkMailto;
+
+      Rastreio.registrarClique("contact_form", { origem: "contato" });
+      Rastreio.registrarLead({
+        name: nome,
+        email: email,
+        phone: null,
+        brand: marca || null,
+        budget: orcamento || null,
+        message: mensagem,
+        source: "contact",
+      });
 
       mensagemConfirmacao.textContent = "Obrigada pela mensagem! Seu aplicativo de e-mail deve abrir agora com tudo preenchido. Se não abrir, me chame direto pelo WhatsApp.";
       mensagemConfirmacao.classList.add("mostrar");
