@@ -2256,15 +2256,6 @@
       const orcamento = document.getElementById("campo-orcamento").value.trim();
       const mensagem = document.getElementById("campo-mensagem").value.trim();
 
-      const assunto = "Contato pelo site - " + nome;
-      let corpo = "Nome: " + nome + "\nE-mail: " + email;
-      if (marca) corpo += "\nMarca/Empresa: " + marca;
-      if (orcamento) corpo += "\nOrçamento estimado: " + orcamento;
-      corpo += "\n\nSobre o projeto:\n" + mensagem;
-      const linkMailto = "mailto:" + CONFIG.contato.email + "?subject=" + encodeURIComponent(assunto) + "&body=" + encodeURIComponent(corpo);
-
-      window.location.href = linkMailto;
-
       Rastreio.registrarClique("contact_form", { origem: "contato" });
       Rastreio.registrarLead({
         name: nome,
@@ -2276,7 +2267,7 @@
         source: "contact",
       });
 
-      mensagemConfirmacao.textContent = "Obrigada pela mensagem! Seu aplicativo de e-mail deve abrir agora com tudo preenchido. Se não abrir, me chame direto pelo WhatsApp.";
+      mensagemConfirmacao.textContent = "Obrigada pela mensagem! Recebi tudo certinho e vou te responder em breve.";
       mensagemConfirmacao.classList.add("mostrar");
       formulario.reset();
     });
