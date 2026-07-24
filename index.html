@@ -786,8 +786,13 @@
     box-shadow: 0 4px 14px rgba(43,33,24,0.25);
     transition: transform 0.15s ease;
   }
-  .video-portfolio:hover .botao-play,
   .video-portfolio:focus-visible .botao-play { transform: translate(-50%, -50%) scale(1.08); }
+  /* O efeito de hover só entra em telas com mouse de verdade: um :hover aqui faria o
+     iOS exigir dois toques pra "clicar" (o primeiro só ativa o hover), já que o card
+     não é um <button>/<a> nativo. */
+  @media (hover: hover) and (pointer: fine) {
+    .video-portfolio:hover .botao-play { transform: translate(-50%, -50%) scale(1.08); }
+  }
   .selo-categoria {
     display: block;
     font-family: var(--fonte-corpo);
@@ -1929,8 +1934,12 @@
 
       // Passar o mouse em qualquer ponto da fileira toca a prévia (sem som) de todos os
       // vídeos do nicho ao mesmo tempo; o som só liga no vídeo que a pessoa clicar.
-      trilho.addEventListener("mouseenter", () => videosDoTrilho.forEach((video) => video.tocarPreview()));
-      trilho.addEventListener("mouseleave", () => videosDoTrilho.forEach((video) => video.pararPreview()));
+      // Só liga esse comportamento em telas com mouse de verdade: no toque do celular,
+      // o navegador simula "hover" ao encostar o dedo, o que atrapalhava o toque virar som.
+      if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+        trilho.addEventListener("mouseenter", () => videosDoTrilho.forEach((video) => video.tocarPreview()));
+        trilho.addEventListener("mouseleave", () => videosDoTrilho.forEach((video) => video.pararPreview()));
+      }
 
       // As setas só aparecem em nichos com mais de 3 vídeos (os outros já cabem sem precisar rolar)
       if (trabalhosDaCategoria.length > 3) {
@@ -1964,6 +1973,10 @@
   // por inteiro e sem nenhuma marca do YouTube (sem controles, título, canal ou logo).
   // No toque, clique ou teclado (Enter/Espaço), toca com som, como uma ação explícita.
   // Assim a página não fica pesada carregando os vídeos todos ao mesmo tempo.
+  // Garante que só um vídeo por vez toque com som na página inteira: ao ligar o som de
+  // um vídeo novo, o anterior (se houver) para automaticamente.
+  let cardComSomTocando = null;
+
   function criarCardVideo(trabalho) {
     const card = document.createElement("div");
     card.className = "video-portfolio";
@@ -1972,6 +1985,17 @@
     card.setAttribute("tabindex", "0");
     card.setAttribute("aria-label", "Reproduzir vídeo: " + trabalho.titulo);
 
+    // Assim que carrega, tenta trocar pela miniatura em alta resolução (1280x720).
+    // Nem todo vídeo tem essa versão: quando não tem, o YouTube devolve uma imagem
+    // minúscula de 120x90 no lugar (sem dar erro), então checamos a largura antes de trocar.
+    const miniaturaAlta = new Image();
+    miniaturaAlta.onload = () => {
+      if (miniaturaAlta.naturalWidth > 120) {
+        card.style.backgroundImage = "url(https://i.ytimg.com/vi/" + trabalho.videoId + "/maxresdefault.jpg)";
+      }
+    };
+    miniaturaAlta.src = "https://i.ytimg.com/vi/" + trabalho.videoId + "/maxresdefault.jpg";
+
     const play = document.createElement("span");
     play.className = "botao-play";
     play.setAttribute("aria-hidden", "true");
@@ -1979,44 +2003,78 @@
     card.appendChild(play);
 
     let carregado = false;
-    let emModoPreview = false;
+    let comSom = false;
 
-    function carregarVideo(comSom) {
-      if (carregado) {
-        if (!(comSom && emModoPreview)) return;
-      }
-      carregado = true;
-      emModoPreview = !comSom;
-
+    function criarIframe(comSomAgora) {
       const iframe = document.createElement("iframe");
       iframe.src = "https://www.youtube-nocookie.com/embed/" + trabalho.videoId
-        + "?autoplay=1&mute=" + (comSom ? "0" : "1")
+        + "?autoplay=1&mute=" + (comSomAgora ? "0" : "1")
         + "&controls=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0&playsinline=1";
       iframe.title = "Vídeo: " + trabalho.titulo;
       iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
-      card.innerHTML = "";
-      card.appendChild(iframe);
+      return iframe;
     }
 
-    function restaurarMiniatura() {
-      if (!carregado || !emModoPreview) return;
+    // Para completamente este vídeo (com ou sem som) e volta pra miniatura
+    function pararTudo() {
+      carregado = false;
+      comSom = false;
+      card.innerHTML = "";
+      card.appendChild(play);
+      if (cardComSomTocando === card) cardComSomTocando = null;
+    }
+
+    // Toca a prévia muda (usada só no hover em grupo, em telas com mouse de verdade)
+    function tocarPreview() {
+      if (carregado) return;
+      carregado = true;
+      comSom = false;
+      card.innerHTML = "";
+      card.appendChild(criarIframe(false));
+    }
+
+    // Para a prévia muda; não mexe se este vídeo estiver tocando com som
+    function pararPreview() {
+      if (!carregado || comSom) return;
       carregado = false;
       card.innerHTML = "";
       card.appendChild(play);
     }
 
-    card.addEventListener("click", () => carregarVideo(true));
+    // Clique/toque: liga o som deste vídeo (parando qualquer outro que esteja tocando
+    // com som na página) ou, se já for este que está tocando, pausa e volta a miniatura.
+    function alternarSom() {
+      if (comSom) {
+        pararTudo();
+        return;
+      }
+      if (cardComSomTocando && cardComSomTocando !== card) {
+        cardComSomTocando.pararTudo();
+      }
+      carregado = true;
+      comSom = true;
+      card.innerHTML = "";
+      card.appendChild(criarIframe(true));
+      cardComSomTocando = card;
+    }
+
+    card.addEventListener("click", alternarSom);
     card.addEventListener("keydown", (evento) => {
       if (evento.key === "Enter" || evento.key === " ") {
         evento.preventDefault();
-        carregarVideo(true);
+        alternarSom();
       }
     });
+    // Ouvinte de toque "vazio": sem ele, o Safari do iPhone às vezes exige dois toques
+    // pra clicar em elementos que não são <button>/<a> nativos (o primeiro toque só
+    // simula o hover). Só de existir esse listener, o iOS já entende que é pra clicar direto.
+    card.addEventListener("touchstart", () => {}, { passive: true });
 
     // Expostos pra o carrossel do nicho poder tocar/parar a prévia de TODOS os vídeos
     // juntos (não só o que está sob o mouse) quando o mouse passa por cima da fileira.
-    card.tocarPreview = () => carregarVideo(false);
-    card.pararPreview = restaurarMiniatura;
+    card.tocarPreview = tocarPreview;
+    card.pararPreview = pararPreview;
+    card.pararTudo = pararTudo;
 
     return card;
   }
