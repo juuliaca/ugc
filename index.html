@@ -1041,6 +1041,36 @@
   .campo textarea:focus { outline: none; border-color: var(--terracota); }
   .campo textarea { resize: vertical; min-height: 120px; }
 
+  .opcoes-preferencia { display: flex; gap: 10px; flex-wrap: wrap; }
+  .opcao-preferencia { position: relative; cursor: pointer; }
+  .opcao-preferencia input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+  }
+  .opcao-preferencia span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 1.5px solid rgba(247, 243, 234, 0.28);
+    color: rgba(247, 243, 234, 0.75);
+    font-size: 14.5px;
+    font-weight: 600;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  }
+  .opcao-preferencia input:checked + span {
+    background: var(--terracota);
+    border-color: var(--terracota);
+    color: var(--off-white);
+  }
+  .opcao-preferencia input:focus-visible + span {
+    outline: 2.5px solid var(--terracota);
+    outline-offset: 2px;
+  }
+
   .mensagem-confirmacao {
     margin-top: 14px;
     padding: 13px 16px;
@@ -1135,6 +1165,12 @@
 
 <!-- Rastreio de visitas, cliques e vídeos assistidos, usado pelo painel administrativo -->
 <script src="js/rastreio.js"></script>
+
+<!-- Envia um e-mail de aviso pra Julia quando alguém manda mensagem pelo formulário de contato -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  emailjs.init({ publicKey: "AxE9TP2TxvLlBn0FX" });
+</script>
 </head>
 <body>
 
@@ -1285,6 +1321,23 @@
               <label for="campo-email">E-mail</label>
               <input type="email" id="campo-email" name="email" placeholder="voce@marca.com" required autocomplete="email">
             </div>
+          </div>
+          <div class="campo">
+            <label>Como prefere que eu retorne?</label>
+            <div class="opcoes-preferencia">
+              <label class="opcao-preferencia">
+                <input type="radio" name="preferencia" value="email" id="preferencia-email" checked>
+                <span>✉ E-mail</span>
+              </label>
+              <label class="opcao-preferencia">
+                <input type="radio" name="preferencia" value="whatsapp" id="preferencia-whatsapp">
+                <span>☎ WhatsApp</span>
+              </label>
+            </div>
+          </div>
+          <div class="campo" id="campo-telefone-wrapper" hidden>
+            <label for="campo-telefone">Seu WhatsApp</label>
+            <input type="tel" id="campo-telefone" name="telefone" placeholder="(00) 00000-0000" autocomplete="tel">
           </div>
           <div class="campo">
             <label for="campo-marca">Marca / Empresa</label>
@@ -2247,6 +2300,19 @@
     const formulario = document.getElementById("formulario-contato");
     const mensagemConfirmacao = document.getElementById("mensagem-confirmacao");
 
+    // O campo de telefone só aparece (e só é obrigatório) quando a pessoa
+    // escolhe ser contatada pelo WhatsApp; em "E-mail" ele fica escondido.
+    const campoTelefoneWrapper = document.getElementById("campo-telefone-wrapper");
+    const campoTelefone = document.getElementById("campo-telefone");
+    document.querySelectorAll('input[name="preferencia"]').forEach((radio) => {
+      radio.addEventListener("change", () => {
+        const querWhatsapp = document.getElementById("preferencia-whatsapp").checked;
+        campoTelefoneWrapper.hidden = !querWhatsapp;
+        campoTelefone.required = querWhatsapp;
+        if (!querWhatsapp) campoTelefone.value = "";
+      });
+    });
+
     formulario.addEventListener("submit", (evento) => {
       evento.preventDefault();
 
@@ -2255,21 +2321,41 @@
       const marca = document.getElementById("campo-marca").value.trim();
       const orcamento = document.getElementById("campo-orcamento").value.trim();
       const mensagem = document.getElementById("campo-mensagem").value.trim();
+      const preferencia = document.getElementById("preferencia-whatsapp").checked ? "whatsapp" : "email";
+      const telefone = preferencia === "whatsapp" ? document.getElementById("campo-telefone").value.trim() : "";
+      const preferenciaTexto = preferencia === "whatsapp" ? "WhatsApp (" + telefone + ")" : "E-mail";
 
-      Rastreio.registrarClique("contact_form", { origem: "contato" });
+      Rastreio.registrarClique("contact_form", { origem: "contato", preferencia: preferencia });
       Rastreio.registrarLead({
         name: nome,
         email: email,
-        phone: null,
+        phone: telefone || null,
         brand: marca || null,
         budget: orcamento || null,
         message: mensagem,
         source: "contact",
       });
 
+      // Manda um e-mail de aviso pra Julia na hora, além de salvar no painel.
+      // Se o EmailJS falhar por algum motivo, não trava o site: a mensagem já
+      // foi salva no painel de qualquer jeito, então só registramos o aviso.
+      emailjs.send("service_bsaimk8", "template_ygbo9pr", {
+        name: nome,
+        email: email,
+        message: "Prefere retorno por: " + preferenciaTexto
+          + "\nMarca: " + (marca || "não informada")
+          + "\nOrçamento: " + (orcamento || "não informado")
+          + "\n\n" + mensagem,
+        time: new Date().toLocaleString("pt-BR"),
+      }).catch((erro) => {
+        console.warn("Aviso por e-mail falhou (mensagem já foi salva no painel):", erro);
+      });
+
       mensagemConfirmacao.textContent = "Obrigada pela mensagem! Recebi tudo certinho e vou te responder em breve.";
       mensagemConfirmacao.classList.add("mostrar");
       formulario.reset();
+      campoTelefoneWrapper.hidden = true;
+      campoTelefone.required = false;
     });
   }
 
