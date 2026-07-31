@@ -366,6 +366,258 @@
   .botao-whatsapp-mensagem { background: var(--sucesso); }
   .botao-whatsapp-mensagem:hover { background: #24603E; }
 
+  /* ===================== FINANCEIRO ===================== */
+  .grade-financeiro-resumo {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 22px;
+  }
+  .cartao-financeiro-resumo { padding: 22px 20px; margin-bottom: 0; text-align: left; }
+  .cartao-financeiro-resumo .valor-cartao {
+    font-family: var(--fonte-titulo);
+    font-size: 26px;
+    font-weight: 600;
+    margin: 0 0 4px;
+    line-height: 1.1;
+  }
+  .cartao-financeiro-resumo .rotulo-cartao { font-size: 13.5px; color: var(--texto-suave); margin: 0; }
+  .cartao-entrada .valor-cartao { color: var(--sucesso); }
+  .cartao-saida .valor-cartao { color: var(--erro); }
+  .cartao-saldo.saldo-negativo .valor-cartao { color: var(--erro); }
+
+  .grade-financeiro-pendentes { grid-template-columns: repeat(2, 1fr); }
+  .cartao-pendente { background: var(--creme); }
+  .cartao-pendente .valor-cartao { color: var(--coral); }
+
+  .selo-pendente {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    background: rgba(212, 87, 42, 0.12);
+    color: var(--coral);
+    vertical-align: middle;
+  }
+  .botao-confirmar-lancamento {
+    background: none;
+    border: 1.5px solid var(--sucesso);
+    color: var(--sucesso);
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-family: var(--fonte-corpo);
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .botao-confirmar-lancamento:hover { background: var(--sucesso); color: var(--branco); }
+
+  .filtro-esfera {
+    display: flex;
+    gap: 4px;
+    background: var(--creme);
+    border: 1px solid var(--borda);
+    border-radius: 999px;
+    padding: 4px;
+    width: fit-content;
+    margin-bottom: 22px;
+  }
+  .botao-esfera {
+    border: none;
+    background: none;
+    padding: 7px 15px;
+    border-radius: 999px;
+    font-family: var(--fonte-corpo);
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--texto-suave);
+    cursor: pointer;
+  }
+  .botao-esfera.ativo { background: var(--branco); color: var(--grafite); box-shadow: 0 1px 4px rgba(26,24,22,0.08); }
+
+  .cartao-meta-economia .progresso-meta { margin-bottom: 20px; }
+  .trilho-progresso-meta { background: var(--creme); border-radius: 999px; height: 14px; overflow: hidden; margin-bottom: 8px; }
+  .barra-progresso-meta { height: 100%; background: var(--coral); border-radius: 999px; transition: width 0.3s ease; }
+  .texto-progresso-meta { font-size: 14px; color: var(--texto-suave); margin: 0; }
+  .nota-meta { font-size: 12.5px; color: var(--texto-suave); margin: 4px 0 0; }
+  .linha-form-meta { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; }
+  .linha-form-meta .campo-financeiro { flex: 1; min-width: 160px; margin-bottom: 0; }
+
+  .campo-financeiro { margin-bottom: 16px; }
+  .campo-financeiro label {
+    display: block;
+    font-weight: 600;
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--texto-suave);
+    margin-bottom: 6px;
+  }
+  .campo-financeiro input,
+  .campo-financeiro select {
+    width: 100%;
+    padding: 11px 13px;
+    border: 1.5px solid var(--borda);
+    border-radius: 10px;
+    font-family: var(--fonte-corpo);
+    font-size: 15px;
+    background: var(--creme);
+    color: var(--grafite);
+  }
+  .campo-financeiro input:focus,
+  .campo-financeiro select:focus { outline: none; border-color: var(--coral); }
+  .linha-form-financeiro { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .opcoes-tipo-esfera { display: flex; gap: 10px; }
+  .opcao-tipo { position: relative; cursor: pointer; flex: 1; }
+  .opcao-tipo input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .opcao-tipo span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 11px 16px;
+    border-radius: 10px;
+    border: 1.5px solid var(--borda);
+    color: var(--texto-suave);
+    font-size: 14.5px;
+    font-weight: 600;
+  }
+  .opcao-tipo input:checked + span { background: var(--coral); border-color: var(--coral); color: var(--branco); }
+
+  .botao-financeiro {
+    padding: 12px 22px;
+    border: none;
+    border-radius: 10px;
+    background: var(--coral);
+    color: var(--branco);
+    font-family: var(--fonte-corpo);
+    font-weight: 600;
+    font-size: 14.5px;
+    cursor: pointer;
+  }
+  .botao-financeiro:hover { background: var(--coral-escuro); }
+
+  .grafico-financeiro-mensal {
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+    height: 200px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .grupo-mes-grafico {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    height: 100%;
+    justify-content: flex-end;
+    flex-shrink: 0;
+    min-width: 44px;
+  }
+  .barras-duplas-mes { display: flex; align-items: flex-end; gap: 4px; height: 100%; }
+  .barra-mes { width: 15px; border-radius: 4px 4px 0 0; min-height: 2px; position: relative; transition: opacity 0.15s ease; }
+  .barra-mes:hover { opacity: 0.75; }
+  .barra-mes:hover .dica-barra { display: block; }
+  .barra-mes.entrada { background: var(--sucesso); }
+  .barra-mes.saida { background: var(--erro); }
+  .rotulo-mes-grafico { font-size: 10.5px; color: var(--texto-suave); text-transform: capitalize; white-space: nowrap; }
+  .legenda-grafico-mensal { display: flex; gap: 16px; margin-top: 14px; font-size: 12.5px; color: var(--texto-suave); }
+  .legenda-grafico-mensal span { display: inline-flex; align-items: center; gap: 6px; }
+  .ponto-legenda { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+  .ponto-legenda.entrada { background: var(--sucesso); }
+  .ponto-legenda.saida { background: var(--erro); }
+
+  .grafico-categorias-container { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+  .grafico-pizza { width: 170px; height: 170px; border-radius: 50%; flex-shrink: 0; }
+  .legenda-pizza { display: flex; flex-direction: column; gap: 11px; flex: 1; min-width: 220px; }
+  .linha-legenda-pizza { display: flex; align-items: center; gap: 10px; font-size: 14px; }
+  .ponto-legenda-pizza { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+
+  .comparativo-esferas { display: flex; flex-direction: column; gap: 14px; }
+  .linha-comparativo-esfera { display: flex; align-items: center; gap: 12px; }
+  .rotulo-comparativo-esfera { width: 76px; flex-shrink: 0; font-size: 14px; font-weight: 600; }
+  .trilho-comparativo-esfera { flex: 1; background: var(--creme); border-radius: 999px; height: 10px; overflow: hidden; }
+  .barra-comparativo-esfera { height: 100%; border-radius: 999px; }
+  .barra-comparativo-esfera.pessoal { background: var(--grafite); }
+  .barra-comparativo-esfera.empresa { background: var(--coral); }
+  .valor-comparativo-esfera { width: 96px; flex-shrink: 0; text-align: right; font-size: 14px; font-weight: 600; }
+
+  .cabecalho-mes-lancamentos {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin: 22px 0 6px;
+    padding-bottom: 6px;
+    border-bottom: 1.5px solid var(--grafite);
+  }
+  .cabecalho-mes-lancamentos:first-child { margin-top: 0; }
+  .titulo-mes-lancamentos {
+    margin: 0;
+    font-family: var(--fonte-titulo);
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: capitalize;
+  }
+  .resumo-mes-lancamentos { margin: 0; font-size: 12.5px; color: var(--texto-suave); white-space: nowrap; }
+
+  .linha-lancamento {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--borda);
+  }
+  .linha-lancamento:last-child { border-bottom: none; }
+  .selo-tipo-lancamento {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+  .selo-tipo-lancamento.entrada { background: rgba(45, 122, 79, 0.12); color: var(--sucesso); }
+  .selo-tipo-lancamento.saida { background: rgba(196, 69, 60, 0.12); color: var(--erro); }
+  .info-lancamento { flex: 1; min-width: 0; }
+  .categoria-lancamento { margin: 0 0 2px; font-size: 14.5px; font-weight: 600; }
+  .selo-esfera-lancamento {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    background: var(--creme);
+    color: var(--texto-suave);
+    vertical-align: middle;
+  }
+  .descricao-data-lancamento { margin: 0; font-size: 13px; color: var(--texto-suave); }
+  .valor-lancamento { font-weight: 700; font-size: 15px; flex-shrink: 0; }
+  .valor-lancamento.entrada { color: var(--sucesso); }
+  .valor-lancamento.saida { color: var(--erro); }
+  .botao-excluir-lancamento {
+    background: none;
+    border: none;
+    color: var(--texto-suave);
+    cursor: pointer;
+    font-size: 16px;
+    flex-shrink: 0;
+    padding: 6px;
+  }
+  .botao-excluir-lancamento:hover { color: var(--erro); }
+
   /* ===================== ESTADOS VAZIOS E DE ERRO ===================== */
   .estado-vazio { color: var(--texto-suave); font-size: 14.5px; text-align: center; padding: 20px 0; margin: 0; }
   .faixa-erro-painel {
@@ -383,6 +635,9 @@
 
   @media (max-width: 900px) {
     .grade-cartoes-numero { grid-template-columns: repeat(2, 1fr); }
+    .grade-financeiro-resumo { grid-template-columns: 1fr; }
+    .linha-form-financeiro { grid-template-columns: 1fr; }
+    .grafico-categorias-container { justify-content: center; }
 
     .sidebar {
       position: fixed;
@@ -454,6 +709,9 @@
         <button type="button" class="item-menu" data-tab="portfolio">
           <span class="icone-menu" aria-hidden="true">📊</span> Portfólio
         </button>
+        <button type="button" class="item-menu" data-tab="financeiro">
+          <span class="icone-menu" aria-hidden="true">💰</span> Financeiro
+        </button>
       </nav>
 
       <div class="rodape-sidebar">
@@ -515,6 +773,200 @@
           <div id="lista-mensagens"></div>
         </div>
       </section>
+
+      <!-- ===================== ABA: FINANCEIRO ===================== -->
+      <section class="painel-aba" id="aba-financeiro" hidden>
+        <div class="filtro-esfera" id="filtro-esfera">
+          <button type="button" class="botao-esfera ativo" data-esfera="todos">Tudo</button>
+          <button type="button" class="botao-esfera" data-esfera="pessoal">Pessoal</button>
+          <button type="button" class="botao-esfera" data-esfera="empresa">Empresa</button>
+        </div>
+
+        <div class="grade-financeiro-resumo">
+          <div class="cartao cartao-financeiro-resumo cartao-entrada">
+            <p class="valor-cartao" id="valor-entradas">R$ 0,00</p>
+            <p class="rotulo-cartao">Entradas</p>
+          </div>
+          <div class="cartao cartao-financeiro-resumo cartao-saida">
+            <p class="valor-cartao" id="valor-saidas">R$ 0,00</p>
+            <p class="rotulo-cartao">Saídas</p>
+          </div>
+          <div class="cartao cartao-financeiro-resumo" id="cartao-saldo">
+            <p class="valor-cartao" id="valor-saldo">R$ 0,00</p>
+            <p class="rotulo-cartao">Saldo</p>
+          </div>
+        </div>
+
+        <div class="grade-financeiro-resumo grade-financeiro-pendentes">
+          <div class="cartao cartao-financeiro-resumo cartao-pendente">
+            <p class="valor-cartao" id="valor-a-receber">R$ 0,00</p>
+            <p class="rotulo-cartao">A receber (pendente)</p>
+          </div>
+          <div class="cartao cartao-financeiro-resumo cartao-pendente">
+            <p class="valor-cartao" id="valor-a-pagar">R$ 0,00</p>
+            <p class="rotulo-cartao">A pagar (pendente)</p>
+          </div>
+        </div>
+
+        <div class="cartao cartao-meta-economia">
+          <h2>Meta de economia</h2>
+          <div class="progresso-meta">
+            <div class="trilho-progresso-meta"><div class="barra-progresso-meta" id="barra-meta"></div></div>
+            <p class="texto-progresso-meta" id="texto-progresso-meta">R$ 0,00 de R$ 0,00</p>
+            <p class="nota-meta">Esse progresso considera todos os lançamentos, sem o filtro de período acima.</p>
+          </div>
+          <form id="form-meta" class="linha-form-meta">
+            <div class="campo-financeiro">
+              <label for="campo-meta">Definir nova meta (R$)</label>
+              <input type="number" id="campo-meta" min="0" step="0.01" placeholder="Ex: 5000">
+            </div>
+            <button type="submit" class="botao-financeiro">Salvar meta</button>
+          </form>
+        </div>
+
+        <div class="cartao">
+          <h2>Pessoal x Empresa (saídas do período)</h2>
+          <div class="comparativo-esferas" id="comparativo-esferas"></div>
+        </div>
+
+        <div class="cartao">
+          <h2>Entradas x Saídas por mês</h2>
+          <div class="grafico-financeiro-mensal" id="grafico-financeiro-mensal"></div>
+          <div class="legenda-grafico-mensal">
+            <span><span class="ponto-legenda entrada"></span> Entradas</span>
+            <span><span class="ponto-legenda saida"></span> Saídas</span>
+          </div>
+        </div>
+
+        <div class="cartao">
+          <h2>Gastos por categoria</h2>
+          <div id="lista-categorias-financeiro"></div>
+        </div>
+
+        <div class="cartao">
+          <h2>Despesas fixas mensais</h2>
+          <p class="nota-meta" style="margin-bottom: 16px;">Cadastradas aqui, elas são lançadas automaticamente todo mês, sem precisar repetir.</p>
+          <div id="lista-despesas-fixas"></div>
+          <form id="form-despesa-fixa" style="margin-top: 18px;">
+            <div class="linha-form-financeiro">
+              <div class="campo-financeiro">
+                <label>Tipo</label>
+                <div class="opcoes-tipo-esfera">
+                  <label class="opcao-tipo">
+                    <input type="radio" name="tipo-fixa" value="saida" id="tipo-fixa-saida" checked>
+                    <span>↓ Saída</span>
+                  </label>
+                  <label class="opcao-tipo">
+                    <input type="radio" name="tipo-fixa" value="entrada" id="tipo-fixa-entrada">
+                    <span>↑ Entrada</span>
+                  </label>
+                </div>
+              </div>
+              <div class="campo-financeiro">
+                <label>Esfera</label>
+                <div class="opcoes-tipo-esfera">
+                  <label class="opcao-tipo">
+                    <input type="radio" name="esfera-fixa" value="empresa" id="esfera-fixa-empresa" checked>
+                    <span>Empresa</span>
+                  </label>
+                  <label class="opcao-tipo">
+                    <input type="radio" name="esfera-fixa" value="pessoal" id="esfera-fixa-pessoal">
+                    <span>Pessoal</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="linha-form-financeiro">
+              <div class="campo-financeiro">
+                <label for="campo-categoria-fixa">Categoria</label>
+                <select id="campo-categoria-fixa"></select>
+              </div>
+              <div class="campo-financeiro">
+                <label for="campo-valor-fixa">Valor (R$)</label>
+                <input type="number" id="campo-valor-fixa" min="0" step="0.01" required>
+              </div>
+            </div>
+            <div class="campo-financeiro">
+              <label for="campo-descricao-fixa">Descrição (opcional)</label>
+              <input type="text" id="campo-descricao-fixa" placeholder="Ex: Aluguel do estúdio, Netflix...">
+            </div>
+            <button type="submit" class="botao-financeiro">Adicionar despesa fixa</button>
+          </form>
+        </div>
+
+        <div class="cartao">
+          <h2>Novo lançamento</h2>
+          <form id="form-lancamento">
+            <div class="linha-form-financeiro">
+              <div class="campo-financeiro">
+                <label>Tipo</label>
+                <div class="opcoes-tipo-esfera">
+                  <label class="opcao-tipo">
+                    <input type="radio" name="tipo-lancamento" value="entrada" id="tipo-entrada" checked>
+                    <span>↑ Entrada</span>
+                  </label>
+                  <label class="opcao-tipo">
+                    <input type="radio" name="tipo-lancamento" value="saida" id="tipo-saida">
+                    <span>↓ Saída</span>
+                  </label>
+                </div>
+              </div>
+              <div class="campo-financeiro">
+                <label>Situação</label>
+                <div class="opcoes-tipo-esfera">
+                  <label class="opcao-tipo">
+                    <input type="radio" name="status-lancamento" value="confirmado" id="status-confirmado" checked>
+                    <span>✓ Confirmado</span>
+                  </label>
+                  <label class="opcao-tipo">
+                    <input type="radio" name="status-lancamento" value="pendente" id="status-pendente">
+                    <span>⏳ Pendente</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="linha-form-financeiro">
+              <div class="campo-financeiro">
+                <label>Esfera</label>
+                <div class="opcoes-tipo-esfera">
+                  <label class="opcao-tipo">
+                    <input type="radio" name="esfera-lancamento" value="empresa" id="esfera-empresa" checked>
+                    <span>Empresa</span>
+                  </label>
+                  <label class="opcao-tipo">
+                    <input type="radio" name="esfera-lancamento" value="pessoal" id="esfera-pessoal">
+                    <span>Pessoal</span>
+                  </label>
+                </div>
+              </div>
+              <div class="campo-financeiro">
+                <label for="campo-categoria">Categoria</label>
+                <select id="campo-categoria"></select>
+              </div>
+            </div>
+            <div class="linha-form-financeiro">
+              <div class="campo-financeiro">
+                <label for="campo-valor">Valor (R$)</label>
+                <input type="number" id="campo-valor" min="0" step="0.01" required>
+              </div>
+              <div class="campo-financeiro">
+                <label for="campo-data">Data</label>
+                <input type="date" id="campo-data" required>
+              </div>
+            </div>
+            <div class="campo-financeiro">
+              <label for="campo-descricao">Descrição (opcional)</label>
+              <input type="text" id="campo-descricao" placeholder="Ex: Câmera nova, Parceria com Marca X...">
+            </div>
+            <button type="submit" class="botao-financeiro">Adicionar lançamento</button>
+          </form>
+        </div>
+
+        <div class="cartao">
+          <h2>Lançamentos</h2>
+          <div id="lista-lancamentos"></div>
+        </div>
+      </section>
     </main>
 
   </div>
@@ -530,7 +982,11 @@
        ============================================================= */
     let todosEventos = [];
     let todosLeads = [];
+    let todosLancamentos = [];
+    let todasDespesasFixas = [];
+    let metaEconomia = 0;
     let periodoAtual = "tudo";
+    let esferaAtual = "todos";
 
     /* =============================================================
        PAGINAÇÃO: o Supabase devolve no máximo 1000 linhas por
@@ -565,14 +1021,72 @@
         const resultados = await Promise.all([
           buscarTudo("portfolio_events"),
           buscarTudo("portfolio_leads"),
+          buscarTudo("portfolio_financeiro"),
+          buscarTudo("portfolio_despesas_fixas"),
         ]);
         todosEventos = resultados[0];
         todosLeads = resultados[1];
+        todosLancamentos = resultados[2];
+        todasDespesasFixas = resultados[3];
+        await carregarMeta();
+        await lancarDespesasFixasDoMes();
         redesenharTudo();
       } catch (erro) {
         console.error(erro);
         mostrarErroDados("Não conseguimos carregar os dados agora. Tenta recarregar a página em instantes.");
       }
+    }
+
+    // A meta de economia fica guardada numa única linha (id fixo = 1)
+    // na tabela portfolio_meta_economia.
+    async function carregarMeta() {
+      const resultado = await Auth.sb.from("portfolio_meta_economia").select("*").eq("id", 1).maybeSingle();
+      if (resultado.error) {
+        console.warn("Não foi possível carregar a meta de economia", resultado.error);
+        return;
+      }
+      metaEconomia = resultado.data ? Number(resultado.data.valor_meta) : 0;
+    }
+
+    // Confere se cada despesa fixa ativa já tem um lançamento neste mês
+    // (rastreado pela coluna origem_fixa_id); se não tiver, lança agora.
+    // Roda toda vez que o painel abre, mas é seguro rodar várias vezes:
+    // nunca duplica, porque só lança o que ainda não foi lançado no mês.
+    async function lancarDespesasFixasDoMes() {
+      const mesAtual = new Date().toISOString().slice(0, 7);
+      const hoje = new Date().toISOString().slice(0, 10);
+
+      const jaLancadasEsteMs = new Set(
+        todosLancamentos
+          .filter(function (l) { return l.origem_fixa_id && (l.data || "").slice(0, 7) === mesAtual; })
+          .map(function (l) { return l.origem_fixa_id; })
+      );
+
+      const pendentes = todasDespesasFixas.filter(function (d) {
+        return d.ativo && !jaLancadasEsteMs.has(d.id);
+      });
+
+      if (pendentes.length === 0) return;
+
+      const novasLinhas = pendentes.map(function (d) {
+        return {
+          tipo: d.tipo,
+          status: "confirmado",
+          esfera: d.esfera,
+          categoria: d.categoria,
+          descricao: d.descricao,
+          valor: d.valor,
+          data: hoje,
+          origem_fixa_id: d.id,
+        };
+      });
+
+      const resultado = await Auth.sb.from("portfolio_financeiro").insert(novasLinhas).select();
+      if (resultado.error) {
+        console.warn("Não foi possível lançar as despesas fixas do mês", resultado.error);
+        return;
+      }
+      todosLancamentos = todosLancamentos.concat(resultado.data);
     }
 
     function mostrarErroDados(mensagem) {
@@ -581,23 +1095,35 @@
       aviso.hidden = false;
     }
 
-    // Filtra uma lista (eventos ou leads) pelo período escolhido nos
-    // botões do topo, sem precisar buscar de novo no banco.
-    function filtrarPorPeriodo(lista) {
+    // Filtra uma lista (eventos, leads ou lançamentos) pelo período
+    // escolhido nos botões do topo, sem precisar buscar de novo no banco.
+    // "campoData" deixa escolher qual campo usar: eventos e leads usam
+    // "created_at", já os lançamentos financeiros usam "data" (a data
+    // que a pessoa escolheu, não a hora que foi salvo no banco).
+    function filtrarPorPeriodo(lista, campoData) {
+      const campo = campoData || "created_at";
       if (periodoAtual === "tudo") return lista;
       const dias = Number(periodoAtual);
       const corte = new Date();
       corte.setDate(corte.getDate() - dias);
       return lista.filter(function (item) {
-        return new Date(item.created_at) >= corte;
+        return new Date(item[campo]) >= corte;
       });
+    }
+
+    // Filtra os lançamentos pela esfera escolhida (Tudo/Pessoal/Empresa).
+    function filtrarPorEsfera(lista) {
+      if (esferaAtual === "todos") return lista;
+      return lista.filter(function (item) { return item.esfera === esferaAtual; });
     }
 
     function redesenharTudo() {
       const eventos = filtrarPorPeriodo(todosEventos);
       const leads = filtrarPorPeriodo(todosLeads);
+      const lancamentos = filtrarPorEsfera(filtrarPorPeriodo(todosLancamentos, "data"));
       desenharMenuPrincipal(eventos, leads);
       desenharPortfolio(eventos, leads);
+      desenharFinanceiro(lancamentos);
     }
 
     /* =============================================================
@@ -616,6 +1142,19 @@
 
     function formatarDataCurta(data) {
       return data.toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit" });
+    }
+
+    function formatarMoeda(valor) {
+      return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(valor || 0);
+    }
+
+    // Os lançamentos guardam a data como "AAAA-MM-DD" (sem hora). Formata
+    // direto a partir do texto pra não correr risco de fuso horário
+    // fazer a data "andar" um dia pra trás ou pra frente.
+    function formatarDataCurtaISO(iso) {
+      if (!iso) return "";
+      const partes = iso.split("-");
+      return partes[2] + "/" + partes[1] + "/" + partes[0];
     }
 
     function formatarDataHora(iso) {
@@ -975,6 +1514,486 @@
     }
 
     /* =============================================================
+       ABA: FINANCEIRO
+       ============================================================= */
+    const CATEGORIAS_ENTRADA = ["Parceria com Marca", "Prestação de Serviço UGC", "Salário/Outra Renda", "Outro"];
+    const CATEGORIAS_SAIDA = ["Moradia", "Alimentação", "Transporte", "Equipamento", "Software e Assinaturas", "Marketing e Anúncios", "Imposto e Taxas", "Saúde", "Ensino", "Lazer", "Pet", "Materiais para Gravação", "Outro"];
+
+    // Preenche o campo de categoria conforme o tipo (entrada/saída)
+    // escolhido no formulário de novo lançamento.
+    function popularCategorias() {
+      const tipo = document.getElementById("tipo-entrada").checked ? "entrada" : "saida";
+      const select = document.getElementById("campo-categoria");
+      const categoriaAtual = select.value;
+      const lista = tipo === "entrada" ? CATEGORIAS_ENTRADA : CATEGORIAS_SAIDA;
+      select.innerHTML = "";
+      lista.forEach(function (categoria) {
+        const opcao = document.createElement("option");
+        opcao.value = categoria;
+        opcao.textContent = categoria;
+        select.appendChild(opcao);
+      });
+      if (lista.indexOf(categoriaAtual) !== -1) select.value = categoriaAtual;
+    }
+
+    async function excluirLancamento(id) {
+      if (!confirm("Excluir este lançamento? Essa ação não pode ser desfeita.")) return;
+      const resultado = await Auth.sb.from("portfolio_financeiro").delete().eq("id", id);
+      if (resultado.error) {
+        alert("Não foi possível excluir o lançamento. Tenta de novo.");
+        return;
+      }
+      todosLancamentos = todosLancamentos.filter(function (l) { return l.id !== id; });
+      redesenharTudo();
+    }
+
+    // Preenche o campo de categoria do formulário de despesa fixa,
+    // igual ao popularCategorias() do lançamento comum, mas lendo os
+    // radios "tipo-fixa-*".
+    function popularCategoriasFixa() {
+      const tipo = document.getElementById("tipo-fixa-entrada").checked ? "entrada" : "saida";
+      const select = document.getElementById("campo-categoria-fixa");
+      const categoriaAtual = select.value;
+      const lista = tipo === "entrada" ? CATEGORIAS_ENTRADA : CATEGORIAS_SAIDA;
+      select.innerHTML = "";
+      lista.forEach(function (categoria) {
+        const opcao = document.createElement("option");
+        opcao.value = categoria;
+        opcao.textContent = categoria;
+        select.appendChild(opcao);
+      });
+      if (lista.indexOf(categoriaAtual) !== -1) select.value = categoriaAtual;
+    }
+
+    // Apagar uma despesa fixa só para novos lançamentos automáticos;
+    // os lançamentos que ela já gerou continuam no histórico normalmente.
+    async function excluirDespesaFixa(id) {
+      if (!confirm("Excluir esta despesa fixa? Os lançamentos que ela já gerou continuam no histórico.")) return;
+      const resultado = await Auth.sb.from("portfolio_despesas_fixas").delete().eq("id", id);
+      if (resultado.error) {
+        alert("Não foi possível excluir. Tenta de novo.");
+        return;
+      }
+      todasDespesasFixas = todasDespesasFixas.filter(function (d) { return d.id !== id; });
+      desenharDespesasFixas();
+    }
+
+    function desenharDespesasFixas() {
+      const container = document.getElementById("lista-despesas-fixas");
+      container.innerHTML = "";
+
+      if (todasDespesasFixas.length === 0) {
+        container.appendChild(criarEstadoVazio("Nenhuma despesa fixa cadastrada ainda."));
+        return;
+      }
+
+      todasDespesasFixas.forEach(function (despesa) {
+        const linha = document.createElement("div");
+        linha.className = "linha-lancamento";
+
+        const selo = document.createElement("span");
+        selo.className = "selo-tipo-lancamento " + despesa.tipo;
+        selo.setAttribute("aria-hidden", "true");
+        selo.textContent = despesa.tipo === "entrada" ? "↑" : "↓";
+
+        const info = document.createElement("div");
+        info.className = "info-lancamento";
+        const categoria = document.createElement("p");
+        categoria.className = "categoria-lancamento";
+        categoria.textContent = despesa.categoria + (despesa.descricao ? " - " + despesa.descricao : "");
+        const seloEsfera = document.createElement("span");
+        seloEsfera.className = "selo-esfera-lancamento";
+        seloEsfera.textContent = despesa.esfera === "pessoal" ? "Pessoal" : "Empresa";
+        categoria.appendChild(seloEsfera);
+        const nota = document.createElement("p");
+        nota.className = "descricao-data-lancamento";
+        nota.textContent = "Lançada todo mês automaticamente";
+        info.append(categoria, nota);
+
+        const valor = document.createElement("span");
+        valor.className = "valor-lancamento " + despesa.tipo;
+        valor.textContent = formatarMoeda(despesa.valor);
+
+        const botaoExcluir = document.createElement("button");
+        botaoExcluir.type = "button";
+        botaoExcluir.className = "botao-excluir-lancamento";
+        botaoExcluir.setAttribute("aria-label", "Excluir despesa fixa");
+        botaoExcluir.textContent = "🗑";
+        botaoExcluir.addEventListener("click", function () { excluirDespesaFixa(despesa.id); });
+
+        linha.append(selo, info, valor, botaoExcluir);
+        container.appendChild(linha);
+      });
+    }
+
+    function desenharFinanceiro(lancamentos) {
+      // Os cartões de resumo, o comparativo e as categorias consideram
+      // só o que já é dinheiro de verdade (status "confirmado"). O que
+      // está "pendente" aparece separado, nos cartões "A receber/A pagar".
+      const confirmados = lancamentos.filter(function (l) { return l.status !== "pendente"; });
+      const pendentes = lancamentos.filter(function (l) { return l.status === "pendente"; });
+
+      const entradas = confirmados.filter(function (l) { return l.tipo === "entrada"; })
+        .reduce(function (soma, l) { return soma + Number(l.valor); }, 0);
+      const saidas = confirmados.filter(function (l) { return l.tipo === "saida"; })
+        .reduce(function (soma, l) { return soma + Number(l.valor); }, 0);
+      const saldo = entradas - saidas;
+
+      const aReceber = pendentes.filter(function (l) { return l.tipo === "entrada"; })
+        .reduce(function (soma, l) { return soma + Number(l.valor); }, 0);
+      const aPagar = pendentes.filter(function (l) { return l.tipo === "saida"; })
+        .reduce(function (soma, l) { return soma + Number(l.valor); }, 0);
+
+      document.getElementById("valor-entradas").textContent = formatarMoeda(entradas);
+      document.getElementById("valor-saidas").textContent = formatarMoeda(saidas);
+      document.getElementById("valor-saldo").textContent = formatarMoeda(saldo);
+      document.getElementById("cartao-saldo").classList.toggle("saldo-negativo", saldo < 0);
+      document.getElementById("valor-a-receber").textContent = formatarMoeda(aReceber);
+      document.getElementById("valor-a-pagar").textContent = formatarMoeda(aPagar);
+
+      desenharMetaEconomia();
+      desenharGraficoMensal();
+      desenharComparativoEsferas(confirmados);
+      desenharCategoriasFinanceiro(confirmados);
+      desenharDespesasFixas();
+      desenharListaLancamentos(lancamentos);
+    }
+
+    // A meta de economia sempre usa TODOS os lançamentos (sem filtro de
+    // período nem de esfera): é um progresso acumulado, não algo que
+    // "zera" quando você troca o filtro.
+    function desenharMetaEconomia() {
+      const confirmadosGeral = todosLancamentos.filter(function (l) { return l.status !== "pendente"; });
+      const entradasGeral = confirmadosGeral.filter(function (l) { return l.tipo === "entrada"; })
+        .reduce(function (soma, l) { return soma + Number(l.valor); }, 0);
+      const saidasGeral = confirmadosGeral.filter(function (l) { return l.tipo === "saida"; })
+        .reduce(function (soma, l) { return soma + Number(l.valor); }, 0);
+      const economizado = Math.max(entradasGeral - saidasGeral, 0);
+      const percentual = metaEconomia > 0 ? Math.min((economizado / metaEconomia) * 100, 100) : 0;
+
+      document.getElementById("barra-meta").style.width = percentual + "%";
+      document.getElementById("texto-progresso-meta").textContent =
+        formatarMoeda(economizado) + " de " + formatarMoeda(metaEconomia);
+
+      const campoMeta = document.getElementById("campo-meta");
+      if (document.activeElement !== campoMeta) campoMeta.value = metaEconomia || "";
+    }
+
+    const NOMES_MESES_ABREV = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+
+    function nomeMesAbreviado(anoMes) {
+      const partes = anoMes.split("-");
+      return NOMES_MESES_ABREV[Number(partes[1]) - 1] + "/" + partes[0].slice(2);
+    }
+
+    // Mostra sempre TODOS os lançamentos confirmados, agrupados por mês,
+    // sem respeitar o filtro de período do topo: é um gráfico de
+    // tendência, faz mais sentido ver o ano inteiro de uma vez.
+    function desenharGraficoMensal() {
+      const container = document.getElementById("grafico-financeiro-mensal");
+      container.innerHTML = "";
+
+      const confirmados = todosLancamentos.filter(function (l) { return l.status !== "pendente"; });
+      if (confirmados.length === 0) {
+        container.appendChild(criarEstadoVazio("Nenhum lançamento confirmado ainda."));
+        return;
+      }
+
+      const porMes = {};
+      confirmados.forEach(function (l) {
+        const chave = l.data.slice(0, 7);
+        if (!porMes[chave]) porMes[chave] = { entrada: 0, saida: 0 };
+        porMes[chave][l.tipo] += Number(l.valor);
+      });
+
+      const chavesOrdenadas = Object.keys(porMes).sort().slice(-12);
+      const valores = chavesOrdenadas.map(function (c) { return Math.max(porMes[c].entrada, porMes[c].saida); });
+      const maximo = Math.max.apply(null, valores.concat([1]));
+
+      chavesOrdenadas.forEach(function (chave) {
+        const dados = porMes[chave];
+
+        const grupo = document.createElement("div");
+        grupo.className = "grupo-mes-grafico";
+
+        const barras = document.createElement("div");
+        barras.className = "barras-duplas-mes";
+
+        const barraEntrada = document.createElement("div");
+        barraEntrada.className = "barra-mes entrada";
+        barraEntrada.style.height = Math.max((dados.entrada / maximo) * 100, dados.entrada > 0 ? 3 : 1) + "%";
+        const dicaEntrada = document.createElement("span");
+        dicaEntrada.className = "dica-barra";
+        dicaEntrada.textContent = "Entradas: " + formatarMoeda(dados.entrada);
+        barraEntrada.appendChild(dicaEntrada);
+
+        const barraSaida = document.createElement("div");
+        barraSaida.className = "barra-mes saida";
+        barraSaida.style.height = Math.max((dados.saida / maximo) * 100, dados.saida > 0 ? 3 : 1) + "%";
+        const dicaSaida = document.createElement("span");
+        dicaSaida.className = "dica-barra";
+        dicaSaida.textContent = "Saídas: " + formatarMoeda(dados.saida);
+        barraSaida.appendChild(dicaSaida);
+
+        barras.append(barraEntrada, barraSaida);
+
+        const rotulo = document.createElement("span");
+        rotulo.className = "rotulo-mes-grafico";
+        rotulo.textContent = nomeMesAbreviado(chave);
+
+        grupo.append(barras, rotulo);
+        container.appendChild(grupo);
+      });
+    }
+
+    function desenharComparativoEsferas(lancamentos) {
+      const container = document.getElementById("comparativo-esferas");
+      container.innerHTML = "";
+
+      const saidasPessoal = lancamentos.filter(function (l) { return l.tipo === "saida" && l.esfera === "pessoal"; })
+        .reduce(function (soma, l) { return soma + Number(l.valor); }, 0);
+      const saidasEmpresa = lancamentos.filter(function (l) { return l.tipo === "saida" && l.esfera === "empresa"; })
+        .reduce(function (soma, l) { return soma + Number(l.valor); }, 0);
+
+      if (saidasPessoal === 0 && saidasEmpresa === 0) {
+        container.appendChild(criarEstadoVazio("Nenhuma saída registrada neste período."));
+        return;
+      }
+
+      const maiorValor = Math.max(saidasPessoal, saidasEmpresa, 1);
+
+      [
+        { rotulo: "Pessoal", valor: saidasPessoal, classe: "pessoal" },
+        { rotulo: "Empresa", valor: saidasEmpresa, classe: "empresa" },
+      ].forEach(function (item) {
+        const linha = document.createElement("div");
+        linha.className = "linha-comparativo-esfera";
+
+        const rotulo = document.createElement("span");
+        rotulo.className = "rotulo-comparativo-esfera";
+        rotulo.textContent = item.rotulo;
+
+        const trilho = document.createElement("div");
+        trilho.className = "trilho-comparativo-esfera";
+        const barra = document.createElement("div");
+        barra.className = "barra-comparativo-esfera " + item.classe;
+        barra.style.width = (item.valor / maiorValor) * 100 + "%";
+        trilho.appendChild(barra);
+
+        const valor = document.createElement("span");
+        valor.className = "valor-comparativo-esfera";
+        valor.textContent = formatarMoeda(item.valor);
+
+        linha.append(rotulo, trilho, valor);
+        container.appendChild(linha);
+      });
+    }
+
+    // Paleta de cores usada no gráfico de pizza das categorias, repetida
+    // em ordem caso haja mais categorias do que cores.
+    const PALETA_PIZZA = ["#D4572A", "#2D7A4F", "#3F6FA8", "#C99A3B", "#6B5B95", "#B8461F", "#7FA88A", "#A85C7A", "#1A1816", "#6B645C"];
+
+    function desenharCategoriasFinanceiro(lancamentos) {
+      const container = document.getElementById("lista-categorias-financeiro");
+      container.innerHTML = "";
+
+      const saidas = lancamentos.filter(function (l) { return l.tipo === "saida"; });
+      if (saidas.length === 0) {
+        container.appendChild(criarEstadoVazio("Nenhuma saída registrada neste período."));
+        return;
+      }
+
+      const porCategoria = {};
+      saidas.forEach(function (l) {
+        const categoria = l.categoria || "Outro";
+        porCategoria[categoria] = (porCategoria[categoria] || 0) + Number(l.valor);
+      });
+
+      const lista = Object.keys(porCategoria).map(function (categoria) {
+        return { categoria: categoria, valor: porCategoria[categoria] };
+      });
+      lista.sort(function (a, b) { return b.valor - a.valor; });
+      const total = lista.reduce(function (soma, item) { return soma + item.valor; }, 0);
+
+      // Monta as "fatias" da pizza com conic-gradient: cada categoria vira
+      // um trecho de cor proporcional ao seu percentual do total.
+      let acumulado = 0;
+      const fatias = lista.map(function (item, indice) {
+        const cor = PALETA_PIZZA[indice % PALETA_PIZZA.length];
+        const inicio = total > 0 ? (acumulado / total) * 100 : 0;
+        acumulado += item.valor;
+        const fim = total > 0 ? (acumulado / total) * 100 : 0;
+        return cor + " " + inicio + "% " + fim + "%";
+      });
+
+      const envoltorio = document.createElement("div");
+      envoltorio.className = "grafico-categorias-container";
+
+      const pizza = document.createElement("div");
+      pizza.className = "grafico-pizza";
+      pizza.style.background = "conic-gradient(" + fatias.join(", ") + ")";
+      pizza.setAttribute("role", "img");
+      pizza.setAttribute("aria-label", "Gráfico de pizza dos gastos por categoria");
+
+      const legenda = document.createElement("div");
+      legenda.className = "legenda-pizza";
+      lista.forEach(function (item, indice) {
+        const cor = PALETA_PIZZA[indice % PALETA_PIZZA.length];
+        const percentual = total > 0 ? Math.round((item.valor / total) * 100) : 0;
+
+        const linha = document.createElement("div");
+        linha.className = "linha-legenda-pizza";
+
+        const ponto = document.createElement("span");
+        ponto.className = "ponto-legenda-pizza";
+        ponto.style.background = cor;
+
+        const texto = document.createElement("span");
+        texto.textContent = item.categoria + " - " + percentual + "% (" + formatarMoeda(item.valor) + ")";
+
+        linha.append(ponto, texto);
+        legenda.appendChild(linha);
+      });
+
+      envoltorio.append(pizza, legenda);
+      container.appendChild(envoltorio);
+    }
+
+    const NOMES_MESES = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+
+    // Recebe uma chave "AAAA-MM" (ex: "2026-07") e devolve "Julho de 2026".
+    function nomeMesAno(anoMes) {
+      const partes = anoMes.split("-");
+      const mes = Number(partes[1]) - 1;
+      return NOMES_MESES[mes] + " de " + partes[0];
+    }
+
+    function criarLinhaLancamento(lancamento) {
+      const linha = document.createElement("div");
+      linha.className = "linha-lancamento";
+
+      const selo = document.createElement("span");
+      selo.className = "selo-tipo-lancamento " + lancamento.tipo;
+      selo.setAttribute("aria-hidden", "true");
+      selo.textContent = lancamento.tipo === "entrada" ? "↑" : "↓";
+
+      const info = document.createElement("div");
+      info.className = "info-lancamento";
+
+      const categoria = document.createElement("p");
+      categoria.className = "categoria-lancamento";
+      categoria.textContent = lancamento.categoria + (lancamento.descricao ? " - " + lancamento.descricao : "");
+      const seloEsfera = document.createElement("span");
+      seloEsfera.className = "selo-esfera-lancamento";
+      seloEsfera.textContent = lancamento.esfera === "pessoal" ? "Pessoal" : "Empresa";
+      categoria.appendChild(seloEsfera);
+      if (lancamento.status === "pendente") {
+        const seloPendente = document.createElement("span");
+        seloPendente.className = "selo-pendente";
+        seloPendente.textContent = "Pendente";
+        categoria.appendChild(seloPendente);
+      }
+
+      const dataTexto = document.createElement("p");
+      dataTexto.className = "descricao-data-lancamento";
+      dataTexto.textContent = formatarDataCurtaISO(lancamento.data);
+
+      info.append(categoria, dataTexto);
+
+      const valor = document.createElement("span");
+      valor.className = "valor-lancamento " + lancamento.tipo;
+      valor.textContent = (lancamento.tipo === "entrada" ? "+ " : "- ") + formatarMoeda(lancamento.valor);
+
+      linha.append(selo, info, valor);
+
+      if (lancamento.status === "pendente") {
+        const botaoConfirmar = document.createElement("button");
+        botaoConfirmar.type = "button";
+        botaoConfirmar.className = "botao-confirmar-lancamento";
+        botaoConfirmar.textContent = lancamento.tipo === "entrada" ? "Recebido" : "Pago";
+        botaoConfirmar.addEventListener("click", function () { confirmarLancamento(lancamento.id); });
+        linha.appendChild(botaoConfirmar);
+      }
+
+      const botaoExcluir = document.createElement("button");
+      botaoExcluir.type = "button";
+      botaoExcluir.className = "botao-excluir-lancamento";
+      botaoExcluir.setAttribute("aria-label", "Excluir lançamento");
+      botaoExcluir.textContent = "🗑";
+      botaoExcluir.addEventListener("click", function () { excluirLancamento(lancamento.id); });
+      linha.appendChild(botaoExcluir);
+
+      return linha;
+    }
+
+    async function confirmarLancamento(id) {
+      const resultado = await Auth.sb.from("portfolio_financeiro")
+        .update({ status: "confirmado" })
+        .eq("id", id)
+        .select()
+        .single();
+
+      if (resultado.error) {
+        alert("Não foi possível confirmar. Tenta de novo.");
+        return;
+      }
+
+      const indice = todosLancamentos.findIndex(function (l) { return l.id === id; });
+      if (indice !== -1) todosLancamentos[indice] = resultado.data;
+      redesenharTudo();
+    }
+
+    // Agrupa os lançamentos por mês (o mais recente primeiro), com um
+    // cabeçalho mostrando o total de entradas e saídas de cada mês.
+    function desenharListaLancamentos(lancamentos) {
+      const container = document.getElementById("lista-lancamentos");
+      container.innerHTML = "";
+
+      if (lancamentos.length === 0) {
+        container.appendChild(criarEstadoVazio("Nenhum lançamento neste período."));
+        return;
+      }
+
+      const grupos = {};
+      lancamentos.forEach(function (lancamento) {
+        const chave = lancamento.data.slice(0, 7);
+        if (!grupos[chave]) grupos[chave] = [];
+        grupos[chave].push(lancamento);
+      });
+
+      const chavesOrdenadas = Object.keys(grupos).sort().reverse();
+
+      chavesOrdenadas.forEach(function (chave) {
+        const itensDoMes = grupos[chave].slice().sort(function (a, b) {
+          return new Date(b.data) - new Date(a.data);
+        });
+
+        const entradasMes = itensDoMes.filter(function (l) { return l.tipo === "entrada"; })
+          .reduce(function (soma, l) { return soma + Number(l.valor); }, 0);
+        const saidasMes = itensDoMes.filter(function (l) { return l.tipo === "saida"; })
+          .reduce(function (soma, l) { return soma + Number(l.valor); }, 0);
+
+        const cabecalhoMes = document.createElement("div");
+        cabecalhoMes.className = "cabecalho-mes-lancamentos";
+
+        const tituloMes = document.createElement("p");
+        tituloMes.className = "titulo-mes-lancamentos";
+        tituloMes.textContent = nomeMesAno(chave);
+
+        const resumoMes = document.createElement("p");
+        resumoMes.className = "resumo-mes-lancamentos";
+        resumoMes.textContent = "+ " + formatarMoeda(entradasMes) + "    - " + formatarMoeda(saidasMes);
+
+        cabecalhoMes.append(tituloMes, resumoMes);
+        container.appendChild(cabecalhoMes);
+
+        itensDoMes.forEach(function (lancamento) {
+          container.appendChild(criarLinhaLancamento(lancamento));
+        });
+      });
+    }
+
+    /* =============================================================
        INTERFACE: ABAS, FILTRO DE PERÍODO, GAVETA MOBILE E SAIR
        ============================================================= */
     // Elementos da gaveta do menu (usado no celular) e a função que a
@@ -1000,7 +2019,10 @@
 
           document.getElementById("aba-principal").hidden = aba !== "principal";
           document.getElementById("aba-portfolio").hidden = aba !== "portfolio";
-          document.getElementById("titulo-pagina").textContent = aba === "principal" ? "Menu Principal" : "Portfólio";
+          document.getElementById("aba-financeiro").hidden = aba !== "financeiro";
+
+          const titulos = { principal: "Menu Principal", portfolio: "Portfólio", financeiro: "Financeiro" };
+          document.getElementById("titulo-pagina").textContent = titulos[aba];
 
           fecharGaveta();
         });
@@ -1015,6 +2037,117 @@
           });
           redesenharTudo();
         });
+      });
+
+      // Filtro de esfera (Tudo/Pessoal/Empresa), só usado na aba Financeiro
+      document.querySelectorAll(".botao-esfera").forEach(function (botao) {
+        botao.addEventListener("click", function () {
+          esferaAtual = botao.dataset.esfera;
+          document.querySelectorAll(".botao-esfera").forEach(function (b) {
+            b.classList.toggle("ativo", b === botao);
+          });
+          redesenharTudo();
+        });
+      });
+
+      // Formulário de novo lançamento financeiro
+      document.getElementById("tipo-entrada").addEventListener("change", popularCategorias);
+      document.getElementById("tipo-saida").addEventListener("change", popularCategorias);
+      popularCategorias();
+      document.getElementById("campo-data").value = new Date().toISOString().slice(0, 10);
+
+      document.getElementById("form-lancamento").addEventListener("submit", async function (evento) {
+        evento.preventDefault();
+
+        const tipo = document.getElementById("tipo-entrada").checked ? "entrada" : "saida";
+        const status = document.getElementById("status-pendente").checked ? "pendente" : "confirmado";
+        const esfera = document.getElementById("esfera-pessoal").checked ? "pessoal" : "empresa";
+        const categoria = document.getElementById("campo-categoria").value;
+        const valor = Number(document.getElementById("campo-valor").value);
+        const data = document.getElementById("campo-data").value;
+        const descricao = document.getElementById("campo-descricao").value.trim();
+
+        if (!valor || valor <= 0) {
+          alert("Informe um valor válido.");
+          return;
+        }
+
+        const resultado = await Auth.sb.from("portfolio_financeiro")
+          .insert({ tipo: tipo, status: status, esfera: esfera, categoria: categoria, valor: valor, data: data, descricao: descricao || null })
+          .select()
+          .single();
+
+        if (resultado.error) {
+          console.error(resultado.error);
+          alert("Não foi possível salvar o lançamento. Tenta de novo.");
+          return;
+        }
+
+        todosLancamentos.push(resultado.data);
+        this.reset();
+        document.getElementById("campo-data").value = new Date().toISOString().slice(0, 10);
+        popularCategorias();
+        redesenharTudo();
+      });
+
+      // Formulário de meta de economia
+      document.getElementById("form-meta").addEventListener("submit", async function (evento) {
+        evento.preventDefault();
+
+        const novoValor = Number(document.getElementById("campo-meta").value);
+        if (isNaN(novoValor) || novoValor < 0) {
+          alert("Informe um valor válido.");
+          return;
+        }
+
+        const resultado = await Auth.sb.from("portfolio_meta_economia")
+          .upsert({ id: 1, valor_meta: novoValor, atualizado_em: new Date().toISOString() });
+
+        if (resultado.error) {
+          console.error(resultado.error);
+          alert("Não foi possível salvar a meta. Tenta de novo.");
+          return;
+        }
+
+        metaEconomia = novoValor;
+        redesenharTudo();
+      });
+
+      // Formulário de despesa fixa mensal
+      document.getElementById("tipo-fixa-entrada").addEventListener("change", popularCategoriasFixa);
+      document.getElementById("tipo-fixa-saida").addEventListener("change", popularCategoriasFixa);
+      popularCategoriasFixa();
+
+      document.getElementById("form-despesa-fixa").addEventListener("submit", async function (evento) {
+        evento.preventDefault();
+
+        const tipo = document.getElementById("tipo-fixa-entrada").checked ? "entrada" : "saida";
+        const esfera = document.getElementById("esfera-fixa-pessoal").checked ? "pessoal" : "empresa";
+        const categoria = document.getElementById("campo-categoria-fixa").value;
+        const valor = Number(document.getElementById("campo-valor-fixa").value);
+        const descricao = document.getElementById("campo-descricao-fixa").value.trim();
+
+        if (!valor || valor <= 0) {
+          alert("Informe um valor válido.");
+          return;
+        }
+
+        const resultado = await Auth.sb.from("portfolio_despesas_fixas")
+          .insert({ tipo: tipo, esfera: esfera, categoria: categoria, valor: valor, descricao: descricao || null })
+          .select()
+          .single();
+
+        if (resultado.error) {
+          console.error(resultado.error);
+          alert("Não foi possível salvar a despesa fixa. Tenta de novo.");
+          return;
+        }
+
+        todasDespesasFixas.push(resultado.data);
+        this.reset();
+        popularCategoriasFixa();
+        await lancarDespesasFixasDoMes();
+        redesenharTudo();
       });
 
       // Gaveta do menu no celular
