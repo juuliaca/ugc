@@ -26,7 +26,7 @@
     --terracota-tinta: #f4e1d3;
     --areia: #D9CBB8;
     --branco: #FFFFFF;
-    --header-height: 76px;
+    --header-height: 88px;
 
     --fonte-titulo: 'Sora', sans-serif;
     --fonte-corpo: 'DM Sans', sans-serif;
@@ -246,14 +246,28 @@
     justify-content: space-between;
   }
   .logo {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .logo-nome {
     font-family: var(--fonte-titulo);
     font-weight: 800;
     color: var(--marrom);
     font-size: 19px;
     letter-spacing: 0.02em;
-    text-decoration: none;
     line-height: 1.2;
-    white-space: nowrap;
+  }
+  .logo-subtitulo {
+    font-family: var(--fonte-corpo);
+    font-weight: 700;
+    color: var(--terracota);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1;
   }
 
   .menu-desktop {
@@ -360,23 +374,22 @@
     gap: 18px;
     margin-top: 44px;
     padding-top: 28px;
-    border-top: 1px solid var(--areia);
   }
-  .item-estatistica-hero { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .item-estatistica-hero { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
   .item-estatistica-hero .icone-estatistica {
-    width: 30px; height: 30px;
+    width: 36px; height: 36px;
     border-radius: 50%;
     background: var(--oliva-tinta);
     color: var(--oliva-escuro);
     display: flex; align-items: center; justify-content: center;
-    font-size: 12.5px;
+    font-size: 14px;
     flex-shrink: 0;
   }
   .item-estatistica-hero .valor-estatistica-hero {
     display: block;
     font-family: var(--fonte-titulo);
-    font-weight: 700;
-    font-size: 15.5px;
+    font-weight: 800;
+    font-size: 20px;
     color: var(--marrom);
     line-height: 1.15;
     white-space: nowrap;
@@ -384,31 +397,36 @@
   .item-estatistica-hero .rotulo-estatistica-hero {
     display: block;
     white-space: nowrap;
-    font-size: 11.5px;
+    font-size: 13.5px;
     color: var(--marrom-suave);
   }
 
   .hero-figura {
     position: relative;
-    max-width: 460px;
-    height: 500px;
+    max-width: 440px;
+    height: 480px;
     display: flex;
     align-items: flex-end;
     justify-content: center;
   }
+  /* Camada de fundo: uma elipse fixa e modesta, só um respiro colorido atrás da foto.
+     Fica recuada da coluna de texto (não sangra pra esquerda) e não tenta "caber" a
+     pose inteira — a foto por cima é livre pra ultrapassar essa forma. */
   .hero-figura::before {
     content: "";
     position: absolute;
-    top: 110px; left: -30px; right: 24px; bottom: 0;
+    top: 90px; left: 10px; right: 10px; bottom: 30px;
     background: var(--oliva);
-    border-radius: 44% 56% 42% 58% / 56% 48% 52% 44%;
+    border-radius: 50%;
     z-index: 0;
   }
+  /* Camada de cima: a foto inteira, sentada, maior que a elipse de propósito —
+     a cabeça ultrapassa o topo do círculo (efeito de profundidade, tipo capa de revista). */
   .hero-figura .bloco-imagem {
     position: relative;
     z-index: 1;
     display: inline-block;
-    height: 112%;
+    height: 113%;
     width: auto;
     background: none !important;
   }
@@ -486,7 +504,6 @@
   .faixa-marcas {
     overflow: hidden;
     padding-block: 64px;
-    border-top: 1px solid var(--areia);
     border-bottom: 1px solid var(--areia);
   }
   .titulo-marcas {
@@ -564,7 +581,7 @@
     height: 112%;
     width: auto;
     max-width: 100%;
-    margin-top: -44px;
+    margin-top: 0;
     background: none !important;
   }
   .sobre-figura .bloco-imagem img {
@@ -573,8 +590,8 @@
     max-width: 100%;
     object-fit: contain;
     display: block;
-    -webkit-mask-image: linear-gradient(to bottom, black 58%, transparent 94%);
-    mask-image: linear-gradient(to bottom, black 58%, transparent 94%);
+    -webkit-mask-image: linear-gradient(to bottom, black 86%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 86%, transparent 100%);
   }
   .sobre .rotulo-eyebrow { color: var(--off-white); }
   .sobre .rotulo-eyebrow::before { background: var(--off-white); }
@@ -921,6 +938,142 @@
   .rotulo-numero { font-size: 15px; font-weight: 500; color: var(--areia); }
 
   /* =========================================================
+     MÉTRICAS DO INSTAGRAM
+     ========================================================= */
+  .metricas-cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .metricas-cabecalho h2 { margin: 0; }
+  #metricas-titulo { font-size: clamp(2.3rem, 5vw, 3.6rem); }
+  .metricas-subtitulo,
+  .pacotes-subtitulo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--terracota-tinta);
+    color: var(--terracota-escuro);
+    font-family: var(--fonte-corpo);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.03em;
+    padding: 9px 18px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .grade-metricas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    align-items: start;
+  }
+  .painel-metrica { padding: 26px 24px; display: flex; flex-direction: column; }
+  .painel-metrica h3 {
+    font-family: var(--fonte-titulo);
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0 0 18px;
+  }
+  .metrica-caixinhas { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .metrica-caixa {
+    background: var(--off-white);
+    border-radius: 10px;
+    padding: 10px 12px;
+    flex: 1;
+    min-width: 84px;
+  }
+  .metrica-caixa .valor-caixa {
+    display: block;
+    font-family: var(--fonte-titulo);
+    font-weight: 800;
+    font-size: 17px;
+    color: var(--marrom);
+  }
+  .metrica-caixa .rotulo-caixa { font-size: 11.5px; color: var(--marrom-suave); }
+  .metrica-split { font-size: 12.5px; color: var(--marrom-suave); margin-bottom: 18px; }
+  .metrica-grafico { margin-bottom: 20px; }
+  .metrica-grafico svg { width: 100%; height: auto; display: block; }
+  .metrica-grafico-eixos { display: flex; justify-content: space-between; font-size: 11px; color: var(--marrom-suave); margin-top: 6px; }
+  .metrica-subtitulo-bloco {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--marrom);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 4px 0 12px;
+  }
+  .barra-metrica { margin-bottom: 12px; }
+  .barra-metrica:last-child { margin-bottom: 0; }
+  .barra-metrica .topo-barra {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13.5px;
+    margin-bottom: 6px;
+  }
+  .barra-metrica .topo-barra span:last-child { font-weight: 700; color: var(--marrom); }
+  .trilho-barra-metrica {
+    background: var(--oliva-tinta);
+    border-radius: 999px;
+    height: 7px;
+    overflow: hidden;
+  }
+  .preenchimento-barra-metrica { background: var(--terracota); height: 100%; border-radius: 999px; }
+  .bloco-audiencia { margin-bottom: 22px; }
+  .bloco-audiencia:last-child { margin-bottom: 0; }
+
+  .cartao-destaque-reel { display: flex; flex-direction: column; }
+  .destaque-reel-selo {
+    display: inline-flex;
+    align-self: flex-start;
+    background: var(--terracota-tinta);
+    color: var(--terracota-escuro);
+    font-family: var(--fonte-titulo);
+    font-weight: 800;
+    font-size: 15px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    margin: -4px 0 16px;
+  }
+  .destaque-reel-corpo { display: flex; gap: 16px; margin-bottom: 16px; }
+  .destaque-reel-imagem {
+    width: 96px;
+    height: 168px;
+    border-radius: 12px;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 4px 14px rgba(43,33,24,0.15);
+  }
+  .destaque-reel-texto p { font-size: 14.5px; line-height: 1.45; margin: 0 0 8px; }
+  .destaque-reel-meta { display: block; font-size: 12.5px; color: var(--marrom-suave); }
+  .destaque-reel-colab { display: block; font-size: 12.5px; color: var(--marrom-suave); font-style: italic; margin-top: 4px; }
+  .destaque-reel-estatisticas {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    border-top: 1px solid var(--areia);
+    padding-top: 16px;
+    margin-top: 16px;
+  }
+  .destaque-reel-item { text-align: center; }
+  .destaque-reel-item .icone-destaque { display: block; color: var(--terracota); font-size: 15px; margin-bottom: 4px; }
+  .destaque-reel-item .valor-destaque { display: block; font-family: var(--fonte-titulo); font-weight: 800; font-size: 14.5px; color: var(--marrom); }
+  .destaque-reel-item .rotulo-destaque { font-size: 10.5px; color: var(--marrom-suave); }
+  .linha-visaogeral {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13.5px;
+    padding: 8px 0;
+    border-top: 1px solid var(--areia);
+  }
+  .linha-visaogeral:first-child { border-top: none; padding-top: 0; }
+  .linha-visaogeral span:first-child { color: var(--marrom-suave); }
+  .linha-visaogeral span:last-child { font-weight: 700; color: var(--marrom); }
+
+  /* =========================================================
      DEPOIMENTOS
      ========================================================= */
   .carrossel-depoimentos {
@@ -951,6 +1104,98 @@
   .card-depoimento p { color: var(--marrom); }
   .card-depoimento .autor { margin-top: 14px; font-weight: 700; font-size: 16px; display: block; color: var(--marrom); }
   .card-depoimento .empresa { color: var(--oliva); font-size: 14.5px; display: block; }
+
+  /* =========================================================
+     FORMATOS & INVESTIMENTO (pacotes)
+     ========================================================= */
+  .pacotes-cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .pacotes-cabecalho h2 { margin: 0; }
+  #pacotes-titulo { font-size: clamp(2.3rem, 5vw, 3.6rem); }
+
+  .grade-pacotes {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 48px;
+  }
+  .cartao-pacote { padding: 30px 24px; display: flex; flex-direction: column; }
+  .cartao-pacote .rotulo-pacote {
+    font-family: var(--fonte-corpo);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--marrom-suave);
+    margin-bottom: 16px;
+  }
+  .cartao-pacote .titulo-pacote {
+    font-family: var(--fonte-titulo);
+    font-weight: 800;
+    font-size: 29px;
+    color: var(--marrom);
+    margin: 0 0 3px;
+    letter-spacing: -0.01em;
+  }
+  .cartao-pacote .extra-pacote { color: var(--marrom-suave); font-size: 15.5px; margin-bottom: 22px; }
+  .cartao-pacote .preco-pacote {
+    font-family: var(--fonte-titulo);
+    font-weight: 800;
+    font-size: 34px;
+    color: var(--terracota);
+    margin-bottom: 22px;
+    letter-spacing: -0.01em;
+  }
+  .cartao-pacote .botao-destaque { justify-content: center; margin-top: auto; }
+
+  .pacotes-extra {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+  .outros-formatos h3 { font-size: 25px; margin: 0 0 18px; }
+  .linha-outro-formato {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-top: 1px solid var(--areia);
+    font-size: 17px;
+  }
+  .linha-outro-formato:first-of-type { border-top: 1px solid var(--areia); }
+  .linha-outro-formato .valor-outro-formato { font-weight: 800; color: var(--marrom); font-size: 18px; }
+
+  .pacotes-incluido h3 { font-size: 27px; margin: 6px 0 18px; }
+  .pacotes-incluido ul { list-style: none; margin: 0 0 20px; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+  .pacotes-incluido li {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--marrom);
+    padding-left: 24px;
+    position: relative;
+  }
+  .pacotes-incluido li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--oliva);
+    font-weight: 700;
+  }
+  .aviso-collab {
+    background: var(--terracota-tinta);
+    border-left: 3px solid var(--terracota);
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 14.5px;
+    color: var(--terracota-escuro);
+    font-weight: 700;
+    line-height: 1.5;
+  }
 
   /* =========================================================
      CONTATO
@@ -1133,6 +1378,9 @@
     .grade-numeros { grid-template-columns: repeat(2, 1fr); }
     .item-numero:nth-child(3), .item-numero:nth-child(4) { border-left: none; padding-left: 0; }
     .grade-contato { grid-template-columns: 1fr; }
+    .grade-metricas { grid-template-columns: 1fr; }
+    .grade-pacotes { grid-template-columns: 1fr 1fr; }
+    .pacotes-extra { grid-template-columns: 1fr; gap: 36px; }
   }
 
   @media (max-width: 760px) {
@@ -1161,6 +1409,7 @@
     .grade-numeros { grid-template-columns: 1fr 1fr; gap: 24px; }
     .item-numero:nth-child(2n) { border-left: none; padding-left: 0; }
     .hero-frase { font-size: 17px; }
+    .grade-pacotes { grid-template-columns: 1fr; }
   }
 </style>
 
@@ -1189,7 +1438,10 @@
 <!-- ===================== CABEÇALHO / MENU ===================== -->
 <header class="cabecalho">
   <nav class="barra-nav container" aria-label="Menu principal">
-    <a href="#inicio" class="logo" id="logo-cabecalho"></a>
+    <a href="#inicio" class="logo" id="logo-cabecalho">
+      <span class="logo-nome" id="logo-nome"></span>
+      <span class="logo-subtitulo" id="logo-subtitulo"></span>
+    </a>
 
     <ul class="menu-desktop" id="menu-desktop"></ul>
 
@@ -1252,6 +1504,17 @@
     </div>
   </section>
 
+  <!-- ===================== PORTFÓLIO ===================== -->
+  <section id="portfolio">
+    <div class="container secao-corpo revelar">
+      <span class="rotulo-eyebrow">Portfólio</span>
+      <h2 id="portfolio-titulo"></h2>
+      <p class="portfolio-subtitulo" id="portfolio-subtitulo"></p>
+      <div class="filtros-portfolio" id="filtros-portfolio" role="group" aria-label="Ir direto para um nicho"></div>
+      <div class="grade-portfolio" id="grade-portfolio"></div>
+    </div>
+  </section>
+
   <!-- ===================== SERVIÇOS ===================== -->
   <section id="servicos" class="servicos">
     <div class="container secao-corpo revelar">
@@ -1270,22 +1533,53 @@
     </div>
   </section>
 
-  <!-- ===================== PORTFÓLIO ===================== -->
-  <section id="portfolio">
-    <div class="container secao-corpo revelar">
-      <span class="rotulo-eyebrow">Portfólio</span>
-      <h2 id="portfolio-titulo"></h2>
-      <p class="portfolio-subtitulo" id="portfolio-subtitulo"></p>
-      <div class="filtros-portfolio" id="filtros-portfolio" role="group" aria-label="Ir direto para um nicho"></div>
-      <div class="grade-portfolio" id="grade-portfolio"></div>
-    </div>
-  </section>
-
   <!-- ===================== RESULTADOS / NÚMEROS ===================== -->
   <section id="resultados">
     <div class="container secao-corpo revelar">
       <h2>Resultados que falam por mim</h2>
       <div class="grade-numeros" id="grade-numeros"></div>
+    </div>
+  </section>
+
+  <!-- ===================== MÉTRICAS DO INSTAGRAM ===================== -->
+  <section id="metricas-instagram">
+    <div class="container secao-corpo revelar">
+      <div class="metricas-cabecalho">
+        <div>
+          <span class="rotulo-eyebrow" id="metricas-eyebrow"></span>
+          <h2 id="metricas-titulo"></h2>
+        </div>
+        <p class="metricas-subtitulo" id="metricas-subtitulo"></p>
+      </div>
+      <div class="grade-metricas" id="grade-metricas"></div>
+    </div>
+  </section>
+
+  <!-- ===================== FORMATOS & INVESTIMENTO ===================== -->
+  <section id="pacotes">
+    <div class="container secao-corpo revelar">
+      <div class="pacotes-cabecalho">
+        <div>
+          <span class="rotulo-eyebrow" id="pacotes-eyebrow"></span>
+          <h2 id="pacotes-titulo"></h2>
+        </div>
+        <p class="pacotes-subtitulo" id="pacotes-subtitulo"></p>
+      </div>
+
+      <div class="grade-pacotes" id="grade-pacotes"></div>
+
+      <div class="pacotes-extra">
+        <div class="outros-formatos">
+          <h3>Outros formatos.</h3>
+          <div id="lista-outros-formatos"></div>
+        </div>
+        <div class="pacotes-incluido">
+          <span class="rotulo-eyebrow" id="incluido-eyebrow"></span>
+          <h3 id="incluido-titulo"></h3>
+          <ul id="lista-incluido"></ul>
+          <p class="aviso-collab" id="aviso-collab"></p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1384,6 +1678,7 @@
     perfil: {
       nome: "Julia Carolina",
       logo: "JULIA CAROLINA",
+      logoSubtitulo: "UGC Creator & Influencer",
       profissao: "Criadora de Conteúdo UGC & Influenciadora",
       // o título do hero é dividido em duas partes: "tituloPrefixo" some no texto normal
       // e "tituloDestaque" aparece na cor de destaque em itálico
@@ -1416,6 +1711,60 @@
       instagramUrl: "https://instagram.com/juuliaca",
     },
 
+    // EDITE AQUI: pacotes e valores. Cada pacote e cada item de "outrosFormatos" tem sua
+    // própria mensagem de WhatsApp (menos os itens sem preço fixo, que não têm botão).
+    pacotesInvestimento: {
+      eyebrow: "Vamos criar para a sua marca",
+      titulo: "Pacotes & valores.",
+      subtitulo: "☎ Combinamos tudo pelo WhatsApp",
+      pacotes: [
+        {
+          rotulo: "Pacote 01",
+          titulo: "1 vídeo",
+          extra: "+ 2 fotos",
+          preco: "R$ 400,00",
+          mensagemWhatsapp: "Olá, Julia! Tenho interesse no pacote de 1 vídeo + 2 fotos (R$ 400,00). Podemos conversar?",
+        },
+        {
+          rotulo: "Pacote 02",
+          titulo: "2 vídeos",
+          extra: "+ 3 fotos",
+          preco: "R$ 675,00",
+          mensagemWhatsapp: "Olá, Julia! Tenho interesse no pacote de 2 vídeos + 3 fotos (R$ 675,00). Podemos conversar?",
+        },
+        {
+          rotulo: "Pacote 03",
+          titulo: "3 vídeos",
+          extra: "+ 5 fotos",
+          preco: "R$ 997,00",
+          mensagemWhatsapp: "Olá, Julia! Tenho interesse no pacote de 3 vídeos + 5 fotos (R$ 997,00). Podemos conversar?",
+        },
+        {
+          rotulo: "Pacote 04",
+          titulo: "4 vídeos",
+          extra: "+ 6 fotos",
+          preco: "R$ 1.300,00",
+          mensagemWhatsapp: "Olá, Julia! Tenho interesse no pacote de 4 vídeos + 6 fotos (R$ 1.300,00). Podemos conversar?",
+        },
+      ],
+      outrosFormatos: [
+        { rotulo: "1 foto", preco: "R$ 100,00" },
+        { rotulo: "1 story", preco: "R$ 200,00" },
+        { rotulo: "1 vídeo", preco: "R$ 300,00" },
+        { rotulo: "Collab (por vídeo)", preco: "+ R$ 350,00" },
+      ],
+      incluido: {
+        eyebrow: "O que está incluído",
+        titulo: "Conteúdo pronto pra rodar nas suas redes.",
+        itens: [
+          "Uso orgânico vitalício no perfil da marca.",
+          "Pode impulsionar em anúncios pagos por até 4 meses, sem custo a mais.",
+          "Entrega em até 7 dias após o produto chegar até mim.",
+        ],
+        avisoCollab: "Importante: a collab é um valor adicional por vídeo. Cada vídeo em collab soma R$ 350,00 a mais. Não é um valor único pro pacote inteiro.",
+      },
+    },
+
     // EDITE AQUI: o título e o subtítulo da seção Contato (o título é dividido em duas partes:
     // "tituloPrefixo" + a palavra "tituloDestaque" em laranja/itálico, seguida de "?")
     contatoTextos: {
@@ -1428,8 +1777,8 @@
     navegacao: [
       { rotulo: "Início", href: "#inicio" },
       { rotulo: "Sobre", href: "#sobre" },
-      { rotulo: "Serviços", href: "#servicos" },
       { rotulo: "Portfólio", href: "#portfolio" },
+      { rotulo: "Serviços", href: "#servicos" },
       { rotulo: "Resultados", href: "#resultados" },
       { rotulo: "Depoimentos", href: "#depoimentos" },
       { rotulo: "Contato", href: "#contato" },
@@ -1468,8 +1817,8 @@
       // aparecem em negrito. Se não precisar de negrito, é só deixar "destaques: []".
       paragrafos: [
         {
-          texto: "Tenho 28 anos, publicitária por formação, sou uma influenciadora com 8 anos de experiência e criadora de conteúdo UGC há 1 ano e meio.",
-          destaques: ["28 anos", "publicitária", "8 anos de experiência", "UGC"],
+          texto: "Tenho 29 anos, publicitária por formação, sou uma influenciadora com 8 anos de experiência e criadora de conteúdo UGC há 1 ano e meio.",
+          destaques: ["29 anos", "publicitária", "8 anos de experiência", "UGC"],
         },
         {
           texto: "Ajudo marcas a se comunicarem de forma leve, natural e estratégica.",
@@ -1637,11 +1986,76 @@
     // EDITE AQUI: seus números e resultados
     // "decimal: true" mostra uma casa decimal na contagem (útil para 2,3 mi ou 8,5%)
     numeros: [
-      { valor: 35.7, sufixo: " mil", rotulo: "Seguidores engajados", decimal: true },
+      { valor: 36, sufixo: " mil", rotulo: "Seguidores engajados" },
       { valor: 2.3, sufixo: " mi", rotulo: "Visualizações por mês", decimal: true },
       { valor: 100, sufixo: "+", rotulo: "Marcas atendidas" },
       { valor: 8.5, sufixo: "%", rotulo: "Taxa de engajamento", decimal: true },
     ],
+
+    // EDITE AQUI: métricas do Instagram Insights (print da tela "Visão geral", "Público" etc,
+    // com o período de 60 dias). Atualize de tempos em tempos com números mais recentes.
+    metricasInstagram: {
+      eyebrow: "Audiência e alcance",
+      titulo: "Métricas do Instagram.",
+      subtitulo: "◎ Direto do Instagram Insights",
+      alcance: {
+        caixinhas: [
+          { valor: "13.072.257", rotulo: "Visualizações" },
+          { valor: "+6.019", rotulo: "Seguidores líquidos" },
+          { valor: "1.783.019", rotulo: "Interações" },
+        ],
+        splitSeguidores: "5,3% seguidores · 94,7% não seguidores",
+        grafico: { eixoInicio: "26 de jul", eixoMeio: "24 de ago", eixoFim: "23 de set", pico: "2,6 mi" },
+        tipoConteudo: [
+          { rotulo: "Reels", valor: "10 mi" },
+          { rotulo: "Stories", valor: "340 mil" },
+          { rotulo: "Posts", valor: "56 mil" },
+        ],
+      },
+      audiencia: {
+        genero: [
+          { rotulo: "Mulheres", percentual: 58.8 },
+          { rotulo: "Homens", percentual: 41.2 },
+        ],
+        cidades: [
+          { rotulo: "Francisco Beltrão", percentual: 8.7 },
+          { rotulo: "São Paulo", percentual: 5.0 },
+          { rotulo: "Rio de Janeiro", percentual: 2.4 },
+          { rotulo: "Curitiba", percentual: 1.3 },
+          { rotulo: "Manaus", percentual: 1.0 },
+        ],
+        faixaEtaria: [
+          { rotulo: "13-17", percentual: 2.7 },
+          { rotulo: "18-24", percentual: 10.2 },
+          { rotulo: "25-34", percentual: 35.1 },
+          { rotulo: "35-44", percentual: 25.3 },
+          { rotulo: "45-54", percentual: 16.4 },
+          { rotulo: "55-64", percentual: 7.5 },
+          { rotulo: "65+", percentual: 2.7 },
+        ],
+      },
+      destaque: {
+        imagem: "imagens/reel-destaque.jpg",
+        titulo: "Esse ano teve vários desafios e vocês acompanharam muito...",
+        data: "27 de julho",
+        duracao: "1:29",
+        destaqueVisualizacoes: "▲ +1,8 milhão de visualizações",
+        colaboracao: "Collab Café Bom Jesus · resultado via tráfego pago",
+        visaoGeral: [
+          { valor: "1.821.750", rotulo: "Visualizações" },
+          { valor: "21h37min48s", rotulo: "Tempo de visualização" },
+          { valor: "8.919", rotulo: "Interações" },
+          { valor: "22", rotulo: "Atividade do perfil" },
+        ],
+        estatisticas: [
+          { icone: "♡", valor: "8,3 mil", rotulo: "curtidas" },
+          { icone: "◇", valor: "188", rotulo: "comentários" },
+          { icone: "↗", valor: "43", rotulo: "envios" },
+          { icone: "↻", valor: "114", rotulo: "reposts" },
+          { icone: "▤", valor: "265", rotulo: "salvos" },
+        ],
+      },
+    },
 
     // EDITE AQUI: depoimentos reais de clientes e marcas (recebidos por mensagem/avaliação)
     depoimentos: [
@@ -1685,6 +2099,8 @@
     montarPortfolio();
     montarServicos();
     montarNumeros();
+    montarMetricasInstagram();
+    montarPacotes();
     montarDepoimentos();
     montarContato();
     ativarMenuMobile();
@@ -1731,7 +2147,8 @@
   }
 
   function montarCabecalhoERodape() {
-    document.getElementById("logo-cabecalho").textContent = CONFIG.perfil.logo;
+    document.getElementById("logo-nome").textContent = CONFIG.perfil.logo;
+    document.getElementById("logo-subtitulo").textContent = CONFIG.perfil.logoSubtitulo;
     document.getElementById("logo-rodape").textContent = CONFIG.perfil.logo;
     document.getElementById("nome-copyright").textContent = CONFIG.perfil.nome;
     document.getElementById("ano-atual").textContent = new Date().getFullYear();
@@ -2241,6 +2658,265 @@
     });
   }
 
+  // Cria uma linha com rótulo à esquerda, valor em % à direita e uma barrinha
+  // preenchida proporcionalmente embaixo. Usada nos painéis de audiência.
+  function criarBarraMetrica(rotulo, percentual, valorTexto) {
+    const linha = document.createElement("div");
+    linha.className = "barra-metrica";
+
+    const topo = document.createElement("div");
+    topo.className = "topo-barra";
+    const spanRotulo = document.createElement("span");
+    spanRotulo.textContent = rotulo;
+    const spanValor = document.createElement("span");
+    spanValor.textContent = valorTexto;
+    topo.append(spanRotulo, spanValor);
+
+    const trilho = document.createElement("div");
+    trilho.className = "trilho-barra-metrica";
+    const preenchimento = document.createElement("div");
+    preenchimento.className = "preenchimento-barra-metrica";
+    preenchimento.style.width = Math.min(percentual, 100) + "%";
+    trilho.appendChild(preenchimento);
+
+    linha.append(topo, trilho);
+    return linha;
+  }
+
+  // Desenha o mini-gráfico de alcance com SVG puro (sem lib externa),
+  // com um formato que lembra uma curva de alcance com um pico no meio.
+  function criarGraficoAlcance() {
+    const svgNS = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(svgNS, "svg");
+    svg.setAttribute("viewBox", "0 0 300 90");
+    svg.setAttribute("preserveAspectRatio", "none");
+
+    const linhaBase = document.createElementNS(svgNS, "line");
+    linhaBase.setAttribute("x1", "0");
+    linhaBase.setAttribute("y1", "86");
+    linhaBase.setAttribute("x2", "300");
+    linhaBase.setAttribute("y2", "86");
+    linhaBase.setAttribute("stroke", "#E7EADC");
+    linhaBase.setAttribute("stroke-width", "1.5");
+    svg.appendChild(linhaBase);
+
+    const caminho = document.createElementNS(svgNS, "path");
+    caminho.setAttribute(
+      "d",
+      "M0,70 C10,55 20,48 30,60 C40,72 48,80 58,78 C70,76 78,20 92,4 C104,-8 112,55 124,58 " +
+      "C136,61 146,44 158,52 C168,59 176,50 186,58 C196,66 206,56 216,64 " +
+      "C232,76 250,80 270,82 C282,83 292,84 300,84"
+    );
+    caminho.setAttribute("fill", "none");
+    caminho.setAttribute("stroke", "var(--terracota)");
+    caminho.setAttribute("stroke-width", "2.5");
+    caminho.setAttribute("stroke-linecap", "round");
+    svg.appendChild(caminho);
+
+    return svg;
+  }
+
+  function montarMetricasInstagram() {
+    const dados = CONFIG.metricasInstagram;
+
+    document.getElementById("metricas-eyebrow").textContent = dados.eyebrow;
+    document.getElementById("metricas-titulo").textContent = dados.titulo;
+    document.getElementById("metricas-subtitulo").textContent = dados.subtitulo;
+
+    const grade = document.getElementById("grade-metricas");
+
+    // ---- Painel 1: Alcance do perfil ----
+    const painelAlcance = document.createElement("div");
+    painelAlcance.className = "cartao-solido painel-metrica";
+    const tituloAlcance = document.createElement("h3");
+    tituloAlcance.textContent = "Alcance do perfil";
+    painelAlcance.appendChild(tituloAlcance);
+
+    const caixinhas = document.createElement("div");
+    caixinhas.className = "metrica-caixinhas";
+    dados.alcance.caixinhas.forEach((caixa) => {
+      const el = document.createElement("div");
+      el.className = "metrica-caixa";
+      const valor = document.createElement("span");
+      valor.className = "valor-caixa";
+      valor.textContent = caixa.valor;
+      const rotulo = document.createElement("span");
+      rotulo.className = "rotulo-caixa";
+      rotulo.textContent = caixa.rotulo;
+      el.append(valor, rotulo);
+      caixinhas.appendChild(el);
+    });
+    painelAlcance.appendChild(caixinhas);
+
+    const split = document.createElement("p");
+    split.className = "metrica-split";
+    split.textContent = dados.alcance.splitSeguidores;
+    painelAlcance.appendChild(split);
+
+    const blocoGrafico = document.createElement("div");
+    blocoGrafico.className = "metrica-grafico";
+    blocoGrafico.appendChild(criarGraficoAlcance());
+    const eixos = document.createElement("div");
+    eixos.className = "metrica-grafico-eixos";
+    [dados.alcance.grafico.eixoInicio, dados.alcance.grafico.eixoMeio, dados.alcance.grafico.eixoFim].forEach((texto) => {
+      const span = document.createElement("span");
+      span.textContent = texto;
+      eixos.appendChild(span);
+    });
+    blocoGrafico.appendChild(eixos);
+    painelAlcance.appendChild(blocoGrafico);
+
+    const subBlocoTipo = document.createElement("p");
+    subBlocoTipo.className = "metrica-subtitulo-bloco";
+    subBlocoTipo.textContent = "Visualizações por tipo de conteúdo";
+    painelAlcance.appendChild(subBlocoTipo);
+
+    // "10 mi" e "340 mil" têm escalas diferentes (milhão x mil) — converte pro
+    // mesmo número antes de comparar, senão a barra maior fica errada.
+    const paraNumero = (texto) => {
+      const numero = parseFloat(texto.replace(",", "."));
+      // atenção: precisa checar "mil" antes de "mi", porque "mil" também contém "mi"
+      if (texto.includes("mil")) return numero * 1000;
+      if (texto.includes("mi")) return numero * 1000000;
+      return numero;
+    };
+    const maiorTipo = Math.max(...dados.alcance.tipoConteudo.map((t) => paraNumero(t.valor)));
+    dados.alcance.tipoConteudo.forEach((tipo) => {
+      const percentual = (paraNumero(tipo.valor) / maiorTipo) * 100;
+      painelAlcance.appendChild(criarBarraMetrica(tipo.rotulo, percentual, tipo.valor));
+    });
+
+    grade.appendChild(painelAlcance);
+
+    // ---- Painel 2: Conteúdo em destaque ----
+    // (vem logo depois do Alcance, pra formar a 1ª linha da grade 2x2 —
+    // os dois painéis de audiência formam a 2ª linha, mais abaixo)
+    const painelDestaque = document.createElement("div");
+    painelDestaque.className = "cartao-solido painel-metrica cartao-destaque-reel";
+    const tituloDestaque = document.createElement("h3");
+    tituloDestaque.textContent = "Conteúdo em destaque";
+    painelDestaque.appendChild(tituloDestaque);
+
+    if (dados.destaque.destaqueVisualizacoes) {
+      const selo = document.createElement("p");
+      selo.className = "destaque-reel-selo";
+      selo.textContent = dados.destaque.destaqueVisualizacoes;
+      painelDestaque.appendChild(selo);
+    }
+
+    const corpo = document.createElement("div");
+    corpo.className = "destaque-reel-corpo";
+
+    const imagem = document.createElement("img");
+    imagem.className = "destaque-reel-imagem";
+    imagem.src = dados.destaque.imagem;
+    imagem.alt = "Miniatura do reel em destaque";
+    imagem.loading = "lazy";
+    corpo.appendChild(imagem);
+
+    const texto = document.createElement("div");
+    texto.className = "destaque-reel-texto";
+    const paragrafo = document.createElement("p");
+    paragrafo.textContent = dados.destaque.titulo;
+    const meta = document.createElement("span");
+    meta.className = "destaque-reel-meta";
+    meta.textContent = dados.destaque.data + " · Duração " + dados.destaque.duracao;
+    texto.append(paragrafo, meta);
+
+    if (dados.destaque.colaboracao) {
+      const colab = document.createElement("span");
+      colab.className = "destaque-reel-colab";
+      colab.textContent = dados.destaque.colaboracao;
+      texto.appendChild(colab);
+    }
+
+    corpo.appendChild(texto);
+
+    painelDestaque.appendChild(corpo);
+
+    const estatisticas = document.createElement("div");
+    estatisticas.className = "destaque-reel-estatisticas";
+    dados.destaque.estatisticas.forEach((estatistica) => {
+      const item = document.createElement("div");
+      item.className = "destaque-reel-item";
+      const icone = document.createElement("span");
+      icone.className = "icone-destaque";
+      icone.setAttribute("aria-hidden", "true");
+      icone.textContent = estatistica.icone;
+      const valor = document.createElement("span");
+      valor.className = "valor-destaque";
+      valor.textContent = estatistica.valor;
+      const rotulo = document.createElement("span");
+      rotulo.className = "rotulo-destaque";
+      rotulo.textContent = estatistica.rotulo;
+      item.append(icone, valor, rotulo);
+      estatisticas.appendChild(item);
+    });
+    painelDestaque.appendChild(estatisticas);
+
+    const subtituloVisaoGeral = document.createElement("p");
+    subtituloVisaoGeral.className = "metrica-subtitulo-bloco";
+    subtituloVisaoGeral.textContent = "Visão geral";
+    painelDestaque.appendChild(subtituloVisaoGeral);
+
+    const visaoGeral = document.createElement("div");
+    visaoGeral.className = "destaque-reel-visaogeral";
+    dados.destaque.visaoGeral.forEach((item) => {
+      const linha = document.createElement("div");
+      linha.className = "linha-visaogeral";
+      const rotulo = document.createElement("span");
+      rotulo.textContent = item.rotulo;
+      const valor = document.createElement("span");
+      valor.textContent = item.valor;
+      linha.append(rotulo, valor);
+      visaoGeral.appendChild(linha);
+    });
+    painelDestaque.appendChild(visaoGeral);
+
+    grade.appendChild(painelDestaque);
+
+    // ---- Painel 3: Gênero + Principais cidades ----
+    // Separado do painel de faixa etária pra formar a 2ª linha da grade,
+    // com os dois painéis de audiência com altura parecida (harmoniza com a 1ª linha).
+    const painelGeneroCidades = document.createElement("div");
+    painelGeneroCidades.className = "cartao-solido painel-metrica";
+    const tituloGeneroCidades = document.createElement("h3");
+    tituloGeneroCidades.textContent = "Quem me acompanha";
+    painelGeneroCidades.appendChild(tituloGeneroCidades);
+
+    [
+      { titulo: "Gênero", itens: dados.audiencia.genero },
+      { titulo: "Principais cidades", itens: dados.audiencia.cidades },
+    ].forEach((bloco, indice) => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "bloco-audiencia";
+      const subtitulo = document.createElement("p");
+      subtitulo.className = "metrica-subtitulo-bloco";
+      subtitulo.textContent = bloco.titulo;
+      if (indice === 0) subtitulo.style.marginTop = "0";
+      wrapper.appendChild(subtitulo);
+      bloco.itens.forEach((item) => {
+        wrapper.appendChild(criarBarraMetrica(item.rotulo, item.percentual, item.percentual.toString().replace(".", ",") + "%"));
+      });
+      painelGeneroCidades.appendChild(wrapper);
+    });
+
+    grade.appendChild(painelGeneroCidades);
+
+    // ---- Painel 4: Principais faixas etárias ----
+    const painelFaixaEtaria = document.createElement("div");
+    painelFaixaEtaria.className = "cartao-solido painel-metrica";
+    const tituloFaixaEtaria = document.createElement("h3");
+    tituloFaixaEtaria.textContent = "Principais faixas etárias";
+    painelFaixaEtaria.appendChild(tituloFaixaEtaria);
+
+    dados.audiencia.faixaEtaria.forEach((item) => {
+      painelFaixaEtaria.appendChild(criarBarraMetrica(item.rotulo, item.percentual, item.percentual.toString().replace(".", ",") + "%"));
+    });
+
+    grade.appendChild(painelFaixaEtaria);
+  }
+
   function montarDepoimentos() {
     const trilho = document.getElementById("trilho-depoimentos");
     CONFIG.depoimentos.forEach((depoimento) => {
@@ -2270,6 +2946,72 @@
     });
 
     ligarSetasCarrossel(trilho, document.querySelector(".seta-depoimentos-esquerda"), document.querySelector(".seta-depoimentos-direita"));
+  }
+
+  function montarPacotes() {
+    const dados = CONFIG.pacotesInvestimento;
+
+    document.getElementById("pacotes-eyebrow").textContent = dados.eyebrow;
+    document.getElementById("pacotes-titulo").textContent = dados.titulo;
+    document.getElementById("pacotes-subtitulo").textContent = dados.subtitulo;
+
+    const grade = document.getElementById("grade-pacotes");
+    dados.pacotes.forEach((pacote) => {
+      const card = document.createElement("div");
+      card.className = "cartao-solido cartao-pacote";
+
+      const rotulo = document.createElement("span");
+      rotulo.className = "rotulo-pacote";
+      rotulo.textContent = pacote.rotulo;
+
+      const titulo = document.createElement("p");
+      titulo.className = "titulo-pacote";
+      titulo.textContent = pacote.titulo;
+
+      const extra = document.createElement("p");
+      extra.className = "extra-pacote";
+      extra.textContent = pacote.extra;
+
+      const preco = document.createElement("p");
+      preco.className = "preco-pacote";
+      preco.textContent = pacote.preco;
+
+      const botao = document.createElement("a");
+      botao.className = "botao-retro botao-destaque";
+      botao.textContent = "Quero este pacote ↗";
+      botao.href = "https://wa.me/" + CONFIG.contato.whatsappNumero + "?text=" + encodeURIComponent(pacote.mensagemWhatsapp);
+      botao.target = "_blank";
+      botao.rel = "noopener";
+      botao.addEventListener("click", () => Rastreio.registrarClique("contact_whatsapp", { origem: "pacote", pacote: pacote.rotulo }));
+
+      card.append(rotulo, titulo, extra, preco, botao);
+      grade.appendChild(card);
+    });
+
+    const listaOutros = document.getElementById("lista-outros-formatos");
+    dados.outrosFormatos.forEach((item) => {
+      const linha = document.createElement("div");
+      linha.className = "linha-outro-formato";
+      const rotulo = document.createElement("span");
+      rotulo.textContent = item.rotulo;
+      const valor = document.createElement("span");
+      valor.className = "valor-outro-formato";
+      valor.textContent = item.preco;
+      linha.append(rotulo, valor);
+      listaOutros.appendChild(linha);
+    });
+
+    document.getElementById("incluido-eyebrow").textContent = dados.incluido.eyebrow;
+    document.getElementById("incluido-titulo").textContent = dados.incluido.titulo;
+
+    const listaIncluido = document.getElementById("lista-incluido");
+    dados.incluido.itens.forEach((texto) => {
+      const item = document.createElement("li");
+      item.textContent = texto;
+      listaIncluido.appendChild(item);
+    });
+
+    document.getElementById("aviso-collab").textContent = dados.incluido.avisoCollab;
   }
 
   function montarContato() {
