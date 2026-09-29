@@ -651,6 +651,65 @@
   /* =========================================================
      PORTFÓLIO
      ========================================================= */
+  /* =========================================================
+     O QUE É UGC
+     ========================================================= */
+  #ugc-titulo { font-size: clamp(2.1rem, 4.5vw, 3.2rem); }
+  .titulo-destaque-ugc {
+    font-family: var(--fonte-destaque);
+    font-style: italic;
+    font-weight: 600;
+    color: var(--terracota);
+  }
+  .ugc-intro { max-width: 68ch; }
+  .ugc-intro p { font-size: 18px; line-height: 1.65; color: var(--marrom); margin: 0 0 14px; }
+  .ugc-intro strong { font-weight: 700; }
+  .ugc-subtitulo { font-size: 24px; margin: 48px 0 20px; }
+
+  .grade-ugc-usos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+  .cartao-ugc-uso { padding: 26px 24px; }
+  .cartao-ugc-uso .icone-ugc {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--oliva-tinta);
+    color: var(--oliva-escuro);
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+  .cartao-ugc-uso h4 { font-family: var(--fonte-titulo); font-size: 18px; margin: 0 0 8px; color: var(--marrom); }
+  .cartao-ugc-uso p { font-size: 15.5px; line-height: 1.55; color: var(--marrom-suave); margin: 0; }
+
+  .ugc-comparativo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 48px;
+  }
+  .coluna-comparativo { border-radius: 18px; padding: 28px 28px 24px; }
+  .coluna-comparativo.ugc { background: var(--oliva); color: var(--off-white); }
+  .coluna-comparativo.publi { background: var(--terracota-tinta); color: var(--marrom); }
+  .coluna-comparativo .rotulo-comparativo {
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+  .coluna-comparativo h4 { font-family: var(--fonte-titulo); font-size: 22px; margin: 8px 0 16px; }
+  .coluna-comparativo ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .coluna-comparativo li { font-size: 16px; line-height: 1.5; padding-left: 22px; position: relative; }
+  .coluna-comparativo li::before { content: "•"; position: absolute; left: 4px; font-weight: 700; }
+  .coluna-comparativo.publi li::before { color: var(--terracota); }
+  .ugc-botao { display: flex; justify-content: center; margin-top: 40px; }
+
   #portfolio-titulo { font-size: clamp(2.1rem, 4.5vw, 3.2rem); }
   .titulo-destaque-portfolio {
     font-family: var(--fonte-destaque);
@@ -1381,6 +1440,8 @@
     .grade-metricas { grid-template-columns: 1fr; }
     .grade-pacotes { grid-template-columns: 1fr 1fr; }
     .pacotes-extra { grid-template-columns: 1fr; gap: 36px; }
+    .grade-ugc-usos { grid-template-columns: 1fr 1fr; }
+    .ugc-comparativo { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 760px) {
@@ -1410,6 +1471,7 @@
     .item-numero:nth-child(2n) { border-left: none; padding-left: 0; }
     .hero-frase { font-size: 17px; }
     .grade-pacotes { grid-template-columns: 1fr; }
+    .grade-ugc-usos { grid-template-columns: 1fr; }
   }
 </style>
 
@@ -1500,6 +1562,24 @@
           <a href="#portfolio" class="botao-retro botao-secundario" id="sobre-cta"></a>
         </div>
         <ul class="lista-diferenciais" id="lista-diferenciais"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== O QUE É UGC ===================== -->
+  <section id="o-que-e-ugc">
+    <div class="container secao-corpo revelar">
+      <span class="rotulo-eyebrow" id="ugc-eyebrow"></span>
+      <h2 id="ugc-titulo"></h2>
+      <div class="ugc-intro" id="ugc-intro"></div>
+
+      <h3 class="ugc-subtitulo" id="ugc-usos-titulo"></h3>
+      <div class="grade-ugc-usos" id="grade-ugc-usos"></div>
+
+      <div class="ugc-comparativo" id="ugc-comparativo"></div>
+
+      <div class="ugc-botao">
+        <a href="#pacotes" class="botao-retro botao-destaque" id="ugc-cta"></a>
       </div>
     </div>
   </section>
@@ -1715,7 +1795,7 @@
     // própria mensagem de WhatsApp (menos os itens sem preço fixo, que não têm botão).
     pacotesInvestimento: {
       eyebrow: "Vamos criar para a sua marca",
-      titulo: "Pacotes & valores.",
+      titulo: "Pacotes & valores UGC.",
       subtitulo: "☎ Combinamos tudo pelo WhatsApp",
       pacotes: [
         {
@@ -1777,6 +1857,7 @@
     navegacao: [
       { rotulo: "Início", href: "#inicio" },
       { rotulo: "Sobre", href: "#sobre" },
+      { rotulo: "O que é UGC", href: "#o-que-e-ugc" },
       { rotulo: "Portfólio", href: "#portfolio" },
       { rotulo: "Serviços", href: "#servicos" },
       { rotulo: "Resultados", href: "#resultados" },
@@ -1830,6 +1911,58 @@
         },
       ],
       textoBotao: "Conheça mais sobre meu trabalho",
+    },
+
+    // EDITE AQUI: a seção "O que é UGC" (fica logo depois do "Sobre mim").
+    // O título é dividido em três partes, igual ao do portfólio. Nos parágrafos da introdução,
+    // "destaques" funciona igual ao do "Sobre mim" (trechos exatos que ficam em negrito).
+    oQueEUgc: {
+      eyebrow: "Vem que eu te explico",
+      tituloPrefixo: "Mas o que é",
+      tituloDestaque: "UGC",
+      tituloSufixo: "?",
+      paragrafos: [
+        {
+          texto: "Se você chegou aqui pelo meu Instagram, talvez nunca tenha ouvido falar. Relaxa, é bem simples!",
+          destaques: [],
+        },
+        {
+          texto: "UGC vem do inglês User Generated Content, que é o conteúdo criado por pessoas reais. Sabe aquele vídeo em que alguém mostra um produto como se estivesse contando pra uma amiga? É isso.",
+          destaques: ["conteúdo criado por pessoas reais"],
+        },
+        {
+          texto: "Funciona assim: a marca me envia o produto, eu uso no meu dia a dia e gravo vídeos e fotos contando como foi a minha experiência. Depois eu entrego tudo prontinho pra marca postar nas redes dela, e não no meu perfil.",
+          destaques: ["eu uso no meu dia a dia", "pra marca postar nas redes dela"],
+        },
+      ],
+      usosTitulo: "E onde a marca pode usar esse conteúdo?",
+      usos: [
+        { icone: "◎", titulo: "No perfil da marca", texto: "Nos Reels, posts e stories do Instagram, no TikTok ou onde a marca estiver. E pode usar pra sempre." },
+        { icone: "▲", titulo: "Em anúncios", texto: "Como o vídeo tem cara de conversa, ele fica super natural no meio do feed. Dá pra impulsionar por até 4 meses sem custo a mais." },
+        { icone: "◆", titulo: "No site e na loja", texto: "Na página do produto, no e-commerce ou no marketplace, pra quem está em dúvida ver o produto sendo usado de verdade." },
+        { icone: "✦", titulo: "Onde mais fizer sentido", texto: "No e-mail, no WhatsApp, numa apresentação... Onde o conteúdo ajudar, ele é bem-vindo." },
+      ],
+      comparativo: {
+        ugc: {
+          rotulo: "UGC",
+          titulo: "O conteúdo fica com a marca.",
+          itens: [
+            "Você recebe os vídeos e fotos prontinhos.",
+            "Pode postar no seu perfil, usar em anúncios e no seu site.",
+            "Os valores são os dos pacotes aqui do site.",
+          ],
+        },
+        publi: {
+          rotulo: "Publi no meu Instagram",
+          titulo: "O conteúdo vai pro meu perfil.",
+          itens: [
+            "Eu posto no @juuliaca e apresento a marca pra minha comunidade.",
+            "Os valores são outros, é só me chamar que eu te passo certinho.",
+            "Quer o vídeo UGC também no meu perfil? Dá pra fazer em collab!",
+          ],
+        },
+      },
+      textoBotao: "Ver pacotes e valores",
     },
 
     // EDITE AQUI: seus diferenciais (aparecem ao lado do texto "Sobre mim", com um ícone cada)
@@ -2096,6 +2229,7 @@
     montarHero();
     montarFaixaMarcas();
     montarSobre();
+    montarOQueEUgc();
     montarPortfolio();
     montarServicos();
     montarNumeros();
@@ -2350,6 +2484,65 @@
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/(^-|-$)/g, "");
+  }
+
+  function montarOQueEUgc() {
+    const dados = CONFIG.oQueEUgc;
+
+    document.getElementById("ugc-eyebrow").textContent = dados.eyebrow;
+    const titulo = document.getElementById("ugc-titulo");
+    titulo.append(dados.tituloPrefixo + " ");
+    const destaque = document.createElement("span");
+    destaque.className = "titulo-destaque-ugc";
+    destaque.textContent = dados.tituloDestaque;
+    titulo.appendChild(destaque);
+    titulo.append(dados.tituloSufixo);
+
+    const intro = document.getElementById("ugc-intro");
+    dados.paragrafos.forEach((paragrafo) => {
+      const p = document.createElement("p");
+      montarTextoComDestaques(p, paragrafo.texto, paragrafo.destaques);
+      intro.appendChild(p);
+    });
+
+    document.getElementById("ugc-usos-titulo").textContent = dados.usosTitulo;
+    const grade = document.getElementById("grade-ugc-usos");
+    dados.usos.forEach((uso) => {
+      const card = document.createElement("div");
+      card.className = "cartao-solido cartao-ugc-uso";
+      const icone = document.createElement("span");
+      icone.className = "icone-ugc";
+      icone.setAttribute("aria-hidden", "true");
+      icone.textContent = uso.icone;
+      const h4 = document.createElement("h4");
+      h4.textContent = uso.titulo;
+      const p = document.createElement("p");
+      p.textContent = uso.texto;
+      card.append(icone, h4, p);
+      grade.appendChild(card);
+    });
+
+    // Duas colunas lado a lado: UGC (verde) x Publi no meu Instagram (terracota clarinho)
+    const comparativo = document.getElementById("ugc-comparativo");
+    [["ugc", dados.comparativo.ugc], ["publi", dados.comparativo.publi]].forEach(([tipo, coluna]) => {
+      const bloco = document.createElement("div");
+      bloco.className = "coluna-comparativo " + tipo;
+      const rotulo = document.createElement("span");
+      rotulo.className = "rotulo-comparativo";
+      rotulo.textContent = coluna.rotulo;
+      const h4 = document.createElement("h4");
+      h4.textContent = coluna.titulo;
+      const ul = document.createElement("ul");
+      coluna.itens.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        ul.appendChild(li);
+      });
+      bloco.append(rotulo, h4, ul);
+      comparativo.appendChild(bloco);
+    });
+
+    document.getElementById("ugc-cta").textContent = dados.textoBotao + " ↓";
   }
 
   function montarPortfolio() {
